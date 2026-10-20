@@ -12,6 +12,9 @@ DISTRO_FEATURES_OPTED_OUT += "pulseaudio gobject-introspection-data"
 VIRTUAL-RUNTIME_syslog = ""
 VIRTUAL-RUNTIME_base-utils-syslog = ""
 
+# No locales on target: pages are static, translated per directory
+IMAGE_LINGUAS = ""
+
 # ShareBox tunables (override in local.conf or kas)
 SHAREBOX_SSID ??= ""
 SHAREBOX_LANG ??= ""
@@ -26,3 +29,6 @@ SHAREBOX_CAPTIVE_MODE ??= "popup"
 SHAREBOX_UPDATES ??= "1"
 SHAREBOX_VERITY ??= "0"
 SHAREBOX_DEV ??= "0"
+
+# Short host name ("sharebox" for "sharebox.lan"), written to /etc/hostname
+hostname:pn-base-files = "${@d.getVar('SHAREBOX_HOSTNAME').split('.')[0]}"
