@@ -1,0 +1,81 @@
+# ShareBox page strings, Marathi (mr). AI-generated, needs human review.
+#
+# Format: one "key=value" per line, UTF-8. Lines starting with "#" and blank
+# lines are ignored. Values are plain text: the generator HTML-escapes them.
+# Inline markers, replaced by the generator with LTR-safe code spans:
+#   {http}     -> http://
+#   {https}    -> https://
+#   {example}  -> http://sharebox.lan
+# "ShareBox" is a name and is never translated.
+
+# Wi-Fi network name: "ShareBox - <ssid_slogan>". Whole SSID at most 32 bytes
+# in UTF-8, so the slogan has at most 21 bytes.
+ssid_slogan=वाटा!
+
+# Shared page parts
+skip_link=थेट मजकुराकडे जा
+nav_home=मुख्यपृष्ठ
+nav_how=हे कसे चालते
+nav_status=स्थिती
+lang_selector=भाषा
+footer_offline=हा बॉक्स इंटरनेटशिवाय चालतो.
+
+# Home page
+home_title=ShareBox मध्ये आपले स्वागत आहे
+home_lead=तुम्ही एका ShareBox ला जोडलेले आहात: हा एक छोटा वाय-फाय बॉक्स आहे, ज्यातून इंटरनेटशिवाय जवळच्या लोकांसोबत फाइल शेअर करता येतात आणि गप्पा मारता येतात.
+home_offline=इथले काहीही बॉक्सबाहेर जात नाही. तो इंटरनेटला जोडलेला नाही, त्यामुळे तुम्ही याला जोडलेले असताना इंटरनेट लागणाऱ्या वेबसाइट आणि ॲप चालणार नाहीत.
+warn_title=सार्वजनिक आणि एन्क्रिप्ट न केलेले
+warn_public=हे वाय-फाय नेटवर्क खुले आहे आणि एन्क्रिप्ट केलेले नाही. तुम्ही काय पाठवता आणि काय मिळवता हे जवळपासचे कोणीही पाहू शकते.
+warn_uploads=तुम्ही इथे जे काही शेअर करता ते सर्व सार्वजनिक असते: जोडलेले कोणीही ते पाहू आणि डाउनलोड करू शकते. वैयक्तिक किंवा खासगी माहिती शेअर करू नका.
+services_title=इथे तुम्ही काय करू शकता
+home_more=हे कसे चालते?
+
+# Service cards (home page, depends on the image)
+svc_files=फाइल
+svc_files_desc=शेअर केलेल्या फाइल पाहा आणि डाउनलोड करा.
+svc_upload=अपलोड
+svc_upload_desc=तुमच्या स्वतःच्या फाइल इथल्या सर्वांसोबत शेअर करा.
+svc_chat=चॅट
+svc_chat_desc=या बॉक्सला जोडलेल्या लोकांशी बोला.
+svc_forum=फोरम
+svc_forum_desc=चर्चा सुरू करा किंवा तिच्यात सहभागी व्हा.
+svc_library=ग्रंथालय
+svc_library_desc=विश्वकोश, पुस्तके आणि इतर ऑफलाइन मजकूर वाचा.
+svc_box=ShareBox उघडा
+svc_box_desc_classic=फाइल, अपलोड, चॅट आणि फोरम, सगळे एकाच ठिकाणी.
+svc_box_desc_shareboxx=फाइल, मोठे अपलोड आणि लाइव्ह चॅट, सगळे एकाच ठिकाणी.
+svc_english_note=हा इंटरफेस इंग्रजीत आहे.
+svc_js_note=हा इंटरफेस वापरण्यासाठी तुमच्या ब्राउझरमध्ये JavaScript सुरू असणे आवश्यक आहे.
+svc_none=या बॉक्सवर कोणतीही शेअरिंग सेवा इंस्टॉल केलेली नाही. तो फक्त नेटवर्क आणि हे पेज देतो.
+
+# How it works page
+how_title=हे कसे चालते
+how_connect_title=कनेक्ट करा
+how_connect=बॉक्सच्या वाय-फाय नेटवर्कला कनेक्ट करा. पासवर्डची गरज नाही. बहुतेक फोनवर मुख्यपृष्ठ असलेली एक विंडो आपोआप उघडते.
+how_open=काहीच उघडले नाही, तर तुमचा वेब ब्राउझर सुरू करा आणि {http} ने सुरू होणारा कोणताही पत्ता टाइप करा, उदा. {example}. {https} ने सुरू होणारे सुरक्षित पत्ते इथे चालत नाहीत.
+how_share_title=शेअर करा
+how_share=इतरांनी शेअर केलेले डाउनलोड करा, तुमच्या फाइल जोडा, चॅट करा. कोणतेही खाते नाही, पासवर्ड नाही: सगळे निनावी असतात.
+how_offline_title=ऑफलाइन
+how_offline=बॉक्स कधीही इंटरनेटला जोडला जात नाही. या नेटवर्कवर इंटरनेट नाही असे तुमचा फोन सांगू शकतो: हे सामान्य आहे. बॉक्स वापरत राहण्यासाठी कनेक्टेड राहा.
+how_privacy_title=गोपनीयता
+how_privacy=नेटवर्क खुले आणि एन्क्रिप्ट न केलेले आहे, आणि शेअर केलेले सर्व काही सार्वजनिक आहे. इतर डिव्हाइस थेट तुमच्या डिव्हाइसपर्यंत पोहोचू शकत नाहीत, पण जवळपासचे कोणीही रेडिओ ट्रॅफिक ऐकू शकते. सार्वजनिक सूचना फलकावर लावता येईल तेवढेच शेअर करा.
+how_limits_title=मर्यादा
+how_limits=बॉक्स लहान आहे: एका वेळी फक्त काही डिव्हाइस, सुमारे आठ, तो वापरू शकतात, आणि त्याची स्टोरेज जागा मर्यादित आहे.
+how_about_title=माहिती
+how_about=ShareBox हे मुक्त सॉफ्टवेअर आहे, PirateBox आणि LibraryBox च्या परंपरेतील. हा बॉक्स चालवणारी व्यक्तीच त्यावर उपलब्ध असलेल्या मजकुरासाठी जबाबदार आहे.
+how_back=मुख्यपृष्ठावर परत जा
+
+# Status page
+status_title=बॉक्सची स्थिती
+status_clients=जोडलेली डिव्हाइस
+status_disk=मोकळी स्टोरेज जागा
+status_version=सॉफ्टवेअर आवृत्ती
+status_warnings=इशारे
+status_no_warnings=कोणतेही इशारे नाहीत.
+update_title=सॉफ्टवेअर अपडेट
+update_found=पेन ड्राइव्हवर एक अपडेट सापडले:
+update_signed=त्याची स्वाक्षरी तपासली आहे. ते इंस्टॉल केल्यावर बॉक्स रीस्टार्ट होईल आणि काही मिनिटे उपलब्ध नसेल.
+update_warning=तुम्हाला अपेक्षित असलेलेच अपडेट इंस्टॉल करा. प्रकाशकाची स्वाक्षरी नसलेले कोणतेही अपडेट बॉक्स नाकारतो.
+update_install=इंस्टॉल करा
+update_ok=अपडेट इंस्टॉल होत आहे. बॉक्स लवकरच रीस्टार्ट होईल.
+update_error=अपडेट इंस्टॉल करता आले नाही:
