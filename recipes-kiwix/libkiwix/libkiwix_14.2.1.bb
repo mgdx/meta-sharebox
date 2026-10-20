@@ -39,4 +39,5 @@ do_install:append() {
     rm -f ${D}${bindir}/kiwix-compile-resources ${D}${bindir}/kiwix-compile-i18n
     rmdir --ignore-fail-on-non-empty ${D}${bindir} 2>/dev/null || true
     rm -rf ${D}${mandir}
+    rmdir --ignore-fail-on-non-empty ${D}${datadir} 2>/dev/null || true
 }
