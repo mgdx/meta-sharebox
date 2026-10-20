@@ -1,0 +1,3 @@
+# luffy state on the persistent data partition (chat history, forum,
+# web content copied from the binary on first start).
+d /data/luffy 0750 sharebox sharebox -
