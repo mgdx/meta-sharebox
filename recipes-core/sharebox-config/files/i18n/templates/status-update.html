@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">{{update_title}}</h2>
+<p>{{update_found}} <code dir="ltr">@@BUNDLE@@</code></p>
+<p>{{update_signed}}</p>
+<p class="note">{{update_warning}}</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="{{@lang}}">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">{{update_install}}</button>
+</form>
+</section>

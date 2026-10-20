@@ -1,0 +1,81 @@
+# ShareBox page strings, English (reference language).
+#
+# Format: one "key=value" per line, UTF-8. Lines starting with "#" and blank
+# lines are ignored. Values are plain text: the generator HTML-escapes them.
+# Inline markers, replaced by the generator with LTR-safe code spans:
+#   {http}     -> http://
+#   {https}    -> https://
+#   {example}  -> http://sharebox.lan
+# "ShareBox" is a name and is never translated.
+
+# Wi-Fi network name: "ShareBox - <ssid_slogan>". Whole SSID at most 32 bytes
+# in UTF-8, so the slogan has at most 21 bytes.
+ssid_slogan=Share Freely
+
+# Shared page parts
+skip_link=Skip to content
+nav_home=Home
+nav_how=How it works
+nav_status=Status
+lang_selector=Language
+footer_offline=This box works without the Internet.
+
+# Home page
+home_title=Welcome to the ShareBox
+home_lead=You are connected to a ShareBox: a small Wi-Fi box for sharing files and talking with people nearby, without the Internet.
+home_offline=Nothing here leaves the box. It is not connected to the Internet, so websites and apps that need it will not work while you are connected.
+warn_title=Public and unencrypted
+warn_public=This Wi-Fi network is open and not encrypted. Anyone nearby can see what you send and receive.
+warn_uploads=Everything you share here is public: anyone connected can see and download it. Do not share personal or private data.
+services_title=What you can do here
+home_more=How does it work?
+
+# Service cards (home page, depends on the image)
+svc_files=Files
+svc_files_desc=Browse and download shared files.
+svc_upload=Upload
+svc_upload_desc=Share your own files with everyone here.
+svc_chat=Chat
+svc_chat_desc=Talk with the people connected to this box.
+svc_forum=Forum
+svc_forum_desc=Start or join a discussion.
+svc_library=Library
+svc_library_desc=Read encyclopedias, books and other offline content.
+svc_box=Open the ShareBox
+svc_box_desc_classic=Files, uploads, chat and forum in one place.
+svc_box_desc_shareboxx=Files, large uploads and live chat in one place.
+svc_english_note=This interface is in English.
+svc_js_note=This interface needs JavaScript to be enabled in your browser.
+svc_none=No sharing service is installed on this box. It only provides the network and this page.
+
+# How it works page
+how_title=How it works
+how_connect_title=Connect
+how_connect=Join the Wi-Fi network of the box. No password is needed. On most phones, a window opens by itself with the home page.
+how_open=If nothing opens, start your web browser and type any address starting with {http}, for example {example}. Secure addresses starting with {https} do not work here.
+how_share_title=Share
+how_share=Download what others have shared, add your own files, chat. There are no accounts and no passwords: everyone is anonymous.
+how_offline_title=Offline
+how_offline=The box never connects to the Internet. Your phone may warn that this network has no Internet access: this is normal. Stay connected to keep using the box.
+how_privacy_title=Privacy
+how_privacy=The network is open and unencrypted, and everything shared is public. Other devices cannot reach yours directly, but anyone nearby can listen to the radio traffic. Only share what you would pin on a public notice board.
+how_limits_title=Limits
+how_limits=The box is small: only a few devices, about eight, can use it at the same time, and its storage space is limited.
+how_about_title=About
+how_about=ShareBox is free software, in the spirit of PirateBox and LibraryBox. Whoever runs this box is responsible for what it offers.
+how_back=Back to the home page
+
+# Status page
+status_title=Box status
+status_clients=Connected devices
+status_disk=Free storage space
+status_version=Software version
+status_warnings=Warnings
+status_no_warnings=No warnings.
+update_title=Software update
+update_found=An update was found on the USB stick:
+update_signed=Its signature has been checked. Installing it restarts the box, which will be unavailable for a few minutes.
+update_warning=Only install an update you were expecting. The box refuses any update that is not signed by its publisher.
+update_install=Install
+update_ok=The update is being installed. The box will restart shortly.
+update_error=The update could not be installed:
