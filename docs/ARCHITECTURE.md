@@ -186,8 +186,8 @@ Under `recipes-core/sharebox-config/files/`, installed as whole directories:
 - `www/style.css`, `www/<code>/how-it-works.html` (final),
   `www/<code>/index.html.in` (`@@ENGINE_LINKS@@` alone on a line, replaced
   by `www/<code>/engine-<engine>.html`; cards with `optional-forum` or
-  `optional-upload` dropped when there is no forum (`SHAREBOX_FORUM`) or no
-  upload (`SHAREBOX_UPLOAD_MAX = "0"`)).
+  `optional-upload` dropped: always for the forum (no forum engine), when
+  `SHAREBOX_UPLOAD_MAX = "0"` for uploads).
 - `/status` templates: `status.html.in` (`@@CLIENTS@@`, `@@DISK_FREE@@`,
   `@@VERSION@@`, `@@WARNINGS@@`, `@@UPDATE_RESULT@@`, `@@UPDATE_SECTION@@`),
   `status-update.html.in` (`@@BUNDLE@@`), `status-result-ok.html`,
