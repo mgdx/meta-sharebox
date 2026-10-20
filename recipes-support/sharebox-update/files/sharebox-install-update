@@ -1,0 +1,82 @@
+#!/bin/sh
+# Install the update candidate recorded by the USB hook (50-rauc).
+#
+# Called by the /status CGI after a POST. The CGI runs unprivileged: in that
+# case the script only queues the request (/run/sharebox-update/request) and
+# returns; sharebox-update-install.path then starts
+# sharebox-update-install.service, which runs this script as root to:
+#   - re-check the candidate (state=ready, file still present)
+#   - rauc install (signature, compatible and verity are checked again)
+#   - record the pending update in /data/rauc for sharebox-healthcheck
+#   - reboot into the new slot
+# Progress and errors go to /run/sharebox/update-status.
+#
+# Exit status (unprivileged call): 0 queued, 1 nothing to install, 2 error.
+
+set -u
+
+. /usr/lib/sharebox/sharebox-update-lib.sh
+
+if [ "$(id -u)" != 0 ]; then
+    if [ "$(sb_kv_get "$SHAREBOX_UPDATE_CANDIDATE" state)" != ready ]; then
+        echo "no verified update available"
+        exit 1
+    fi
+    if ! : > "$SHAREBOX_UPDATE_REQUEST" 2> /dev/null; then
+        echo "cannot queue the update request"
+        exit 2
+    fi
+    echo "update requested"
+    exit 0
+fi
+
+rm -f "$SHAREBOX_UPDATE_REQUEST"
+
+lock=$SHAREBOX_UPDATE_REQDIR/lock
+mkdir -p "$SHAREBOX_UPDATE_REQDIR"
+if ! mkdir "$lock" 2> /dev/null; then
+    echo "an installation is already running"
+    exit 1
+fi
+trap 'rmdir "$lock"' EXIT
+
+fail() {
+    echo "sharebox-install-update: $1" >&2
+    sb_status failed "$1" "${version:-}"
+    exit 1
+}
+
+state=$(sb_kv_get "$SHAREBOX_UPDATE_CANDIDATE" state)
+file=$(sb_kv_get "$SHAREBOX_UPDATE_CANDIDATE" file)
+version=$(sb_kv_get "$SHAREBOX_UPDATE_CANDIDATE" version)
+
+[ "$state" = ready ] || fail "no verified update available"
+[ -f "$file" ] || fail "the USB stick with the update was removed"
+
+booted=$(sb_booted_slot)
+case "$booted" in
+A) target=B ;;
+B) target=A ;;
+*) fail "the running system was not started by the A/B boot script" ;;
+esac
+
+echo "installing $file (version $version) into slot $target"
+sb_status installing "installing version $version, do not unplug the power or the USB stick" "$version"
+
+if ! out=$(rauc install "$file" 2>&1); then
+    err=$(printf '%s\n' "$out" | grep -v '^$' | tail -n 1 | sed 's/.*LastError: //')
+    fail "installation failed: ${err:-rauc install failed}"
+fi
+printf '%s\n' "$out" | tail -n 3
+
+# Tell sharebox-healthcheck which slot is on trial
+mkdir -p "${SHAREBOX_UPDATE_PENDING%/*}"
+printf 'slot=%s\nversion=%s\nfrom=%s\n' "$target" "$(sb_clean "$version")" \
+    "$(sb_clean "$(sb_running_version)")" > "$SHAREBOX_UPDATE_PENDING.tmp"
+mv -f "$SHAREBOX_UPDATE_PENDING.tmp" "$SHAREBOX_UPDATE_PENDING"
+sync
+
+sb_status rebooting "version $version installed, restarting" "$version"
+# Leave the status page a few seconds to show it
+sleep 5
+systemctl reboot

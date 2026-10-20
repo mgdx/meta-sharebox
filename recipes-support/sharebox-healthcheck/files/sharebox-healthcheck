@@ -1,0 +1,135 @@
+#!/bin/sh
+# ShareBox boot health check.
+#
+# Waits until the box serves its clients (the units in
+# SHAREBOX_HEALTHCHECK_UNITS are active and something listens on TCP port
+# SHAREBOX_HEALTHCHECK_PORT), then commits the booted RAUC slot with
+# "rauc status mark-good", which resets its U-Boot boot counter.
+#
+# Trial boot (first boot of a slot written by sharebox-install-update, recorded
+# in /data/rauc/sharebox-pending-update): if the box is not healthy within
+# SHAREBOX_HEALTHCHECK_TIMEOUT seconds, the slot is marked bad and the box
+# reboots into the previous slot. Outside a trial boot an unhealthy box is a
+# configuration or hardware problem, not a bad update: the slot is still
+# marked good and a warning is shown on /status.
+#
+# The outcome of an update is written to /run/sharebox/update-status.
+
+set -u
+
+TIMEOUT=${SHAREBOX_HEALTHCHECK_TIMEOUT:-180}
+UNITS=${SHAREBOX_HEALTHCHECK_UNITS:-hostapd.service dnsmasq.service}
+PORT=${SHAREBOX_HEALTHCHECK_PORT:-80}
+
+RUNDIR=/run/sharebox
+STATUS=$RUNDIR/update-status
+WARNINGS=$RUNDIR/warnings
+PENDING=/data/rauc/sharebox-pending-update
+
+log() {
+    echo "sharebox-healthcheck: $*"
+}
+
+write_status() {
+    mkdir -p "$RUNDIR"
+    printf 'state=%s\nmessage=%s\nversion=%s\ntime=%s\n' "$1" "$2" "$3" "$(date +%s)" \
+        > "$STATUS.tmp.$$" && chmod 0644 "$STATUS.tmp.$$" && mv -f "$STATUS.tmp.$$" "$STATUS"
+}
+
+if ! command -v rauc > /dev/null 2>&1; then
+    log "rauc is not installed, nothing to do"
+    exit 0
+fi
+
+booted=""
+for arg in $(cat /proc/cmdline); do
+    case "$arg" in
+    rauc.slot=*) booted=${arg#rauc.slot=} ;;
+    esac
+done
+if [ -z "$booted" ]; then
+    log "not started by the A/B boot script (no rauc.slot=), nothing to do"
+    exit 0
+fi
+
+pending_slot=""
+pending_version=""
+if [ -r "$PENDING" ]; then
+    pending_slot=$(sed -n 's/^slot=//p' "$PENDING" | head -n 1)
+    pending_version=$(sed -n 's/^version=//p' "$PENDING" | head -n 1 | tr -cd 'A-Za-z0-9._+-')
+fi
+trial=0
+[ -n "$pending_slot" ] && [ "$pending_slot" = "$booted" ] && trial=1
+
+hexport=$(printf '%04X' "$PORT")
+
+listening() {
+    for f in /proc/net/tcp /proc/net/tcp6; do
+        [ -r "$f" ] || continue
+        # sl local_address rem_address st ...; st 0A = LISTEN
+        while read -r _sl local _rem st _rest; do
+            [ "$st" = 0A ] || continue
+            case "$local" in
+            *:"$hexport") return 0 ;;
+            esac
+        done < "$f"
+    done
+    return 1
+}
+
+why=""
+healthy() {
+    for u in $UNITS; do
+        if ! systemctl -q is-active "$u"; then
+            why="$u is not running"
+            return 1
+        fi
+    done
+    if ! listening; then
+        why="nothing listens on port $PORT"
+        return 1
+    fi
+    return 0
+}
+
+ok=0
+elapsed=0
+while :; do
+    if healthy; then
+        ok=1
+        break
+    fi
+    [ "$elapsed" -ge "$TIMEOUT" ] && break
+    sleep 2
+    elapsed=$((elapsed + 2))
+done
+
+if [ "$ok" = 1 ]; then
+    log "slot $booted is healthy"
+elif [ "$trial" = 1 ]; then
+    log "updated slot $booted is not healthy after ${TIMEOUT}s ($why), rolling back"
+    write_status rolling-back "version $pending_version does not work ($why), restoring the previous system" "$pending_version"
+    rauc status mark-bad booted || log "rauc status mark-bad failed"
+    sync
+    systemctl reboot
+    exit 1
+else
+    log "box not healthy after ${TIMEOUT}s ($why); keeping slot $booted"
+    mkdir -p "$RUNDIR"
+    echo "Health check: $why" >> "$WARNINGS"
+fi
+
+if ! rauc status mark-good booted; then
+    log "rauc status mark-good failed"
+    exit 1
+fi
+
+if [ -n "$pending_slot" ]; then
+    if [ "$trial" = 1 ]; then
+        write_status installed "version $pending_version installed" "$pending_version"
+    else
+        write_status rolled-back "version $pending_version did not start, the previous system was restored" "$pending_version"
+    fi
+    rm -f "$PENDING"
+fi
+exit 0

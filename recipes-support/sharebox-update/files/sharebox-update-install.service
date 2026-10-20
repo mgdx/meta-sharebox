@@ -1,0 +1,36 @@
+[Unit]
+Description=Install the ShareBox update confirmed on the status page
+After=sharebox-setup.service rauc.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/lib/sharebox/sharebox-install-update
+TimeoutStartSec=30min
+
+# The bundle is written by rauc.service (over D-Bus); this unit only needs
+# D-Bus, its status files and the pending-update marker.
+User=root
+CapabilityBoundingSet=
+NoNewPrivileges=yes
+ProtectSystem=strict
+ReadWritePaths=-/run/sharebox -/run/sharebox-update -/data/rauc
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+ProtectClock=yes
+ProtectHostname=yes
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+RestrictAddressFamilies=AF_UNIX
+IPAddressDeny=any
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+# Status files are made world-readable explicitly (chmod 0644)
+UMask=0077
