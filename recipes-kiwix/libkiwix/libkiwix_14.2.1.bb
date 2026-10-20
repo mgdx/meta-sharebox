@@ -40,5 +40,3 @@ do_install:append() {
     rmdir --ignore-fail-on-non-empty ${D}${bindir} 2>/dev/null || true
     rm -rf ${D}${mandir}
 }
-
-BBCLASSEXTEND = "native nativesdk"
