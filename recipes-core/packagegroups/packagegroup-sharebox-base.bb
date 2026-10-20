@@ -14,6 +14,7 @@ SHAREBOX_UPDATES ??= "1"
 RDEPENDS:${PN} = " \
     os-release \
     systemd \
+    systemd-networkd \
     hostapd \
     dnsmasq \
     nftables \

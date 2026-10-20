@@ -26,7 +26,7 @@ IMAGE_INSTALL = " \
     packagegroup-core-boot \
     packagegroup-sharebox-base \
     sharebox-config-${SHAREBOX_ENGINE} \
-    ${@'sharebox-config-dev' if d.getVar('SHAREBOX_DEV') == '1' else ''} \
+    ${@'sharebox-config-devaccess' if d.getVar('SHAREBOX_DEV') == '1' else ''} \
     ${CORE_IMAGE_EXTRA_INSTALL} \
 "
 

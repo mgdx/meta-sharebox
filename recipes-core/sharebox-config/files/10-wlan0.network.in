@@ -1,0 +1,15 @@
+# ShareBox access point interface: static address; hostapd and dnsmasq do
+# the rest (no DHCP server here, no IPv6 router advertisements).
+[Match]
+Name=wlan0
+
+[Link]
+RequiredForOnline=no
+
+[Network]
+Address=@SHAREBOX_IPV4@
+DHCPServer=no
+LinkLocalAddressing=no
+IPv6AcceptRA=no
+ConfigureWithoutCarrier=yes
+IgnoreCarrierLoss=yes
