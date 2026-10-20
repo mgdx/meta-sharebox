@@ -11,7 +11,13 @@
 #   - reboot into the new slot
 # Progress and errors go to /run/sharebox/update-status.
 #
-# Exit status (unprivileged call): 0 queued, 1 nothing to install, 2 error.
+# Usage: sharebox-install-update [<bundle file name>]
+# The optional argument is the bundle name the user confirmed (the "bundle"
+# field of the /status form); the request is refused if the candidate has
+# changed since the page was shown. It is never used as a path.
+#
+# Exit status (unprivileged call): 0 queued, 1 nothing to install or
+# candidate changed, 2 error. One line of English text is printed on stdout.
 
 set -u
 
@@ -22,7 +28,12 @@ if [ "$(id -u)" != 0 ]; then
         echo "no verified update available"
         exit 1
     fi
-    if ! : > "$SHAREBOX_UPDATE_REQUEST" 2> /dev/null; then
+    name=$(sb_kv_get "$SHAREBOX_UPDATE_CANDIDATE" name)
+    if [ $# -ge 1 ] && [ "$1" != "$name" ]; then
+        echo "the update on the USB stick has changed, reload the page"
+        exit 1
+    fi
+    if ! printf '%s\n' "$name" > "$SHAREBOX_UPDATE_REQUEST" 2> /dev/null; then
         echo "cannot queue the update request"
         exit 2
     fi
@@ -30,10 +41,13 @@ if [ "$(id -u)" != 0 ]; then
     exit 0
 fi
 
+requested=$(head -n 1 "$SHAREBOX_UPDATE_REQUEST" 2> /dev/null)
+
 rm -f "$SHAREBOX_UPDATE_REQUEST"
 
-lock=$SHAREBOX_UPDATE_REQDIR/lock
-mkdir -p "$SHAREBOX_UPDATE_REQDIR"
+# Not in the request drop box, where unprivileged users can create files
+lock=$SHAREBOX_RUNDIR/update-lock
+mkdir -p "$SHAREBOX_RUNDIR"
 if ! mkdir "$lock" 2> /dev/null; then
     echo "an installation is already running"
     exit 1
@@ -52,6 +66,9 @@ version=$(sb_kv_get "$SHAREBOX_UPDATE_CANDIDATE" version)
 
 [ "$state" = ready ] || fail "no verified update available"
 [ -f "$file" ] || fail "the USB stick with the update was removed"
+if [ -n "$requested" ] && [ "$requested" != "$(sb_kv_get "$SHAREBOX_UPDATE_CANDIDATE" name)" ]; then
+    fail "the update on the USB stick has changed since it was confirmed"
+fi
 
 booted=$(sb_booted_slot)
 case "$booted" in
