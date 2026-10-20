@@ -1,0 +1,63 @@
+[Unit]
+Description=ShareBoxx file sharing and chat (Leptos)
+Documentation=https://github.com/dividebysandwich/shareboxx
+After=sharebox-setup.service network.target
+Requires=sharebox-setup.service
+
+[Service]
+Type=simple
+EnvironmentFile=/run/sharebox/env
+# Leptos runtime configuration. The client bundle (wasm/js/css) is installed
+# by shareboxx-web; its file names must match LEPTOS_OUTPUT_NAME.
+Environment=LEPTOS_OUTPUT_NAME=shareboxx
+Environment=LEPTOS_SITE_ROOT=@SITEDIR@
+Environment=LEPTOS_SITE_PKG_DIR=pkg
+Environment=LEPTOS_SITE_ADDR=0.0.0.0:80
+Environment=LEPTOS_ENV=PROD
+# ShareBox settings mapped onto the variables added by the layer patch.
+ExecStart=/bin/sh -c 'SHAREBOXX_HOSTNAME="$SHAREBOX_HOSTNAME" SHAREBOXX_UPLOAD_MAX="$SHAREBOX_UPLOAD_MAX" exec @BINDIR@/shareboxx'
+Restart=on-failure
+RestartSec=5s
+LimitNOFILE=4096
+
+User=sharebox
+Group=sharebox
+# Relative paths used by shareboxx: ./files (-> /data/share/upload),
+# chat.json, stats.json, config.json, uploads.db.
+WorkingDirectory=/data/shareboxx
+
+# Port 80 is the only privilege shareboxx needs.
+CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+ProtectClock=yes
+ProtectHostname=yes
+ProtectProc=invisible
+ProcSubset=pid
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+RemoveIPC=yes
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+SystemCallFilter=~@privileged
+SystemCallErrorNumber=EPERM
+UMask=0077
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+DevicePolicy=closed
+
+ReadWritePaths=/data/shareboxx -/data/share/upload
+
+[Install]
+WantedBy=multi-user.target
