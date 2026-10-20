@@ -1,0 +1,81 @@
+# ShareBox page strings, Amharic (am). AI-generated, needs human review.
+#
+# Format: one "key=value" per line, UTF-8. Lines starting with "#" and blank
+# lines are ignored. Values are plain text: the generator HTML-escapes them.
+# Inline markers, replaced by the generator with LTR-safe code spans:
+#   {http}     -> http://
+#   {https}    -> https://
+#   {example}  -> http://sharebox.lan
+# "ShareBox" is a name and is never translated.
+
+# Wi-Fi network name: "ShareBox - <ssid_slogan>". Whole SSID at most 32 bytes
+# in UTF-8, so the slogan has at most 21 bytes.
+ssid_slogan=በነጻ ያጋሩ
+
+# Shared page parts
+skip_link=ወደ ይዘቱ ይዝለሉ
+nav_home=መነሻ
+nav_how=እንዴት ይሠራል
+nav_status=ሁኔታ
+lang_selector=ቋንቋ
+footer_offline=ይህ ሳጥን ያለ በይነመረብ ይሠራል።
+
+# Home page
+home_title=ወደ ShareBox እንኳን ደህና መጡ
+home_lead=ከ ShareBox ጋር ተገናኝተዋል፤ ያለ በይነመረብ ፋይሎችን ለማጋራት እና በአቅራቢያ ካሉ ሰዎች ጋር ለመነጋገር የሚያገለግል ትንሽ የWi-Fi ሳጥን ነው።
+home_offline=እዚህ ያለ ምንም ነገር ከሳጥኑ አይወጣም። ሳጥኑ ከበይነመረብ ጋር አልተገናኘም፤ ስለዚህ ከእሱ ጋር ተገናኝተው እስካሉ ድረስ በይነመረብ የሚያስፈልጋቸው ድረ ገጾች እና መተግበሪያዎች አይሠሩም።
+warn_title=ይፋዊ እና ያልተመሰጠረ
+warn_public=ይህ የWi-Fi አውታረ መረብ ክፍት ነው፤ አልተመሰጠረም። በአቅራቢያ ያለ ማንኛውም ሰው የሚልኩትን እና የሚቀበሉትን ማየት ይችላል።
+warn_uploads=እዚህ የሚያጋሩት ሁሉ ይፋዊ ነው፤ የተገናኘ ማንኛውም ሰው ሊያየው እና ሊያወርደው ይችላል። የግል ወይም ሚስጥራዊ መረጃ አያጋሩ።
+services_title=እዚህ ምን ማድረግ ይችላሉ
+home_more=እንዴት ነው የሚሠራው?
+
+# Service cards (home page, depends on the image)
+svc_files=ፋይሎች
+svc_files_desc=የተጋሩ ፋይሎችን ያስሱ እና ያውርዱ።
+svc_upload=ስቀል
+svc_upload_desc=የራስዎን ፋይሎች እዚህ ካሉት ሁሉ ጋር ያጋሩ።
+svc_chat=ውይይት
+svc_chat_desc=ከዚህ ሳጥን ጋር ከተገናኙ ሰዎች ጋር ይነጋገሩ።
+svc_forum=መድረክ
+svc_forum_desc=ውይይት ይጀምሩ ወይም ይቀላቀሉ።
+svc_library=ቤተ መጻሕፍት
+svc_library_desc=ኢንሳይክሎፒዲያዎችን፣ መጻሕፍትን እና ሌሎች ከመስመር ውጭ የሚገኙ ይዘቶችን ያንብቡ።
+svc_box=ShareBoxን ይክፈቱ
+svc_box_desc_classic=ፋይሎች፣ መስቀያ፣ ውይይት እና መድረክ በአንድ ቦታ።
+svc_box_desc_shareboxx=ፋይሎች፣ ትላልቅ ፋይሎችን መስቀያ እና የቀጥታ ውይይት በአንድ ቦታ።
+svc_english_note=ይህ በይነገጽ በእንግሊዝኛ ነው።
+svc_js_note=ይህ በይነገጽ በአሳሽዎ ውስጥ JavaScript እንዲነቃ ይፈልጋል።
+svc_none=በዚህ ሳጥን ላይ ምንም የማጋሪያ አገልግሎት አልተጫነም። አውታረ መረቡን እና ይህን ገጽ ብቻ ያቀርባል።
+
+# How it works page
+how_title=እንዴት ይሠራል
+how_connect_title=ይገናኙ
+how_connect=ከሳጥኑ የWi-Fi አውታረ መረብ ጋር ይገናኙ። የይለፍ ቃል አያስፈልግም። በአብዛኛዎቹ ስልኮች ላይ መነሻ ገጹ ያለበት መስኮት በራሱ ይከፈታል።
+how_open=ምንም ነገር ካልተከፈተ የድር አሳሽዎን ይክፈቱ እና በ{http} የሚጀምር ማንኛውንም አድራሻ ይተይቡ፤ ለምሳሌ {example}። በ{https} የሚጀምሩ ደህንነታቸው የተጠበቀ አድራሻዎች እዚህ አይሠሩም።
+how_share_title=ያጋሩ
+how_share=ሌሎች ያጋሩትን ያውርዱ፣ የራስዎን ፋይሎች ያክሉ፣ ይወያዩ። መለያም የይለፍ ቃልም የለም፤ ሁሉም ሰው ማንነቱ ሳይታወቅ ይሳተፋል።
+how_offline_title=ከመስመር ውጭ
+how_offline=ሳጥኑ በፍጹም ከበይነመረብ ጋር አይገናኝም። ስልክዎ ይህ አውታረ መረብ የበይነመረብ ግንኙነት እንደሌለው ሊያስጠነቅቅዎ ይችላል፤ ይህ የተለመደ ነው። ሳጥኑን መጠቀም ለመቀጠል እንደተገናኙ ይቆዩ።
+how_privacy_title=ግላዊነት
+how_privacy=አውታረ መረቡ ክፍት እና ያልተመሰጠረ ነው፤ የተጋራው ሁሉ ይፋዊ ነው። ሌሎች መሣሪያዎች በቀጥታ ወደ እርስዎ መሣሪያ መድረስ አይችሉም፤ ነገር ግን በአቅራቢያ ያለ ማንኛውም ሰው የሬዲዮ ትራፊኩን ማዳመጥ ይችላል። በሕዝብ ማስታወቂያ ሰሌዳ ላይ ሊለጥፉት የሚችሉትን ብቻ ያጋሩ።
+how_limits_title=ገደቦች
+how_limits=ሳጥኑ ትንሽ ነው፤ በአንድ ጊዜ ሊጠቀሙበት የሚችሉት ጥቂት መሣሪያዎች ብቻ ናቸው (ስምንት ገደማ)፣ የማከማቻ ቦታውም ውስን ነው።
+how_about_title=ስለ
+how_about=ShareBox በPirateBox እና LibraryBox መንፈስ የተሠራ ነጻ ሶፍትዌር ነው። ይህን ሳጥን የሚያስተዳድረው ሰው ለሚያቀርበው ይዘት ኃላፊነት አለበት።
+how_back=ወደ መነሻ ገጹ ይመለሱ
+
+# Status page
+status_title=የሳጥኑ ሁኔታ
+status_clients=የተገናኙ መሣሪያዎች
+status_disk=ነጻ የማከማቻ ቦታ
+status_version=የሶፍትዌር ስሪት
+status_warnings=ማስጠንቀቂያዎች
+status_no_warnings=ምንም ማስጠንቀቂያ የለም።
+update_title=የሶፍትዌር ዝማኔ
+update_found=በUSB ፍላሽ ላይ ዝማኔ ተገኝቷል፦
+update_signed=ፊርማው ተረጋግጧል። መጫኑ ሳጥኑን ዳግም ያስጀምረዋል፤ ሳጥኑም ለጥቂት ደቂቃዎች አይገኝም።
+update_warning=የሚጠብቁትን ዝማኔ ብቻ ይጫኑ። ሳጥኑ በአሳታሚው ያልተፈረመ ማንኛውንም ዝማኔ አይቀበልም።
+update_install=ጫን
+update_ok=ዝማኔው እየተጫነ ነው። ሳጥኑ በቅርቡ ዳግም ይጀምራል።
+update_error=ዝማኔው ሊጫን አልቻለም፦

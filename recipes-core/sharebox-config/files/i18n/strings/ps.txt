@@ -1,0 +1,81 @@
+# ShareBox page strings, Pashto (ps). AI-generated, needs human review.
+#
+# Format: one "key=value" per line, UTF-8. Lines starting with "#" and blank
+# lines are ignored. Values are plain text: the generator HTML-escapes them.
+# Inline markers, replaced by the generator with LTR-safe code spans:
+#   {http}     -> http://
+#   {https}    -> https://
+#   {example}  -> http://sharebox.lan
+# "ShareBox" is a name and is never translated.
+
+# Wi-Fi network name: "ShareBox - <ssid_slogan>". Whole SSID at most 32 bytes
+# in UTF-8, so the slogan has at most 21 bytes.
+ssid_slogan=آزاد شریکول
+
+# Shared page parts
+skip_link=منځپانګې ته لاړ شئ
+nav_home=کور
+nav_how=دا څنګه کار کوي
+nav_status=حالت
+lang_selector=ژبه
+footer_offline=دا بکس له انټرنېټ پرته کار کوي.
+
+# Home page
+home_title=ShareBox ته ښه راغلاست
+home_lead=تاسو له یوه ShareBox سره وصل یاست: یو کوچنی Wi-Fi بکس چې له انټرنېټ پرته د فایلونو د شریکولو او له نږدې خلکو سره د خبرو لپاره دی.
+home_offline=دلته هېڅ شی له بکس څخه بهر نه ځي. دا بکس له انټرنېټ سره وصل نه دی، نو تر هغه چې تاسو ورسره وصل یاست، هغه وېبپاڼې او اپلیکېشنونه چې انټرنېټ ته اړتیا لري کار نه کوي.
+warn_title=عامه او کوډ نه شوې
+warn_public=دا Wi-Fi شبکه خلاصه ده او کوډ شوې نه ده. هر څوک چې نږدې وي، لیدلی شي چې تاسو څه لېږئ او څه ترلاسه کوئ.
+warn_uploads=هر څه چې تاسو دلته شریکوئ عامه دي: هر وصل شوی کس یې لیدلی او ډاونلوډولی شي. شخصي یا خصوصي معلومات مه شریکوئ.
+services_title=تاسو دلته څه کولی شئ
+home_more=دا څنګه کار کوي؟
+
+# Service cards (home page, depends on the image)
+svc_files=فایلونه
+svc_files_desc=شریک شوي فایلونه وګورئ او ډاونلوډ یې کړئ.
+svc_upload=اپلوډ
+svc_upload_desc=خپل فایلونه له ټولو هغو سره شریک کړئ چې دلته دي.
+svc_chat=چیټ
+svc_chat_desc=له هغو خلکو سره خبرې وکړئ چې له دې بکس سره وصل دي.
+svc_forum=فورم
+svc_forum_desc=یو بحث پیل کړئ یا په کې ګډون وکړئ.
+svc_library=کتابتون
+svc_library_desc=دایرة المعارفونه، کتابونه او نور آفلاین مواد ولولئ.
+svc_box=ShareBox پرانیزئ
+svc_box_desc_classic=فایلونه، اپلوډ، چیټ او فورم په یوه ځای کې.
+svc_box_desc_shareboxx=فایلونه، د لویو فایلونو اپلوډ او ژوندی چیټ په یوه ځای کې.
+svc_english_note=دا انټرفېس په انګلیسي ژبه دی.
+svc_js_note=د دې انټرفېس لپاره باید ستاسو په براوزر کې JavaScript فعال وي.
+svc_none=په دې بکس کې د شریکولو هېڅ خدمت نه دی نصب شوی. دا یوازې شبکه او همدا پاڼه برابروي.
+
+# How it works page
+how_title=دا څنګه کار کوي
+how_connect_title=وصل شئ
+how_connect=د بکس له Wi-Fi شبکې سره وصل شئ. پاسورډ ته اړتیا نشته. په ډېرو موبایلونو کې د کور پاڼې یوه کړکۍ پخپله پرانیستل کېږي.
+how_open=که هېڅ شی پرانیستل نه شو، خپل وېب براوزر پرانیزئ او هره هغه پته ولیکئ چې په {http} پیلېږي، د بېلګې په توګه {example}. هغه خوندي پتې چې په {https} پیلېږي، دلته کار نه کوي.
+how_share_title=شریکول
+how_share=هغه څه ډاونلوډ کړئ چې نورو شریک کړي، خپل فایلونه ور زیات کړئ، چیټ وکړئ. نه حساب شته او نه پاسورډ: هر څوک بې‌نومه دی.
+how_offline_title=آفلاین
+how_offline=بکس هېڅکله له انټرنېټ سره نه وصلېږي. کېدای شي ستاسو موبایل خبرداری درکړي چې دا شبکه انټرنېټ نه لري: دا عادي خبره ده. د بکس د کارولو د دوام لپاره وصل پاتې شئ.
+how_privacy_title=محرمیت
+how_privacy=شبکه خلاصه او کوډ نه شوې ده، او هر شریک شوی شی عامه دی. نورې وسیلې په مستقیم ډول ستاسو وسیلې ته نه شي رسېدلی، خو هر څوک چې نږدې وي د راډیويي څپو ترافیک اورېدلی شي. یوازې هغه څه شریک کړئ چې د عامه اعلاناتو په تخته یې ځړولی شئ.
+how_limits_title=محدودیتونه
+how_limits=بکس کوچنی دی: یوازې یو څو وسیلې، شاوخوا اته، کولی شي په یو وخت کې ترې کار واخلي، او د ذخیرې ځای یې محدود دی.
+how_about_title=په اړه
+how_about=ShareBox آزاد سافټوېر دی، د PirateBox او LibraryBox په روحیه. هر څوک چې دا بکس چلوي، د هغه څه مسؤل دی چې دا یې وړاندې کوي.
+how_back=کور پاڼې ته بېرته تګ
+
+# Status page
+status_title=د بکس حالت
+status_clients=وصل شوې وسیلې
+status_disk=د ذخیرې خالي ځای
+status_version=د سافټوېر نسخه
+status_warnings=خبرداریونه
+status_no_warnings=هېڅ خبرداری نشته.
+update_title=د سافټوېر تازه کول
+update_found=په USB فلش کې یوه تازه نسخه وموندل شوه:
+update_signed=د هغې لاسلیک تایید شوی دی. د هغې نصبول بکس بیا پیلوي، او بکس به د څو دقیقو لپاره د لاسرسي وړ نه وي.
+update_warning=یوازې هغه تازه نسخه نصب کړئ چې تاسو یې تمه درلوده. بکس هره هغه تازه نسخه ردوي چې د خپرونکي لخوا لاسلیک شوې نه وي.
+update_install=نصب کړئ
+update_ok=تازه نسخه نصبېږي. بکس به ډېر ژر بیا پیل شي.
+update_error=تازه نسخه نصب نه شوه:

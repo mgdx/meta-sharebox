@@ -1,0 +1,81 @@
+# ShareBox page strings, Yoruba (yo). AI-generated, needs human review.
+#
+# Format: one "key=value" per line, UTF-8. Lines starting with "#" and blank
+# lines are ignored. Values are plain text: the generator HTML-escapes them.
+# Inline markers, replaced by the generator with LTR-safe code spans:
+#   {http}     -> http://
+#   {https}    -> https://
+#   {example}  -> http://sharebox.lan
+# "ShareBox" is a name and is never translated.
+
+# Wi-Fi network name: "ShareBox - <ssid_slogan>". Whole SSID at most 32 bytes
+# in UTF-8, so the slogan has at most 21 bytes.
+ssid_slogan=Pín ní òmìnira
+
+# Shared page parts
+skip_link=Fò lọ sí àkóónú
+nav_home=Ojú-ìwé àkọ́kọ́
+nav_how=Bí ó ṣe ń ṣiṣẹ́
+nav_status=Ipò
+lang_selector=Èdè
+footer_offline=Àpótí yìí ń ṣiṣẹ́ láìsí ayélujára.
+
+# Home page
+home_title=Ẹ kú àbọ̀ sí ShareBox
+home_lead=Ẹ ti sopọ̀ mọ́ ShareBox kan: àpótí Wi-Fi kékeré fún pínpín fáìlì àti bíbá àwọn ènìyàn tó wà nítòsí sọ̀rọ̀, láìsí ayélujára.
+home_offline=Kò sí ohunkóhun tó ń jáde kúrò nínú àpótí yìí. Kò sopọ̀ mọ́ ayélujára, nítorí náà àwọn ojú-òpó wẹ́ẹ̀bù àti àwọn áàpù tó nílò ayélujára kò ní ṣiṣẹ́ nígbà tí ẹ bá sopọ̀ mọ́ ọn.
+warn_title=Gbangba, kò sì ní ìdáàbòbò
+warn_public=Nẹ́tíwọ̀ọ̀kì Wi-Fi yìí ṣí sílẹ̀, kò sì ní ìdáàbòbò. Ẹnikẹ́ni tó wà nítòsí lè rí ohun tí ẹ ń fi ránṣẹ́ àti ohun tí ẹ ń gbà.
+warn_uploads=Gbogbo ohun tí ẹ bá pín níbí jẹ́ ti gbangba: ẹnikẹ́ni tó ti sopọ̀ lè rí i, kí ó sì gbà á sílẹ̀. Ẹ má ṣe pín ìsọfúnni ti ara ẹni tàbí ti àṣírí.
+services_title=Ohun tí ẹ lè ṣe níbí
+home_more=Báwo ló ṣe ń ṣiṣẹ́?
+
+# Service cards (home page, depends on the image)
+svc_files=Àwọn fáìlì
+svc_files_desc=Ẹ wo àwọn fáìlì tí a pín, kí ẹ sì gbà wọ́n sílẹ̀.
+svc_upload=Gbé sókè
+svc_upload_desc=Ẹ pín àwọn fáìlì yín pẹ̀lú gbogbo ènìyàn tó wà níbí.
+svc_chat=Ìjíròrò
+svc_chat_desc=Ẹ bá àwọn ènìyàn tó ti sopọ̀ mọ́ àpótí yìí sọ̀rọ̀.
+svc_forum=Àpéjọ
+svc_forum_desc=Ẹ bẹ̀rẹ̀ ìjíròrò tàbí kí ẹ darapọ̀ mọ́ ọ̀kan.
+svc_library=Ibi ìkàwé
+svc_library_desc=Ẹ ka àwọn ìwé ìmọ̀ ìjìnlẹ̀, àwọn ìwé àti àwọn àkóónú mìíràn tí kò nílò ayélujára.
+svc_box=Ṣí ShareBox
+svc_box_desc_classic=Fáìlì, gbígbé sókè, ìjíròrò àti àpéjọ ní ibì kan.
+svc_box_desc_shareboxx=Fáìlì, gbígbé fáìlì ńlá sókè àti ìjíròrò lójú ẹsẹ̀ ní ibì kan.
+svc_english_note=Èdè Gẹ̀ẹ́sì ni ojú-ìlò yìí wà.
+svc_js_note=Ojú-ìlò yìí nílò kí JavaScript wà ní títàn nínú aṣàwákiri yín.
+svc_none=Kò sí iṣẹ́ pínpín kankan tí a fi sórí àpótí yìí. Nẹ́tíwọ̀ọ̀kì àti ojú-ìwé yìí nìkan ló ń pèsè.
+
+# How it works page
+how_title=Bí ó ṣe ń ṣiṣẹ́
+how_connect_title=Ẹ sopọ̀
+how_connect=Ẹ darapọ̀ mọ́ nẹ́tíwọ̀ọ̀kì Wi-Fi àpótí náà. Ẹ kò nílò ọ̀rọ̀ aṣínà. Lórí ọ̀pọ̀lọpọ̀ fóònù, fèrèsé kan tó ní ojú-ìwé àkọ́kọ́ máa ṣí fúnra rẹ̀.
+how_open=Bí kò bá sí ohun tó ṣí, ẹ ṣí aṣàwákiri wẹ́ẹ̀bù yín, kí ẹ sì tẹ àdírẹ́sì èyíkéyìí tó bẹ̀rẹ̀ pẹ̀lú {http}, fún àpẹẹrẹ {example}. Àwọn àdírẹ́sì aláàbò tó bẹ̀rẹ̀ pẹ̀lú {https} kò ṣiṣẹ́ níbí.
+how_share_title=Ẹ pín
+how_share=Ẹ gba ohun tí àwọn mìíràn pín sílẹ̀, ẹ fi àwọn fáìlì yín kún un, kí ẹ sì jíròrò. Kò sí àkáǹtì, kò sì sí ọ̀rọ̀ aṣínà: a kò mọ orúkọ ẹnikẹ́ni.
+how_offline_title=Láìsí ayélujára
+how_offline=Àpótí náà kì í sopọ̀ mọ́ ayélujára rárá. Fóònù yín lè kìlọ̀ pé nẹ́tíwọ̀ọ̀kì yìí kò ní ayélujára: èyí kò burú rárá. Ẹ dúró ní sísopọ̀ kí ẹ lè máa lo àpótí náà nìṣó.
+how_privacy_title=Àṣírí
+how_privacy=Nẹ́tíwọ̀ọ̀kì náà ṣí sílẹ̀, kò sì ní ìdáàbòbò, gbogbo ohun tí a bá pín sì jẹ́ ti gbangba. Àwọn ẹ̀rọ mìíràn kò lè dé ọ̀dọ̀ ẹ̀rọ yín tààrà, ṣùgbọ́n ẹnikẹ́ni tó wà nítòsí lè tẹ́tí sí ìgbì rédíò. Ẹ máa pín ohun tí ẹ lè lẹ̀ mọ́ pátákó ìkéde gbangba nìkan.
+how_limits_title=Ààlà
+how_limits=Àpótí náà kéré: ẹ̀rọ díẹ̀ péré, bíi mẹ́jọ, ló lè lò ó lẹ́ẹ̀kan náà, ààyè ìpamọ́ rẹ̀ sì ní ààlà.
+how_about_title=Nípa rẹ̀
+how_about=ShareBox jẹ́ sọ́fítíwià ọ̀fẹ́, ní ẹ̀mí PirateBox àti LibraryBox. Ẹnikẹ́ni tó ń ṣàkóso àpótí yìí ló ń dáhùn fún ohun tó ń pèsè.
+how_back=Padà sí ojú-ìwé àkọ́kọ́
+
+# Status page
+status_title=Ipò àpótí
+status_clients=Àwọn ẹ̀rọ tó ti sopọ̀
+status_disk=Ààyè ìpamọ́ tó ṣẹ́kù
+status_version=Ẹ̀yà sọ́fítíwià
+status_warnings=Àwọn ìkìlọ̀
+status_no_warnings=Kò sí ìkìlọ̀.
+update_title=Ìmúdójúìwọ̀n sọ́fítíwià
+update_found=A rí ìmúdójúìwọ̀n kan lórí fíláàṣì USB:
+update_signed=A ti ṣàyẹ̀wò ìbuwọ́lù rẹ̀. Fífi í sórí ẹ̀rọ yóò tún àpótí náà bẹ̀rẹ̀, kò sì ní ṣeé lò fún ìṣẹ́jú díẹ̀.
+update_warning=Ẹ fi ìmúdójúìwọ̀n tí ẹ ń retí nìkan sórí ẹ̀rọ. Àpótí náà kò ní gba ìmúdójúìwọ̀n èyíkéyìí tí olùtẹ̀jáde rẹ̀ kò buwọ́ lù.
+update_install=Fi sórí ẹ̀rọ
+update_ok=À ń fi ìmúdójúìwọ̀n náà sórí ẹ̀rọ. Àpótí náà yóò tún bẹ̀rẹ̀ láìpẹ́.
+update_error=A kò lè fi ìmúdójúìwọ̀n náà sórí ẹ̀rọ:
