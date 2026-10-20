@@ -1,0 +1,235 @@
+# Ergo configuration for ShareBox: one local, anonymous IRC network.
+#
+# Clients never reach Ergo directly: lighttpd proxies http://<box>/socket to
+# the WebSocket listener below, gamja (served at /chat/) connects to it.
+# Everything that is not set here keeps the Ergo built-in default; see
+# default.yaml in the Ergo sources for the documentation of every key.
+
+network:
+    name: ShareBox
+
+server:
+    # Label only, the box answers to any name (wildcard DNS).
+    name: sharebox.lan
+
+    listeners:
+        # Plain IRC for local tools and debugging (never reachable from wlan0).
+        "127.0.0.1:6667":
+        # WebSocket listener, reverse-proxied by lighttpd at /socket. No TLS:
+        # the box is offline and the radio network is open by design.
+        "127.0.0.1:8097":
+            websocket: true
+
+    websockets:
+        # Every name resolves to the box and nothing else is reachable, so
+        # there is no foreign web site to protect against.
+        allowed-origins: []
+
+    casemapping: "ascii"
+    enforce-utf8: true
+    lookup-hostnames: false
+    forward-confirm-hostnames: false
+    check-ident: false
+    coerce-ident: '~u'
+
+    motd: /etc/ergo/ergo.motd
+    motd-formatting: true
+
+    idle-timeouts:
+        registration: 60s
+        ping: 1m30s
+        disconnect: 2m30s
+
+    relaymsg:
+        enabled: false
+
+    # lighttpd connects from localhost and sends X-Forwarded-For: trust it so
+    # that connection limits and cloaks apply to the real client address.
+    proxy-allowed-from:
+        - localhost
+
+    max-sendq: 96k
+
+    compatibility:
+        force-trailing: true
+        send-unprefixed-sasl: true
+        allow-truncation: false
+
+    ip-limits:
+        count: true
+        # at most 4 simultaneous connections per client address
+        max-concurrent-connections: 4
+        throttle: true
+        window: 10m
+        max-connections-per-window: 32
+        cidr-len-ipv4: 32
+        cidr-len-ipv6: 64
+        # localhost is deliberately NOT exempted: every client arrives through
+        # the proxy, the limits must apply to the forwarded address.
+        exempted: []
+
+    ip-check-script:
+        enabled: false
+
+    ip-cloaking:
+        enabled: true
+        enabled-for-always-on: true
+        netname: "sharebox"
+        cidr-len-ipv4: 32
+        cidr-len-ipv6: 64
+        num-bits: 64
+
+    oper-throttle: 10s
+    output-path: /data/chat
+    suppress-lusers: false
+
+accounts:
+    # No accounts at all: anyone can chat with any free nickname.
+    authentication-enabled: false
+    registration:
+        enabled: false
+    login-throttling:
+        enabled: true
+        duration: 1m
+        max-attempts: 3
+    skip-server-password: false
+    login-via-pass-command: false
+    advertise-scram: false
+    require-sasl:
+        enabled: false
+    nick-reservation:
+        enabled: false
+        guest-nickname-format: "Guest-*"
+        force-guest-format: false
+        force-nick-equals-account: false
+    multiclient:
+        enabled: false
+        allowed-by-default: false
+        always-on: "disabled"
+        auto-away: "disabled"
+    vhosts:
+        enabled: false
+    default-user-modes: +i
+    auth-script:
+        enabled: false
+    oauth2:
+        enabled: false
+    jwt-auth:
+        enabled: false
+
+channels:
+    default-modes: +ntC
+    max-channels-per-client: 20
+    operator-only-creation: false
+    registration:
+        enabled: false
+    list-delay: 0s
+    invite-expiration: 24h
+    # Every client lands in the box channel.
+    auto-join:
+        - "#sharebox"
+
+# No IRC operators: the box has no administrator account on the radio side.
+oper-classes: {}
+opers: {}
+
+logging:
+    -
+        method: stderr
+        # never log message contents nor client addresses
+        type: "* -userinput -useroutput -connect-ip"
+        level: info
+
+debug:
+    recover-from-errors: true
+
+lock-file: /data/chat/ircd.lock
+
+datastore:
+    # buntdb file holding server state (created on first start)
+    path: /data/chat/ircd.db
+    autoupgrade: true
+    mysql:
+        enabled: false
+    postgresql:
+        enabled: false
+    # Persistent chat history, pure Go SQLite driver (no CGO)
+    sqlite:
+        enabled: true
+        database-path: /data/chat/ergo.db
+        busy-timeout: 5s
+        max-conns: 1
+
+languages:
+    enabled: false
+
+limits:
+    nicklen: 32
+    identlen: 20
+    realnamelen: 150
+    channellen: 64
+    awaylen: 390
+    kicklen: 390
+    topiclen: 390
+    monitor-entries: 100
+    whowas-entries: 100
+    chan-list-modes: 100
+    registration-messages: 1024
+    multiline:
+        max-bytes: 4096
+        max-lines: 100
+
+# Ergo flood protection, kept at the upstream defaults.
+fakelag:
+    enabled: true
+    window: 1s
+    burst-limit: 5
+    messages-per-window: 2
+    cooldown: 2s
+    command-budgets:
+        "CHATHISTORY": 16
+        "MARKREAD":    16
+        "MONITOR":     1
+        "WHO":         4
+
+roleplay:
+    enabled: false
+
+history:
+    enabled: true
+    channel-length: 2048
+    client-length: 256
+    autoresize-window: 3d
+    autoreplay-on-join: 0
+    chathistory-maxmessages: 1000
+    znc-maxmessages: 2048
+    restrictions:
+        expire-time: 1w
+        query-cutoff: 'none'
+        grace-period: 1h
+    persistent:
+        enabled: true
+        # #sharebox is never registered (no accounts), store it anyway
+        unregistered-channels: true
+        registered-channels: "opt-out"
+        # direct messages are not written to disk
+        direct-messages: "disabled"
+    retention:
+        allow-individual-delete: false
+        enable-account-indexing: false
+    tagmsg-storage:
+        default: false
+        whitelist:
+            - "+draft/react"
+            - "+react"
+
+allow-environment-overrides: false
+
+metadata:
+    enabled: false
+
+webpush:
+    enabled: false
+
+api:
+    enabled: false
