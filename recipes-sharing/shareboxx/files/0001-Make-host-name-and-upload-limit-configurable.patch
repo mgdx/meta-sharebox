@@ -1,0 +1,122 @@
+From: meta-sharebox maintainers <leo@magacyber.fr>
+Subject: [PATCH] Make host name and upload limit configurable, harden uploads
+
+- SHAREBOXX_HOSTNAME selects the canonical host name every other host is
+  redirected to (default: shareboxx.lan, as before).
+- SHAREBOXX_UPLOAD_MAX sets the multipart size limit in bytes (default:
+  10 GiB, as before; 0 rejects every upload).
+- Reject uploads whose upload_path or file name is absolute or contains a
+  ".." component: they were joined to ./files unchecked, which allowed
+  writing outside the shared folder.
+- Call "df -P -k" instead of the GNU only "--output" option so that the
+  disk usage also works with busybox df.
+
+Upstream-Status: Pending
+Signed-off-by: meta-sharebox maintainers <leo@magacyber.fr>
+---
+--- a/src/app.rs
++++ b/src/app.rs
+@@ -475,8 +475,10 @@
+ 
+ #[server]
+ pub async fn get_disk_space() -> Result<(u64, u64), ServerFnError> {
++    // POSIX output in 1024-byte blocks, understood by both GNU coreutils
++    // and busybox df.
+     let output = std::process::Command::new("df")
+-        .args(["--output=size,avail", "-B1", "./files"])
++        .args(["-P", "-k", "./files"])
+         .output()
+         .map_err(|e| sfn_err(format!("df failed: {}", e)))?;
+     let stdout = String::from_utf8_lossy(&output.stdout);
+@@ -490,8 +492,11 @@
+             "Invalid df output".to_string(),
+         ));
+     }
+-    let total: u64 = parts[0].parse().unwrap_or(0);
+-    let avail: u64 = parts[1].parse().unwrap_or(0);
++    if parts.len() < 4 {
++        return Err(sfn_err("Invalid df output".to_string()));
++    }
++    let total: u64 = parts[1].parse::<u64>().unwrap_or(0) * 1024;
++    let avail: u64 = parts[3].parse::<u64>().unwrap_or(0) * 1024;
+     Ok((total.saturating_sub(avail), total))
+ }
+ 
+--- a/src/main.rs
++++ b/src/main.rs
+@@ -17,6 +17,39 @@
+ #[cfg(feature = "ssr")]
+ use shareboxx::app::App;
+ 
++/// Canonical host name the server redirects every other host to. Set with
++/// SHAREBOXX_HOSTNAME, defaults to the upstream "shareboxx.lan".
++#[cfg(feature = "ssr")]
++fn canonical_host() -> &'static str {
++    static HOST: std::sync::OnceLock<String> = std::sync::OnceLock::new();
++    HOST.get_or_init(|| {
++        std::env::var("SHAREBOXX_HOSTNAME")
++            .ok()
++            .filter(|h| !h.trim().is_empty())
++            .unwrap_or_else(|| "shareboxx.lan".to_string())
++    })
++}
++
++/// Maximum size of one upload request in bytes. Set with
++/// SHAREBOXX_UPLOAD_MAX, defaults to 10 GiB; 0 rejects every upload.
++#[cfg(feature = "ssr")]
++fn upload_limit() -> usize {
++    std::env::var("SHAREBOXX_UPLOAD_MAX")
++        .ok()
++        .and_then(|v| v.trim().parse::<usize>().ok())
++        .unwrap_or(10 * 1024 * 1024 * 1024)
++}
++
++/// Accept only relative paths without "..", so an upload cannot escape
++/// the files directory.
++#[cfg(feature = "ssr")]
++fn is_safe_relative(path: &str) -> bool {
++    !path.starts_with('/')
++        && !path.contains('\\')
++        && !path.contains('\0')
++        && path.split('/').all(|c| c != "..")
++}
++
+ #[cfg(feature = "ssr")]
+ #[actix_web::main]
+ async fn main() -> std::io::Result<()> {
+@@ -58,7 +91,7 @@
+             .wrap(from_fn(domain_redirect))
+             .app_data(web::Data::new(
+                 MultipartFormConfig::default()
+-                    .total_limit(10 * 1024 * 1024 * 1024)
++                    .total_limit(upload_limit())
+                     .memory_limit(10 * 1024 * 1024)
+                     .error_handler(handle_multipart_error),
+             ))
+@@ -171,6 +204,11 @@
+         if file_name.is_empty() {
+             continue;
+         }
++        if file_name.contains('/') || file_name == "." || file_name == ".."
++            || !is_safe_relative(&file_name) || !is_safe_relative(&form.upload_path)
++        {
++            return Err(actix_web::error::ErrorBadRequest("Invalid path"));
++        }
+         let path = format!("./files/{}{}", form.upload_path.clone(), file_name);
+ 
+         // This logic can be simplified/made more robust, but keeping it for now
+@@ -282,11 +320,12 @@
+     // ShareBoxx is HTTP-only by design — see README "Why no HTTPS?". Browsers'
+     // captive-portal probes use plain HTTP and modern HTTPS-First modes carve
+     // out RFC1918 / *.lan addresses, so HTTP is sustainable for this device.
+-    if req.connection_info().host() != "shareboxx.lan" && !req.connection_info().host().starts_with("127.0.0.1") {
++    let host = canonical_host();
++    if req.connection_info().host() != host && !req.connection_info().host().starts_with("127.0.0.1") {
+         return Ok(ServiceResponse::new(
+             req.request().to_owned(),
+             HttpResponse::TemporaryRedirect()
+-                .append_header(("Location", "http://shareboxx.lan"))
++                .append_header(("Location", format!("http://{}", host)))
+                 .finish(),
+         )
+         .map_into_boxed_body());
