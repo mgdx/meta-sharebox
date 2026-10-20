@@ -1,0 +1,7 @@
+/build*/
+/sharebox-build/
+*.pyc
+__pycache__/
+*.swp
+*~
+/Spécification meta-sharebox.md

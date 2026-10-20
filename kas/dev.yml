@@ -1,0 +1,6 @@
+# Overlay: switch to the development distro (ssh over ethernet, UART)
+# Usage: kas build kas/rpi4-64.yml:kas/dev.yml
+header:
+  version: 14
+
+distro: sharebox-dev
