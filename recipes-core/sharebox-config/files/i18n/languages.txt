@@ -1,0 +1,41 @@
+en	ltr	English
+zh-Hans	ltr	简体中文
+zh-Hant	ltr	繁體中文
+hi	ltr	हिन्दी
+es	ltr	Español
+fr	ltr	Français
+ar	rtl	العربية
+bn	ltr	বাংলা
+pt	ltr	Português
+ru	ltr	Русский
+ur	rtl	اردو
+id	ltr	Bahasa Indonesia
+de	ltr	Deutsch
+ja	ltr	日本語
+mr	ltr	मराठी
+te	ltr	తెలుగు
+tr	ltr	Türkçe
+ta	ltr	தமிழ்
+vi	ltr	Tiếng Việt
+fil	ltr	Filipino
+ko	ltr	한국어
+fa	rtl	فارسی
+ha	ltr	Hausa
+sw	ltr	Kiswahili
+jv	ltr	Basa Jawa
+it	ltr	Italiano
+pa	ltr	ਪੰਜਾਬੀ
+gu	ltr	ગુજરાતી
+th	ltr	ไทย
+kn	ltr	ಕನ್ನಡ
+am	ltr	አማርኛ
+pl	ltr	Polski
+yo	ltr	Yorùbá
+ml	ltr	മലയാളം
+my	ltr	မြန်မာ
+uk	ltr	Українська
+nl	ltr	Nederlands
+ms	ltr	Bahasa Melayu
+ro	ltr	Română
+uz	ltr	Oʻzbekcha
+ps	rtl	پښتو
