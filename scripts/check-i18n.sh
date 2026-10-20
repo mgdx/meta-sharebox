@@ -104,6 +104,19 @@ else
 	err "missing country-lang.csv"
 fi
 
+# Accept-Language aliases must point to shipped languages.
+aliases="$i18n/lang-aliases.txt"
+if [ -f "$aliases" ]; then
+	bad=$(grep -v '^#' "$aliases" | while IFS="$tab" read -r alias code; do
+		[ -n "$alias" ] || continue
+		case " $codes " in
+		*" $code "*) ;;
+		*) echo "$alias" ;;
+		esac
+	done)
+	[ -z "$bad" ] || err "lang-aliases.txt: unshipped target for: $bad"
+fi
+
 # HTML well-formedness.
 if command -v xmllint > /dev/null 2>&1; then
 	for f in "$www"/*/*.html "$www"/*/*.html.in; do
