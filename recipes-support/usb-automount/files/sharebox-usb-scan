@@ -1,0 +1,92 @@
+#!/bin/sh
+# sharebox-usb-scan: refresh what the box exposes from USB sticks.
+#
+# - /data/share/usb -> the most recently mounted stick (its "share/"
+#   directory if present, else its root); removed when no stick is present.
+# - sharebox/sharebox.conf on a stick is copied to /data/config/sharebox.conf
+#   when it differs; sharebox-setup is then restarted, which regenerates the
+#   runtime configuration and restarts hostapd, dnsmasq and lighttpd.
+# - Hooks: every executable /usr/lib/sharebox/usb-hooks.d/* is run with the
+#   active mount points as arguments (none when every stick is gone), e.g.
+#   the RAUC bundle detection of the storage lot.
+#
+# SHAREBOX_ROOT prefixes every path (tests); SHAREBOX_NO_SYSTEMCTL=1 skips
+# the restart.
+
+set -u
+ROOT=${SHAREBOX_ROOT:-}
+MEDIA=$ROOT/media
+SHARE=$ROOT/data/share
+CONFIG=$ROOT/data/config/sharebox.conf
+HOOKS=$ROOT/usr/lib/sharebox/usb-hooks.d
+MOUNTS=${SHAREBOX_MOUNTS:-/proc/self/mounts}
+MAX_CONF_SIZE=65536
+
+log() { echo "sharebox-usb-scan: $*" >&2; }
+
+# Active stick mount points, most recent first (mount point directories are
+# created by systemd-mount when the stick is plugged in)
+active=""
+for dir in $(ls -dt "$MEDIA"/usb-* 2>/dev/null); do
+    [ -d "$dir" ] || continue
+    mp=${dir#"$ROOT"}
+    # The automount point is listed as autofs, the real mount after access
+    grep -q " $mp " "$MOUNTS" 2>/dev/null || continue
+    # Trigger the automount and check that the stick is still readable
+    ls "$dir" > /dev/null 2>&1 || continue
+    active="$active $dir"
+done
+active=${active# }
+
+# --- /data/share/usb ------------------------------------------------------------
+newest=${active%% *}
+if [ -d "$SHARE" ]; then
+    link=$SHARE/usb
+    if [ -n "$newest" ]; then
+        target=$newest
+        [ -d "$newest/share" ] && target=$newest/share
+        target=${target#"$ROOT"}
+        if [ "$(readlink "$link" 2>/dev/null)" != "$target" ]; then
+            rm -f "$link"
+            ln -s "$target" "$link" && log "exposing $target as /data/share/usb"
+        fi
+    elif [ -L "$link" ]; then
+        rm -f "$link"
+        log "no USB stick, /data/share/usb removed"
+    fi
+fi
+
+# --- configuration file -----------------------------------------------------------
+for dir in $active; do
+    conf=$dir/sharebox/sharebox.conf
+    [ -f "$conf" ] || continue
+    size=$(wc -c < "$conf" | tr -d ' ')
+    if [ "$size" -gt "$MAX_CONF_SIZE" ]; then
+        log "$conf is too large, ignored"
+        break
+    fi
+    if ! cmp -s "$conf" "$CONFIG"; then
+        mkdir -p "$(dirname "$CONFIG")"
+        if cp "$conf" "$CONFIG.new" && mv -f "$CONFIG.new" "$CONFIG"; then
+            log "configuration copied from ${conf#"$ROOT"}, restarting the access point"
+            if [ "${SHAREBOX_NO_SYSTEMCTL:-0}" != 1 ]; then
+                systemctl --no-block restart sharebox-setup.service
+            fi
+        else
+            rm -f "$CONFIG.new"
+            log "cannot copy $conf"
+        fi
+    fi
+    # Only the most recent stick provides the configuration
+    break
+done
+
+# --- hooks ------------------------------------------------------------------------
+if [ -d "$HOOKS" ]; then
+    for hook in "$HOOKS"/*; do
+        [ -f "$hook" ] && [ -x "$hook" ] || continue
+        # shellcheck disable=SC2086
+        "$hook" $active || log "hook $hook failed"
+    done
+fi
+exit 0

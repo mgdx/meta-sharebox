@@ -1,0 +1,14 @@
+# ShareBox: mount USB sticks read-only under /media/usb-<label> (on first
+# access, through systemd automount) and refresh the shared content.
+# Accepted file systems: ext4, exFAT, NTFS (ntfs3, read-only), FAT.
+
+SUBSYSTEM!="block", GOTO="sharebox_usb_end"
+ENV{ID_BUS}!="usb", GOTO="sharebox_usb_end"
+
+ACTION=="add", ENV{ID_FS_USAGE}=="filesystem", ENV{ID_FS_TYPE}=="ext4|ext3|ext2|exfat|vfat|ntfs|ntfs3", \
+    RUN{program}+="/usr/lib/sharebox/usb-mount add $devnode"
+
+ACTION=="remove", ENV{ID_FS_USAGE}=="filesystem", \
+    RUN{program}+="/usr/lib/sharebox/usb-mount remove $devnode"
+
+LABEL="sharebox_usb_end"

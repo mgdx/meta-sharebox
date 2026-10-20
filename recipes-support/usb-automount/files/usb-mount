@@ -1,0 +1,49 @@
+#!/bin/sh
+# Called by udev (99-sharebox-usb.rules): usb-mount add|remove /dev/sdXN
+#
+# add: mounts the file system read-only (ro,nosuid,nodev,noexec) on
+# /media/usb-<label> with systemd-mount (automount, unit collected when the
+# stick is removed), then refreshes the shared content.
+# Environment from udev: ID_FS_TYPE, ID_FS_LABEL, ID_FS_UUID.
+
+action=$1
+dev=$2
+
+refresh() {
+    systemctl --no-block restart sharebox-usb-scan.service
+}
+
+case $action in
+    remove)
+        refresh
+        exit 0
+        ;;
+    add) ;;
+    *) exit 1 ;;
+esac
+
+case $dev in
+    /dev/*) ;;
+    *) exit 1 ;;
+esac
+
+# Mount point name: label (or UUID, or kernel name) restricted to a safe set
+name=${ID_FS_LABEL:-${ID_FS_UUID:-${dev##*/}}}
+name=$(printf '%s' "$name" | tr -c 'A-Za-z0-9._-' '_' | cut -c1-32)
+case $name in ''|.*) name=${dev##*/} ;; esac
+target=/media/usb-$name
+if grep -q " $target " /proc/self/mounts 2>/dev/null; then
+    target=/media/usb-$name-${dev##*/}
+fi
+
+fstype=$ID_FS_TYPE
+options=ro,nosuid,nodev,noexec
+case $fstype in
+    ntfs|ntfs3) fstype=ntfs3 ;;
+    vfat) options=$options,utf8,shortname=mixed ;;
+esac
+
+systemd-mount --no-block --automount=yes --collect \
+    --fstype="$fstype" --options="$options" "$dev" "$target" || exit 1
+refresh
+exit 0
