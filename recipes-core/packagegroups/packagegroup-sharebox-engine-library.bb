@@ -14,4 +14,5 @@ RDEPENDS:${PN} = " \
     kiwix-tools-lighttpd \
     dufs \
     dufs-ro \
+    dufs-ro-lighttpd \
 "
