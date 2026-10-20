@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">Sabunta manhaja</h2>
+<p>An sami sabuntawa a kan filasha USB: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>An tabbatar da sa hannunsa. Sanya shi zai sake kunna akwatin, kuma ba za a iya amfani da shi ba na 'yan mintuna.</p>
+<p class="note">Sanya sabuntawar da kuke tsammani kawai. Akwatin yana ƙin duk wani sabuntawa da mai wallafa shi bai sa hannu a kai ba.</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="ha">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">Sanya</button>
+</form>
+</section>

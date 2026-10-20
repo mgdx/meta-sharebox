@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">సాఫ్ట్‌వేర్ అప్‌డేట్</h2>
+<p>పెన్ డ్రైవ్‌లో ఒక అప్‌డేట్ కనుగొనబడింది: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>దీని సంతకం తనిఖీ చేయబడింది. దీన్ని ఇన్‌స్టాల్ చేస్తే బాక్స్ రీస్టార్ట్ అవుతుంది, కొన్ని నిమిషాల పాటు అందుబాటులో ఉండదు.</p>
+<p class="note">మీరు ఆశిస్తున్న అప్‌డేట్‌ను మాత్రమే ఇన్‌స్టాల్ చేయండి. ప్రచురణకర్త సంతకం లేని ఏ అప్‌డేట్‌నూ బాక్స్ అంగీకరించదు.</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="te">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">ఇన్‌స్టాల్ చేయండి</button>
+</form>
+</section>

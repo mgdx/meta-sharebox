@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">Yazılım güncellemesi</h2>
+<p>USB bellekte bir güncelleme bulundu: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>İmzası doğrulandı. Yüklendiğinde kutu yeniden başlar ve birkaç dakika kullanılamaz.</p>
+<p class="note">Yalnızca beklediğiniz bir güncellemeyi yükleyin. Kutu, yayıncısı tarafından imzalanmamış hiçbir güncellemeyi kabul etmez.</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="tr">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">Yükle</button>
+</form>
+</section>

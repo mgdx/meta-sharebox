@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">Aggiornamento software</h2>
+<p>È stato trovato un aggiornamento sulla chiavetta USB: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>La sua firma è stata verificata. L’installazione riavvia la box, che non sarà disponibile per qualche minuto.</p>
+<p class="note">Installa solo un aggiornamento che ti aspettavi. La box rifiuta qualsiasi aggiornamento non firmato dal suo editore.</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="it">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">Installa</button>
+</form>
+</section>

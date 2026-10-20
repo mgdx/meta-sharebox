@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">د سافټوېر تازه کول</h2>
+<p>په USB فلش کې یوه تازه نسخه وموندل شوه: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>د هغې لاسلیک تایید شوی دی. د هغې نصبول بکس بیا پیلوي، او بکس به د څو دقیقو لپاره د لاسرسي وړ نه وي.</p>
+<p class="note">یوازې هغه تازه نسخه نصب کړئ چې تاسو یې تمه درلوده. بکس هره هغه تازه نسخه ردوي چې د خپرونکي لخوا لاسلیک شوې نه وي.</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="ps">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">نصب کړئ</button>
+</form>
+</section>

@@ -1,0 +1,4 @@
+<div class="notice error" role="alert">
+<p>अपडेट इंस्टॉल नहीं हो सका:</p>
+<pre dir="ltr">@@ERROR@@</pre>
+</div>

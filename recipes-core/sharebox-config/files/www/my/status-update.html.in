@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">ဆော့ဖ်ဝဲ အပ်ဒိတ်</h2>
+<p>USB ဖလက်ရှ်ဒရိုက်တွင် အပ်ဒိတ်တစ်ခု တွေ့ရှိပါသည်: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>၎င်း၏ လက်မှတ်ကို စစ်ဆေးပြီးပါပြီ။ ထည့်သွင်းပါက ဘောက်စ် ပြန်လည်စတင်မည်ဖြစ်ပြီး မိနစ်အနည်းငယ်ကြာ အသုံးပြု၍ မရပါ။</p>
+<p class="note">သင်မျှော်လင့်ထားသော အပ်ဒိတ်ကိုသာ ထည့်သွင်းပါ။ ထုတ်ဝေသူ လက်မှတ်မထိုးထားသော မည်သည့်အပ်ဒိတ်ကိုမဆို ဘောက်စ်က ငြင်းပယ်ပါသည်။</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="my">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">ထည့်သွင်းရန်</button>
+</form>
+</section>

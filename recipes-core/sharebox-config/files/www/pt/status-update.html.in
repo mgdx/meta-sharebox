@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">Atualização de software</h2>
+<p>Uma atualização foi encontrada no pen drive: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>A assinatura foi verificada. A instalação reinicia a caixa, que ficará indisponível por alguns minutos.</p>
+<p class="note">Só instale uma atualização que você estava esperando. A caixa recusa qualquer atualização que não seja assinada pelo seu editor.</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="pt">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">Instalar</button>
+</form>
+</section>

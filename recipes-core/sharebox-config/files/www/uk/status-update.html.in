@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">Оновлення ПЗ</h2>
+<p>На USB-накопичувачі знайдено оновлення: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>Його підпис перевірено. Під час встановлення скринька перезавантажиться й буде недоступна кілька хвилин.</p>
+<p class="note">Встановлюйте лише те оновлення, на яке ви чекали. Скринька відхиляє будь-яке оновлення без підпису видавця.</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="uk">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">Встановити</button>
+</form>
+</section>

@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">Software-update</h2>
+<p>Er is een update gevonden op de USB-stick: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>De handtekening is gecontroleerd. Bij het installeren start de box opnieuw op en is hij een paar minuten niet beschikbaar.</p>
+<p class="note">Installeer alleen een update die je verwachtte. De box weigert elke update die niet door de uitgever is ondertekend.</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="nl">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">Installeren</button>
+</form>
+</section>

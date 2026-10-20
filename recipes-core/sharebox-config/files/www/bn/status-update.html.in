@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">সফটওয়্যার আপডেট</h2>
+<p>পেন ড্রাইভে একটি আপডেট পাওয়া গেছে: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>এর স্বাক্ষর যাচাই করা হয়েছে। এটি ইনস্টল করলে বক্সটি রিস্টার্ট হবে এবং কয়েক মিনিট ব্যবহার করা যাবে না।</p>
+<p class="note">শুধু সেই আপডেটই ইনস্টল করুন যেটির জন্য আপনি অপেক্ষা করছিলেন। প্রকাশকের স্বাক্ষর ছাড়া কোনো আপডেট বক্সটি গ্রহণ করে না।</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="bn">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">ইনস্টল করুন</button>
+</form>
+</section>

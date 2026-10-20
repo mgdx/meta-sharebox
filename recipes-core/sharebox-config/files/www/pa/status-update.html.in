@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">ਸਾਫ਼ਟਵੇਅਰ ਅੱਪਡੇਟ</h2>
+<p>ਪੈੱਨ ਡਰਾਈਵ 'ਤੇ ਇੱਕ ਅੱਪਡੇਟ ਮਿਲਿਆ ਹੈ: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>ਇਸ ਦੇ ਦਸਤਖਤ ਦੀ ਜਾਂਚ ਹੋ ਚੁੱਕੀ ਹੈ। ਇਸ ਨੂੰ ਸਥਾਪਤ ਕਰਨ 'ਤੇ ਬਾਕਸ ਮੁੜ-ਚਾਲੂ ਹੋਵੇਗਾ ਅਤੇ ਕੁਝ ਮਿੰਟਾਂ ਲਈ ਉਪਲਬਧ ਨਹੀਂ ਰਹੇਗਾ।</p>
+<p class="note">ਸਿਰਫ਼ ਉਹੀ ਅੱਪਡੇਟ ਸਥਾਪਤ ਕਰੋ ਜਿਸ ਦੀ ਤੁਸੀਂ ਉਡੀਕ ਕਰ ਰਹੇ ਸੀ। ਬਾਕਸ ਅਜਿਹਾ ਕੋਈ ਵੀ ਅੱਪਡੇਟ ਸਵੀਕਾਰ ਨਹੀਂ ਕਰਦਾ ਜਿਸ 'ਤੇ ਉਸ ਦੇ ਪ੍ਰਕਾਸ਼ਕ ਦੇ ਦਸਤਖਤ ਨਾ ਹੋਣ।</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="pa">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">ਸਥਾਪਤ ਕਰੋ</button>
+</form>
+</section>

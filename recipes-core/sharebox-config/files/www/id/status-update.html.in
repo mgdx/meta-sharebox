@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">Update software</h2>
+<p>Update ditemukan di flashdisk USB: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>Tanda tangannya sudah diperiksa. Menginstalnya akan memulai ulang kotak ini, sehingga tidak dapat digunakan selama beberapa menit.</p>
+<p class="note">Instal hanya update yang memang Anda tunggu. Kotak ini menolak update apa pun yang tidak ditandatangani oleh penerbitnya.</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="id">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">Instal</button>
+</form>
+</section>

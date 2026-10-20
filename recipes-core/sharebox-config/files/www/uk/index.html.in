@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="uk" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ShareBox</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Перейти до вмісту</a>
+<header class="site-header">
+<a class="brand" href="/uk/"><span class="logo" aria-hidden="true"></span>ShareBox</a>
+<nav class="site-nav">
+<ul>
+<li><a href="/uk/" aria-current="page">Головна</a></li>
+<li><a href="/uk/how-it-works.html">Як це працює</a></li>
+<li><a href="/status?lang=uk">Стан</a></li>
+</ul>
+</nav>
+</header>
+<main id="main">
+<section class="hero">
+<h1>Ласкаво просимо до ShareBox</h1>
+<p class="lead">Ви під’єднані до ShareBox — невеликої скриньки з Wi-Fi, щоб обмінюватися файлами й спілкуватися з людьми поруч без інтернету.</p>
+<p>Ніщо звідси не виходить за межі скриньки. Вона не під’єднана до інтернету, тому сайти й застосунки, яким він потрібен, не працюватимуть, поки ви під’єднані.</p>
+</section>
+<section class="services-box" aria-labelledby="svc-h">
+<h2 id="svc-h">Що тут можна робити</h2>
+@@ENGINE_LINKS@@
+</section>
+<aside class="warning" aria-labelledby="warn-h">
+<h2 id="warn-h">Загальнодоступно й без шифрування</h2>
+<p>Ця мережа Wi-Fi відкрита й не зашифрована. Будь-хто поруч може бачити, що ви надсилаєте й отримуєте.</p>
+<p>Усе, чим ви тут ділитеся, загальнодоступне: будь-хто під’єднаний може це побачити й завантажити. Не діліться особистими чи приватними даними.</p>
+</aside>
+<p class="more"><a href="/uk/how-it-works.html">Як це працює?</a></p>
+</main>
+<footer class="site-footer">
+<p>Ця скринька працює без інтернету.</p>
+<nav class="langs" aria-labelledby="langs-h">
+<h2 id="langs-h">Мова</h2>
+<ul>
+<li><a href="/en/" hreflang="en" lang="en">English</a></li>
+<li><a href="/zh-Hans/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a></li>
+<li><a href="/zh-Hant/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a></li>
+<li><a href="/hi/" hreflang="hi" lang="hi">हिन्दी</a></li>
+<li><a href="/es/" hreflang="es" lang="es">Español</a></li>
+<li><a href="/fr/" hreflang="fr" lang="fr">Français</a></li>
+<li><a href="/ar/" hreflang="ar" lang="ar" dir="rtl">العربية</a></li>
+<li><a href="/bn/" hreflang="bn" lang="bn">বাংলা</a></li>
+<li><a href="/pt/" hreflang="pt" lang="pt">Português</a></li>
+<li><a href="/ru/" hreflang="ru" lang="ru">Русский</a></li>
+<li><a href="/ur/" hreflang="ur" lang="ur" dir="rtl">اردو</a></li>
+<li><a href="/id/" hreflang="id" lang="id">Bahasa Indonesia</a></li>
+<li><a href="/de/" hreflang="de" lang="de">Deutsch</a></li>
+<li><a href="/ja/" hreflang="ja" lang="ja">日本語</a></li>
+<li><a href="/mr/" hreflang="mr" lang="mr">मराठी</a></li>
+<li><a href="/te/" hreflang="te" lang="te">తెలుగు</a></li>
+<li><a href="/tr/" hreflang="tr" lang="tr">Türkçe</a></li>
+<li><a href="/ta/" hreflang="ta" lang="ta">தமிழ்</a></li>
+<li><a href="/vi/" hreflang="vi" lang="vi">Tiếng Việt</a></li>
+<li><a href="/fil/" hreflang="fil" lang="fil">Filipino</a></li>
+<li><a href="/ko/" hreflang="ko" lang="ko">한국어</a></li>
+<li><a href="/fa/" hreflang="fa" lang="fa" dir="rtl">فارسی</a></li>
+<li><a href="/ha/" hreflang="ha" lang="ha">Hausa</a></li>
+<li><a href="/sw/" hreflang="sw" lang="sw">Kiswahili</a></li>
+<li><a href="/jv/" hreflang="jv" lang="jv">Basa Jawa</a></li>
+<li><a href="/it/" hreflang="it" lang="it">Italiano</a></li>
+<li><a href="/pa/" hreflang="pa" lang="pa">ਪੰਜਾਬੀ</a></li>
+<li><a href="/gu/" hreflang="gu" lang="gu">ગુજરાતી</a></li>
+<li><a href="/th/" hreflang="th" lang="th">ไทย</a></li>
+<li><a href="/kn/" hreflang="kn" lang="kn">ಕನ್ನಡ</a></li>
+<li><a href="/am/" hreflang="am" lang="am">አማርኛ</a></li>
+<li><a href="/pl/" hreflang="pl" lang="pl">Polski</a></li>
+<li><a href="/yo/" hreflang="yo" lang="yo">Yorùbá</a></li>
+<li><a href="/ml/" hreflang="ml" lang="ml">മലയാളം</a></li>
+<li><a href="/my/" hreflang="my" lang="my">မြန်မာ</a></li>
+<li><a href="/uk/" hreflang="uk" lang="uk" aria-current="true">Українська</a></li>
+<li><a href="/nl/" hreflang="nl" lang="nl">Nederlands</a></li>
+<li><a href="/ms/" hreflang="ms" lang="ms">Bahasa Melayu</a></li>
+<li><a href="/ro/" hreflang="ro" lang="ro">Română</a></li>
+<li><a href="/uz/" hreflang="uz" lang="uz">Oʻzbekcha</a></li>
+<li><a href="/ps/" hreflang="ps" lang="ps" dir="rtl">پښتو</a></li>
+</ul>
+</nav>
+</footer>
+</body>
+</html>

@@ -1,0 +1,4 @@
+<div class="notice error" role="alert">
+<p>Không thể cài đặt bản cập nhật:</p>
+<pre dir="ltr">@@ERROR@@</pre>
+</div>

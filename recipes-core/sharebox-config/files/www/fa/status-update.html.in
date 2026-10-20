@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">به‌روزرسانی نرم‌افزار</h2>
+<p>یک به‌روزرسانی روی فلش USB پیدا شد: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>امضای آن بررسی شده است. نصب آن جعبه را دوباره راه‌اندازی می‌کند و جعبه چند دقیقه در دسترس نخواهد بود.</p>
+<p class="note">فقط به‌روزرسانی‌ای را نصب کنید که منتظرش بودید. جعبه هر به‌روزرسانی‌ای را که ناشرش امضا نکرده باشد رد می‌کند.</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="fa">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">نصب</button>
+</form>
+</section>
