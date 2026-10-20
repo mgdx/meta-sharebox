@@ -1,0 +1,81 @@
+# ShareBox page strings, Vietnamese (vi). AI-generated, needs human review.
+#
+# Format: one "key=value" per line, UTF-8. Lines starting with "#" and blank
+# lines are ignored. Values are plain text: the generator HTML-escapes them.
+# Inline markers, replaced by the generator with LTR-safe code spans:
+#   {http}     -> http://
+#   {https}    -> https://
+#   {example}  -> http://sharebox.lan
+# "ShareBox" is a name and is never translated.
+
+# Wi-Fi network name: "ShareBox - <ssid_slogan>". Whole SSID at most 32 bytes
+# in UTF-8, so the slogan has at most 21 bytes.
+ssid_slogan=Chia sẻ tự do
+
+# Shared page parts
+skip_link=Chuyển đến nội dung
+nav_home=Trang chủ
+nav_how=Cách hoạt động
+nav_status=Trạng thái
+lang_selector=Ngôn ngữ
+footer_offline=Hộp này hoạt động mà không cần Internet.
+
+# Home page
+home_title=Chào mừng bạn đến với ShareBox
+home_lead=Bạn đang kết nối với ShareBox: một hộp Wi-Fi nhỏ để chia sẻ tệp và trò chuyện với những người ở gần, không cần Internet.
+home_offline=Mọi thứ ở đây đều không rời khỏi hộp. Hộp không kết nối Internet, nên khi bạn đang kết nối, các trang web và ứng dụng cần Internet sẽ không hoạt động.
+warn_title=Công khai và không mã hóa
+warn_public=Mạng Wi-Fi này là mạng mở và không được mã hóa. Bất kỳ ai ở gần đều có thể thấy những gì bạn gửi và nhận.
+warn_uploads=Mọi thứ bạn chia sẻ ở đây đều công khai: bất kỳ ai đang kết nối đều có thể xem và tải xuống. Đừng chia sẻ dữ liệu cá nhân hoặc riêng tư.
+services_title=Bạn có thể làm gì ở đây
+home_more=Hộp hoạt động như thế nào?
+
+# Service cards (home page, depends on the image)
+svc_files=Tệp
+svc_files_desc=Duyệt và tải xuống các tệp được chia sẻ.
+svc_upload=Tải lên
+svc_upload_desc=Chia sẻ tệp của bạn với mọi người ở đây.
+svc_chat=Trò chuyện
+svc_chat_desc=Trò chuyện với những người đang kết nối với hộp này.
+svc_forum=Diễn đàn
+svc_forum_desc=Bắt đầu hoặc tham gia một cuộc thảo luận.
+svc_library=Thư viện
+svc_library_desc=Đọc bách khoa toàn thư, sách và các nội dung ngoại tuyến khác.
+svc_box=Mở ShareBox
+svc_box_desc_classic=Tệp, tải lên, trò chuyện và diễn đàn ở cùng một nơi.
+svc_box_desc_shareboxx=Tệp, tải lên tệp lớn và trò chuyện trực tiếp ở cùng một nơi.
+svc_english_note=Giao diện này bằng tiếng Anh.
+svc_js_note=Giao diện này cần bật JavaScript trong trình duyệt của bạn.
+svc_none=Hộp này chưa cài đặt dịch vụ chia sẻ nào. Hộp chỉ cung cấp mạng và trang này.
+
+# How it works page
+how_title=Cách hoạt động
+how_connect_title=Kết nối
+how_connect=Hãy kết nối với mạng Wi-Fi của hộp. Không cần mật khẩu. Trên hầu hết điện thoại, một cửa sổ hiển thị trang chủ sẽ tự mở ra.
+how_open=Nếu không có gì mở ra, hãy mở trình duyệt web và nhập bất kỳ địa chỉ nào bắt đầu bằng {http}, ví dụ {example}. Các địa chỉ bảo mật bắt đầu bằng {https} không dùng được ở đây.
+how_share_title=Chia sẻ
+how_share=Tải xuống những gì người khác đã chia sẻ, thêm tệp của bạn, trò chuyện. Không có tài khoản, không có mật khẩu: mọi người đều ẩn danh.
+how_offline_title=Ngoại tuyến
+how_offline=Hộp không bao giờ kết nối Internet. Điện thoại của bạn có thể cảnh báo rằng mạng này không có kết nối Internet: điều này là bình thường. Hãy giữ kết nối để tiếp tục sử dụng hộp.
+how_privacy_title=Quyền riêng tư
+how_privacy=Mạng này là mạng mở, không được mã hóa, và mọi thứ được chia sẻ đều công khai. Các thiết bị khác không thể truy cập trực tiếp vào thiết bị của bạn, nhưng bất kỳ ai ở gần đều có thể nghe lén sóng vô tuyến. Chỉ chia sẻ những gì bạn sẵn sàng dán lên bảng tin công cộng.
+how_limits_title=Giới hạn
+how_limits=Hộp này nhỏ: chỉ vài thiết bị, khoảng tám, có thể dùng cùng lúc, và dung lượng lưu trữ có hạn.
+how_about_title=Giới thiệu
+how_about=ShareBox là phần mềm tự do, theo tinh thần của PirateBox và LibraryBox. Người vận hành hộp này chịu trách nhiệm về nội dung mà hộp cung cấp.
+how_back=Quay lại trang chủ
+
+# Status page
+status_title=Trạng thái hộp
+status_clients=Thiết bị đã kết nối
+status_disk=Dung lượng trống
+status_version=Phiên bản phần mềm
+status_warnings=Cảnh báo
+status_no_warnings=Không có cảnh báo.
+update_title=Cập nhật phần mềm
+update_found=Đã tìm thấy bản cập nhật trên USB:
+update_signed=Chữ ký của bản cập nhật đã được xác minh. Khi cài đặt, hộp sẽ khởi động lại và không dùng được trong vài phút.
+update_warning=Chỉ cài đặt bản cập nhật mà bạn đang chờ. Hộp sẽ từ chối mọi bản cập nhật không được nhà phát hành ký.
+update_install=Cài đặt
+update_ok=Đang cài đặt bản cập nhật. Hộp sẽ sớm khởi động lại.
+update_error=Không thể cài đặt bản cập nhật:
