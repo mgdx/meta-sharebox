@@ -1,0 +1,46 @@
+[Unit]
+Description=Grow the ShareBox data partition to the end of the card
+# /data is mounted by the preinit, before systemd starts
+RequiresMountsFor=/data
+ConditionPathExists=!/data/.sharebox-grown
+Before=sharebox-setup.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/lib/sharebox/sharebox-grow-data /data
+TimeoutStartSec=15min
+
+# Needs the raw boot disk (partition table), BLKPG (CAP_SYS_ADMIN) and the
+# ext4 online resize ioctl (CAP_SYS_RESOURCE).
+User=root
+CapabilityBoundingSet=CAP_SYS_ADMIN CAP_SYS_RESOURCE
+DevicePolicy=closed
+DeviceAllow=block-mmc rw
+DeviceAllow=block-blkext rw
+DeviceAllow=block-sd rw
+NoNewPrivileges=yes
+ProtectSystem=strict
+ReadWritePaths=/data
+ProtectHome=yes
+PrivateTmp=yes
+PrivateNetwork=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+ProtectClock=yes
+ProtectHostname=yes
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+RestrictAddressFamilies=AF_UNIX
+IPAddressDeny=any
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target
