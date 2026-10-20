@@ -1,0 +1,10 @@
+{
+	"server": {
+		"url": "/socket",
+		"autojoin": "#sharebox",
+		"auth": "disabled",
+		"nick": "guest-*",
+		"autoconnect": false,
+		"ping": 60
+	}
+}
