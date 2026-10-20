@@ -1,0 +1,27 @@
+#!/bin/sh
+# Start dufs for the ShareBox public share (modular engine).
+#
+# Everybody can browse, search and download /data/share. Anonymous uploads
+# go to /data/share/upload only (dufs access rule "/upload:rw") and are
+# disabled entirely when SHAREBOX_UPLOAD_MAX is 0. Nothing can be deleted,
+# renamed or overwritten: --allow-delete is never passed. The upload size
+# limit itself is enforced by lighttpd (server.max-request-size).
+set -eu
+
+upload="--allow-upload"
+if [ "${SHAREBOX_UPLOAD_MAX:-1}" = "0" ]; then
+	upload=""
+fi
+
+# shellcheck disable=SC2086
+exec /usr/bin/dufs \
+	$upload \
+	--allow-search \
+	--allow-archive \
+	--allow-symlink \
+	--auth '@/,/upload:rw' \
+	--hidden '.*' \
+	--path-prefix /files \
+	--bind 127.0.0.1 \
+	--port 5000 \
+	/data/share
