@@ -26,8 +26,8 @@ RDEPENDS:${PN} = " \
 
 # Wi-Fi firmware selected by meta-raspberrypi per machine (Bluetooth
 # firmware removed in sharebox-rpi.inc), kernel modules, rpi udev rules.
-# The storage lot provides sharebox-healthcheck (RAUC mark-good).
+# The storage lot adds sharebox-healthcheck (RAUC mark-good) to RDEPENDS
+# when it lands (bitbake refuses an unknown RRECOMMENDS in a packagegroup).
 RRECOMMENDS:${PN} = " \
     ${MACHINE_EXTRA_RRECOMMENDS} \
-    ${@'sharebox-healthcheck' if d.getVar('SHAREBOX_UPDATES') == '1' else ''} \
 "
