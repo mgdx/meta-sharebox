@@ -1,0 +1,81 @@
+# ShareBox page strings, German (de). AI-generated, needs human review.
+#
+# Format: one "key=value" per line, UTF-8. Lines starting with "#" and blank
+# lines are ignored. Values are plain text: the generator HTML-escapes them.
+# Inline markers, replaced by the generator with LTR-safe code spans:
+#   {http}     -> http://
+#   {https}    -> https://
+#   {example}  -> http://sharebox.lan
+# "ShareBox" is a name and is never translated.
+
+# Wi-Fi network name: "ShareBox - <ssid_slogan>". Whole SSID at most 32 bytes
+# in UTF-8, so the slogan has at most 21 bytes.
+ssid_slogan=Frei teilen
+
+# Shared page parts
+skip_link=Zum Inhalt springen
+nav_home=Startseite
+nav_how=So funktioniert’s
+nav_status=Status
+lang_selector=Sprache
+footer_offline=Diese Box funktioniert ohne Internet.
+
+# Home page
+home_title=Willkommen bei der ShareBox
+home_lead=Sie sind mit einer ShareBox verbunden: einer kleinen WLAN-Box, mit der Sie ohne Internet Dateien teilen und sich mit Menschen in der Nähe unterhalten können.
+home_offline=Nichts von hier verlässt die Box. Sie ist nicht mit dem Internet verbunden, daher funktionieren Websites und Apps, die es brauchen, nicht, solange Sie verbunden sind.
+warn_title=Öffentlich und unverschlüsselt
+warn_public=Dieses WLAN ist offen und nicht verschlüsselt. Jeder in der Nähe kann sehen, was Sie senden und empfangen.
+warn_uploads=Alles, was Sie hier teilen, ist öffentlich: Jeder, der verbunden ist, kann es sehen und herunterladen. Teilen Sie keine persönlichen oder privaten Daten.
+services_title=Was Sie hier tun können
+home_more=Wie funktioniert das?
+
+# Service cards (home page, depends on the image)
+svc_files=Dateien
+svc_files_desc=Geteilte Dateien ansehen und herunterladen.
+svc_upload=Hochladen
+svc_upload_desc=Eigene Dateien mit allen hier teilen.
+svc_chat=Chat
+svc_chat_desc=Mit den Menschen chatten, die mit dieser Box verbunden sind.
+svc_forum=Forum
+svc_forum_desc=Eine Diskussion beginnen oder mitreden.
+svc_library=Bibliothek
+svc_library_desc=Enzyklopädien, Bücher und andere Inhalte offline lesen.
+svc_box=ShareBox öffnen
+svc_box_desc_classic=Dateien, Uploads, Chat und Forum an einem Ort.
+svc_box_desc_shareboxx=Dateien, große Uploads und Live-Chat an einem Ort.
+svc_english_note=Diese Oberfläche ist auf Englisch.
+svc_js_note=Für diese Oberfläche muss JavaScript in Ihrem Browser aktiviert sein.
+svc_none=Auf dieser Box ist kein Dienst zum Teilen installiert. Sie stellt nur das Netzwerk und diese Seite bereit.
+
+# How it works page
+how_title=So funktioniert’s
+how_connect_title=Verbinden
+how_connect=Verbinden Sie sich mit dem WLAN der Box. Ein Passwort ist nicht nötig. Auf den meisten Handys öffnet sich automatisch ein Fenster mit der Startseite.
+how_open=Wenn sich nichts öffnet, starten Sie Ihren Browser und geben Sie eine beliebige Adresse ein, die mit {http} beginnt, zum Beispiel {example}. Sichere Adressen, die mit {https} beginnen, funktionieren hier nicht.
+how_share_title=Teilen
+how_share=Laden Sie herunter, was andere geteilt haben, fügen Sie eigene Dateien hinzu, chatten Sie. Es gibt keine Konten und keine Passwörter: Alle sind anonym.
+how_offline_title=Offline
+how_offline=Die Box verbindet sich nie mit dem Internet. Ihr Handy meldet vielleicht, dass dieses Netzwerk keinen Internetzugang hat: Das ist normal. Bleiben Sie verbunden, um die Box weiter zu nutzen.
+how_privacy_title=Datenschutz
+how_privacy=Das Netzwerk ist offen und unverschlüsselt, und alles Geteilte ist öffentlich. Andere Geräte können Ihres nicht direkt erreichen, aber jeder in der Nähe kann den Funkverkehr mithören. Teilen Sie nur, was Sie auch an ein öffentliches Schwarzes Brett hängen würden.
+how_limits_title=Grenzen
+how_limits=Die Box ist klein: Nur wenige Geräte, etwa acht, können sie gleichzeitig nutzen, und ihr Speicherplatz ist begrenzt.
+how_about_title=Info
+how_about=ShareBox ist freie Software im Geiste von PirateBox und LibraryBox. Wer diese Box betreibt, ist für ihre Inhalte verantwortlich.
+how_back=Zurück zur Startseite
+
+# Status page
+status_title=Status der Box
+status_clients=Verbundene Geräte
+status_disk=Freier Speicherplatz
+status_version=Softwareversion
+status_warnings=Warnungen
+status_no_warnings=Keine Warnungen.
+update_title=Softwareupdate
+update_found=Auf dem USB-Stick wurde ein Update gefunden:
+update_signed=Seine Signatur wurde geprüft. Bei der Installation startet die Box neu und ist einige Minuten lang nicht erreichbar.
+update_warning=Installieren Sie nur ein Update, das Sie erwartet haben. Die Box lehnt jedes Update ab, das nicht von ihrem Herausgeber signiert ist.
+update_install=Installieren
+update_ok=Das Update wird installiert. Die Box startet gleich neu.
+update_error=Das Update konnte nicht installiert werden:

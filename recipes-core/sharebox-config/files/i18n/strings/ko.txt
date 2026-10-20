@@ -1,0 +1,81 @@
+# ShareBox page strings, Korean (ko). AI-generated, needs human review.
+#
+# Format: one "key=value" per line, UTF-8. Lines starting with "#" and blank
+# lines are ignored. Values are plain text: the generator HTML-escapes them.
+# Inline markers, replaced by the generator with LTR-safe code spans:
+#   {http}     -> http://
+#   {https}    -> https://
+#   {example}  -> http://sharebox.lan
+# "ShareBox" is a name and is never translated.
+
+# Wi-Fi network name: "ShareBox - <ssid_slogan>". Whole SSID at most 32 bytes
+# in UTF-8, so the slogan has at most 21 bytes.
+ssid_slogan=자유롭게 공유
+
+# Shared page parts
+skip_link=본문으로 건너뛰기
+nav_home=홈
+nav_how=이용 방법
+nav_status=상태
+lang_selector=언어
+footer_offline=이 박스는 인터넷 없이 작동합니다.
+
+# Home page
+home_title=ShareBox에 오신 것을 환영합니다
+home_lead=ShareBox에 연결되었습니다. 인터넷 없이 근처 사람들과 파일을 공유하고 대화할 수 있는 작은 Wi-Fi 박스입니다.
+home_offline=이곳의 어떤 것도 박스 밖으로 나가지 않습니다. 박스는 인터넷에 연결되어 있지 않으므로, 연결된 동안에는 인터넷이 필요한 웹사이트와 앱을 사용할 수 없습니다.
+warn_title=공개 네트워크, 암호화 안 됨
+warn_public=이 Wi-Fi 네트워크는 개방형이며 암호화되지 않습니다. 근처에 있는 누구나 내가 주고받는 내용을 볼 수 있습니다.
+warn_uploads=이곳에서 공유하는 모든 것은 공개됩니다. 연결된 사람은 누구나 보고 다운로드할 수 있습니다. 개인 정보나 사적인 데이터는 공유하지 마세요.
+services_title=이곳에서 할 수 있는 일
+home_more=어떻게 작동하나요?
+
+# Service cards (home page, depends on the image)
+svc_files=파일
+svc_files_desc=공유된 파일을 둘러보고 다운로드하세요.
+svc_upload=업로드
+svc_upload_desc=내 파일을 이곳의 모든 사람과 공유하세요.
+svc_chat=채팅
+svc_chat_desc=이 박스에 연결된 사람들과 대화하세요.
+svc_forum=게시판
+svc_forum_desc=토론을 시작하거나 참여하세요.
+svc_library=도서관
+svc_library_desc=백과사전, 책 등 오프라인 콘텐츠를 읽어 보세요.
+svc_box=ShareBox 열기
+svc_box_desc_classic=파일, 업로드, 채팅, 게시판을 한곳에서.
+svc_box_desc_shareboxx=파일, 대용량 업로드, 실시간 채팅을 한곳에서.
+svc_english_note=이 화면은 영어로 되어 있습니다.
+svc_js_note=이 화면을 사용하려면 브라우저에서 JavaScript를 사용하도록 설정해야 합니다.
+svc_none=이 박스에는 공유 서비스가 설치되어 있지 않습니다. 네트워크와 이 페이지만 제공합니다.
+
+# How it works page
+how_title=이용 방법
+how_connect_title=연결하기
+how_connect=박스의 Wi-Fi 네트워크에 연결하세요. 비밀번호는 필요 없습니다. 대부분의 휴대전화에서는 홈페이지가 표시된 창이 자동으로 열립니다.
+how_open=아무것도 열리지 않으면 웹 브라우저를 실행하고 {http}로 시작하는 아무 주소나 입력하세요(예: {example}). {https}로 시작하는 보안 주소는 여기서 작동하지 않습니다.
+how_share_title=공유하기
+how_share=다른 사람이 공유한 것을 다운로드하고, 내 파일을 추가하고, 채팅하세요. 계정도 비밀번호도 없으며 모두 익명입니다.
+how_offline_title=오프라인
+how_offline=박스는 인터넷에 연결되지 않습니다. 휴대전화에 이 네트워크는 인터넷에 연결되어 있지 않다는 알림이 표시될 수 있지만, 정상입니다. 박스를 계속 사용하려면 연결을 유지하세요.
+how_privacy_title=개인정보 보호
+how_privacy=네트워크는 개방형이며 암호화되지 않고, 공유된 모든 것은 공개됩니다. 다른 기기가 내 기기에 직접 접근할 수는 없지만, 근처에 있는 누구나 무선 신호를 엿들을 수 있습니다. 공공 게시판에 붙여도 괜찮은 것만 공유하세요.
+how_limits_title=제한 사항
+how_limits=박스가 작아서 동시에 사용할 수 있는 기기는 몇 대(약 8대)뿐이며, 저장 공간도 제한되어 있습니다.
+how_about_title=정보
+how_about=ShareBox는 PirateBox와 LibraryBox의 정신을 이어받은 자유 소프트웨어입니다. 이 박스에서 제공하는 내용에 대한 책임은 박스 운영자에게 있습니다.
+how_back=홈페이지로 돌아가기
+
+# Status page
+status_title=박스 상태
+status_clients=연결된 기기
+status_disk=남은 저장 공간
+status_version=소프트웨어 버전
+status_warnings=경고
+status_no_warnings=경고가 없습니다.
+update_title=소프트웨어 업데이트
+update_found=USB 메모리에서 업데이트를 찾았습니다:
+update_signed=서명이 확인되었습니다. 설치하면 박스가 다시 시작되며 몇 분 동안 사용할 수 없습니다.
+update_warning=예정된 업데이트만 설치하세요. 박스는 배포자가 서명하지 않은 업데이트를 모두 거부합니다.
+update_install=설치
+update_ok=업데이트를 설치하는 중입니다. 박스가 곧 다시 시작됩니다.
+update_error=업데이트를 설치할 수 없습니다:

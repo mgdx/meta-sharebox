@@ -1,0 +1,81 @@
+# ShareBox page strings, Spanish (es). AI-generated, needs human review.
+#
+# Format: one "key=value" per line, UTF-8. Lines starting with "#" and blank
+# lines are ignored. Values are plain text: the generator HTML-escapes them.
+# Inline markers, replaced by the generator with LTR-safe code spans:
+#   {http}     -> http://
+#   {https}    -> https://
+#   {example}  -> http://sharebox.lan
+# "ShareBox" is a name and is never translated.
+
+# Wi-Fi network name: "ShareBox - <ssid_slogan>". Whole SSID at most 32 bytes
+# in UTF-8, so the slogan has at most 21 bytes.
+ssid_slogan=Comparte libremente
+
+# Shared page parts
+skip_link=Saltar al contenido
+nav_home=Inicio
+nav_how=Cómo funciona
+nav_status=Estado
+lang_selector=Idioma
+footer_offline=Esta caja funciona sin Internet.
+
+# Home page
+home_title=Te damos la bienvenida a ShareBox
+home_lead=Estás conectado a una ShareBox: una pequeña caja Wi-Fi para compartir archivos y hablar con las personas que están cerca, sin Internet.
+home_offline=Nada de lo que hay aquí sale de la caja. No está conectada a Internet, así que los sitios web y las aplicaciones que lo necesitan no funcionarán mientras estés conectado.
+warn_title=Pública y sin cifrar
+warn_public=Esta red Wi-Fi es abierta y no está cifrada. Cualquier persona cercana puede ver lo que envías y recibes.
+warn_uploads=Todo lo que compartes aquí es público: cualquiera que esté conectado puede verlo y descargarlo. No compartas datos personales ni privados.
+services_title=Qué puedes hacer aquí
+home_more=¿Cómo funciona?
+
+# Service cards (home page, depends on the image)
+svc_files=Archivos
+svc_files_desc=Explora y descarga los archivos compartidos.
+svc_upload=Subir
+svc_upload_desc=Comparte tus propios archivos con todos los que están aquí.
+svc_chat=Chat
+svc_chat_desc=Habla con las personas conectadas a esta caja.
+svc_forum=Foro
+svc_forum_desc=Inicia una conversación o únete a una.
+svc_library=Biblioteca
+svc_library_desc=Lee enciclopedias, libros y otros contenidos sin conexión.
+svc_box=Abrir ShareBox
+svc_box_desc_classic=Archivos, subidas, chat y foro en un solo lugar.
+svc_box_desc_shareboxx=Archivos, subidas grandes y chat en directo en un solo lugar.
+svc_english_note=Esta interfaz está en inglés.
+svc_js_note=Esta interfaz necesita que JavaScript esté activado en tu navegador.
+svc_none=Esta caja no tiene ningún servicio para compartir instalado. Solo ofrece la red y esta página.
+
+# How it works page
+how_title=Cómo funciona
+how_connect_title=Conectarse
+how_connect=Conéctate a la red Wi-Fi de la caja. No hace falta contraseña. En la mayoría de los teléfonos se abre sola una ventana con la página de inicio.
+how_open=Si no se abre nada, abre el navegador y escribe cualquier dirección que empiece por {http}, por ejemplo {example}. Las direcciones seguras que empiezan por {https} no funcionan aquí.
+how_share_title=Compartir
+how_share=Descarga lo que otros han compartido, añade tus propios archivos, chatea. No hay cuentas ni contraseñas: todo el mundo es anónimo.
+how_offline_title=Sin conexión
+how_offline=La caja nunca se conecta a Internet. Puede que tu teléfono avise de que esta red no tiene acceso a Internet: es normal. Mantente conectado para seguir usando la caja.
+how_privacy_title=Privacidad
+how_privacy=La red es abierta y no está cifrada, y todo lo que se comparte es público. Los demás dispositivos no pueden acceder directamente al tuyo, pero cualquiera que esté cerca puede captar el tráfico de radio. Comparte solo lo que colgarías en un tablón de anuncios público.
+how_limits_title=Límites
+how_limits=La caja es pequeña: solo unos pocos dispositivos, unos ocho, pueden usarla a la vez, y su espacio de almacenamiento es limitado.
+how_about_title=Acerca de
+how_about=ShareBox es software libre, en el espíritu de PirateBox y LibraryBox. Quien gestiona esta caja es responsable de lo que ofrece.
+how_back=Volver a la página de inicio
+
+# Status page
+status_title=Estado de la caja
+status_clients=Dispositivos conectados
+status_disk=Espacio de almacenamiento libre
+status_version=Versión del software
+status_warnings=Advertencias
+status_no_warnings=No hay advertencias.
+update_title=Actualización de software
+update_found=Se ha encontrado una actualización en la memoria USB:
+update_signed=Su firma se ha verificado. Al instalarla, la caja se reinicia y no estará disponible durante unos minutos.
+update_warning=Instala solo una actualización que estuvieras esperando. La caja rechaza cualquier actualización que no esté firmada por su editor.
+update_install=Instalar
+update_ok=Se está instalando la actualización. La caja se reiniciará en breve.
+update_error=No se ha podido instalar la actualización:

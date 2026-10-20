@@ -1,0 +1,81 @@
+# ShareBox page strings, Bengali (bn). AI-generated, needs human review.
+#
+# Format: one "key=value" per line, UTF-8. Lines starting with "#" and blank
+# lines are ignored. Values are plain text: the generator HTML-escapes them.
+# Inline markers, replaced by the generator with LTR-safe code spans:
+#   {http}     -> http://
+#   {https}    -> https://
+#   {example}  -> http://sharebox.lan
+# "ShareBox" is a name and is never translated.
+
+# Wi-Fi network name: "ShareBox - <ssid_slogan>". Whole SSID at most 32 bytes
+# in UTF-8, so the slogan has at most 21 bytes.
+ssid_slogan=শেয়ার!
+
+# Shared page parts
+skip_link=সরাসরি মূল অংশে যান
+nav_home=হোম
+nav_how=কীভাবে কাজ করে
+nav_status=অবস্থা
+lang_selector=ভাষা
+footer_offline=এই বক্সটি ইন্টারনেট ছাড়াই চলে।
+
+# Home page
+home_title=ShareBox-এ স্বাগতম
+home_lead=আপনি একটি ShareBox-এর সাথে সংযুক্ত: এটি একটি ছোট ওয়াই-ফাই বক্স, যা দিয়ে ইন্টারনেট ছাড়াই আশেপাশের মানুষের সাথে ফাইল শেয়ার করা ও কথা বলা যায়।
+home_offline=এখানকার কিছুই বক্সের বাইরে যায় না। এটি ইন্টারনেটে সংযুক্ত নয়, তাই এর সাথে সংযুক্ত থাকার সময় ইন্টারনেট-নির্ভর ওয়েবসাইট ও অ্যাপ কাজ করবে না।
+warn_title=সর্বজনীন এবং এনক্রিপ্ট করা নয়
+warn_public=এই ওয়াই-ফাই নেটওয়ার্কটি খোলা এবং এনক্রিপ্ট করা নয়। আপনি কী পাঠাচ্ছেন ও পাচ্ছেন, আশেপাশের যে কেউ তা দেখতে পারে।
+warn_uploads=এখানে আপনি যা শেয়ার করেন তার সবই সর্বজনীন: সংযুক্ত যে কেউ তা দেখতে ও ডাউনলোড করতে পারে। ব্যক্তিগত বা গোপন তথ্য শেয়ার করবেন না।
+services_title=এখানে আপনি যা করতে পারেন
+home_more=এটি কীভাবে কাজ করে?
+
+# Service cards (home page, depends on the image)
+svc_files=ফাইল
+svc_files_desc=শেয়ার করা ফাইল দেখুন ও ডাউনলোড করুন।
+svc_upload=আপলোড
+svc_upload_desc=এখানে সবার সাথে আপনার নিজের ফাইল শেয়ার করুন।
+svc_chat=চ্যাট
+svc_chat_desc=এই বক্সে সংযুক্ত মানুষদের সাথে কথা বলুন।
+svc_forum=ফোরাম
+svc_forum_desc=কোনো আলোচনা শুরু করুন বা তাতে যোগ দিন।
+svc_library=লাইব্রেরি
+svc_library_desc=বিশ্বকোষ, বই ও অন্যান্য অফলাইন কন্টেন্ট পড়ুন।
+svc_box=ShareBox খুলুন
+svc_box_desc_classic=ফাইল, আপলোড, চ্যাট ও ফোরাম, সব এক জায়গায়।
+svc_box_desc_shareboxx=ফাইল, বড় আপলোড ও লাইভ চ্যাট, সব এক জায়গায়।
+svc_english_note=এই ইন্টারফেসটি ইংরেজিতে।
+svc_js_note=এই ইন্টারফেস ব্যবহার করতে আপনার ব্রাউজারে JavaScript চালু থাকতে হবে।
+svc_none=এই বক্সে কোনো শেয়ারিং পরিষেবা ইনস্টল করা নেই। এটি শুধু নেটওয়ার্ক আর এই পৃষ্ঠাটি দেয়।
+
+# How it works page
+how_title=কীভাবে কাজ করে
+how_connect_title=সংযোগ করুন
+how_connect=বক্সের ওয়াই-ফাই নেটওয়ার্কে যোগ দিন। কোনো পাসওয়ার্ড লাগবে না। বেশিরভাগ ফোনে হোম পৃষ্ঠাসহ একটি উইন্ডো নিজে থেকেই খুলে যায়।
+how_open=কিছু না খুললে আপনার ওয়েব ব্রাউজার চালু করুন এবং {http} দিয়ে শুরু হওয়া যেকোনো ঠিকানা লিখুন, যেমন {example}। {https} দিয়ে শুরু হওয়া সুরক্ষিত ঠিকানা এখানে কাজ করে না।
+how_share_title=শেয়ার করুন
+how_share=অন্যদের শেয়ার করা জিনিস ডাউনলোড করুন, নিজের ফাইল যোগ করুন, চ্যাট করুন। কোনো অ্যাকাউন্ট বা পাসওয়ার্ড নেই: সবাই বেনামি।
+how_offline_title=অফলাইন
+how_offline=বক্সটি কখনোই ইন্টারনেটে সংযোগ করে না। আপনার ফোন জানাতে পারে যে এই নেটওয়ার্কে ইন্টারনেট নেই: এটা স্বাভাবিক। বক্সটি ব্যবহার চালিয়ে যেতে সংযুক্ত থাকুন।
+how_privacy_title=গোপনীয়তা
+how_privacy=নেটওয়ার্কটি খোলা ও এনক্রিপ্ট করা নয়, আর শেয়ার করা সবকিছুই সর্বজনীন। অন্য ডিভাইস সরাসরি আপনার ডিভাইসে পৌঁছাতে পারে না, তবে আশেপাশের যে কেউ রেডিও ট্রাফিক শুনতে পারে। শুধু সেটুকুই শেয়ার করুন যা আপনি কোনো সর্বজনীন নোটিশ বোর্ডেও টাঙাতে পারেন।
+how_limits_title=সীমাবদ্ধতা
+how_limits=বক্সটি ছোট: একসাথে মাত্র কয়েকটি ডিভাইস, প্রায় আটটি, এটি ব্যবহার করতে পারে, আর এর স্টোরেজও সীমিত।
+how_about_title=পরিচিতি
+how_about=ShareBox একটি মুক্ত সফটওয়্যার, যা PirateBox ও LibraryBox-এর ধারায় তৈরি। এই বক্সটি যিনি চালান, এতে যা দেওয়া আছে তার দায়িত্ব তাঁর।
+how_back=হোম পৃষ্ঠায় ফিরে যান
+
+# Status page
+status_title=বক্সের অবস্থা
+status_clients=সংযুক্ত ডিভাইস
+status_disk=খালি স্টোরেজ
+status_version=সফটওয়্যারের সংস্করণ
+status_warnings=সতর্কতা
+status_no_warnings=কোনো সতর্কতা নেই।
+update_title=সফটওয়্যার আপডেট
+update_found=পেন ড্রাইভে একটি আপডেট পাওয়া গেছে:
+update_signed=এর স্বাক্ষর যাচাই করা হয়েছে। এটি ইনস্টল করলে বক্সটি রিস্টার্ট হবে এবং কয়েক মিনিট ব্যবহার করা যাবে না।
+update_warning=শুধু সেই আপডেটই ইনস্টল করুন যেটির জন্য আপনি অপেক্ষা করছিলেন। প্রকাশকের স্বাক্ষর ছাড়া কোনো আপডেট বক্সটি গ্রহণ করে না।
+update_install=ইনস্টল করুন
+update_ok=আপডেট ইনস্টল হচ্ছে। বক্সটি শীঘ্রই রিস্টার্ট হবে।
+update_error=আপডেট ইনস্টল করা যায়নি:

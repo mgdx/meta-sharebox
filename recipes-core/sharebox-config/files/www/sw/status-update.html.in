@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">Sasisho la programu</h2>
+<p>Sasisho limepatikana kwenye diski ya USB: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>Sahihi yake imethibitishwa. Kulisakinisha kutazima na kuwasha upya kisanduku, na hakitapatikana kwa dakika chache.</p>
+<p class="note">Sakinisha tu sasisho ulilokuwa ukilitarajia. Kisanduku kinakataa sasisho lolote ambalo halijatiwa sahihi na mchapishaji wake.</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="sw">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">Sakinisha</button>
+</form>
+</section>

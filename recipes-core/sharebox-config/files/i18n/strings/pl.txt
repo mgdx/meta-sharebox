@@ -1,0 +1,81 @@
+# ShareBox page strings, Polish (pl). AI-generated, needs human review.
+#
+# Format: one "key=value" per line, UTF-8. Lines starting with "#" and blank
+# lines are ignored. Values are plain text: the generator HTML-escapes them.
+# Inline markers, replaced by the generator with LTR-safe code spans:
+#   {http}     -> http://
+#   {https}    -> https://
+#   {example}  -> http://sharebox.lan
+# "ShareBox" is a name and is never translated.
+
+# Wi-Fi network name: "ShareBox - <ssid_slogan>". Whole SSID at most 32 bytes
+# in UTF-8, so the slogan has at most 21 bytes.
+ssid_slogan=Dziel się swobodnie
+
+# Shared page parts
+skip_link=Przejdź do treści
+nav_home=Strona główna
+nav_how=Jak to działa
+nav_status=Stan
+lang_selector=Język
+footer_offline=To urządzenie działa bez internetu.
+
+# Home page
+home_title=Witamy w ShareBox
+home_lead=Masz połączenie z ShareBox: małym urządzeniem Wi-Fi do udostępniania plików i rozmów z osobami w pobliżu, bez internetu.
+home_offline=Nic stąd nie wychodzi poza urządzenie. Nie jest ono połączone z internetem, więc strony i aplikacje, które go potrzebują, nie będą działać, dopóki masz z nim połączenie.
+warn_title=Publiczna i nieszyfrowana
+warn_public=Ta sieć Wi-Fi jest otwarta i nieszyfrowana. Każdy w pobliżu może zobaczyć, co wysyłasz i odbierasz.
+warn_uploads=Wszystko, co tu udostępniasz, jest publiczne: każda połączona osoba może to zobaczyć i pobrać. Nie udostępniaj danych osobowych ani prywatnych.
+services_title=Co możesz tu zrobić
+home_more=Jak to działa?
+
+# Service cards (home page, depends on the image)
+svc_files=Pliki
+svc_files_desc=Przeglądaj i pobieraj udostępnione pliki.
+svc_upload=Prześlij
+svc_upload_desc=Udostępnij własne pliki wszystkim obecnym.
+svc_chat=Czat
+svc_chat_desc=Rozmawiaj z osobami połączonymi z tym urządzeniem.
+svc_forum=Forum
+svc_forum_desc=Rozpocznij dyskusję lub dołącz do niej.
+svc_library=Biblioteka
+svc_library_desc=Czytaj encyklopedie, książki i inne treści offline.
+svc_box=Otwórz ShareBox
+svc_box_desc_classic=Pliki, przesyłanie, czat i forum w jednym miejscu.
+svc_box_desc_shareboxx=Pliki, przesyłanie dużych plików i czat na żywo w jednym miejscu.
+svc_english_note=Ten interfejs jest w języku angielskim.
+svc_js_note=Ten interfejs wymaga włączenia JavaScript w przeglądarce.
+svc_none=Na tym urządzeniu nie zainstalowano żadnej usługi udostępniania. Zapewnia ono tylko sieć i tę stronę.
+
+# How it works page
+how_title=Jak to działa
+how_connect_title=Połącz się
+how_connect=Połącz się z siecią Wi-Fi urządzenia. Hasło nie jest potrzebne. Na większości telefonów okno ze stroną główną otworzy się samo.
+how_open=Jeśli nic się nie otworzy, uruchom przeglądarkę i wpisz dowolny adres zaczynający się od {http}, na przykład {example}. Bezpieczne adresy zaczynające się od {https} tu nie działają.
+how_share_title=Udostępniaj
+how_share=Pobieraj to, co udostępnili inni, dodawaj własne pliki, czatuj. Nie ma kont ani haseł: wszyscy są anonimowi.
+how_offline_title=Offline
+how_offline=Urządzenie nigdy nie łączy się z internetem. Telefon może ostrzec, że ta sieć nie ma dostępu do internetu: to normalne. Nie rozłączaj się, aby dalej korzystać z urządzenia.
+how_privacy_title=Prywatność
+how_privacy=Sieć jest otwarta i nieszyfrowana, a wszystko, co udostępniono, jest publiczne. Inne urządzenia nie mogą bezpośrednio połączyć się z Twoim, ale każdy w pobliżu może podsłuchać ruch radiowy. Udostępniaj tylko to, co można by powiesić na publicznej tablicy ogłoszeń.
+how_limits_title=Ograniczenia
+how_limits=Urządzenie jest małe: jednocześnie może z niego korzystać tylko kilka urządzeń, około ośmiu, a miejsce na dane jest ograniczone.
+how_about_title=Informacje
+how_about=ShareBox to wolne oprogramowanie w duchu PirateBox i LibraryBox. Osoba, która prowadzi to urządzenie, odpowiada za to, co ono oferuje.
+how_back=Wróć do strony głównej
+
+# Status page
+status_title=Stan urządzenia
+status_clients=Połączone urządzenia
+status_disk=Wolne miejsce
+status_version=Wersja oprogramowania
+status_warnings=Ostrzeżenia
+status_no_warnings=Brak ostrzeżeń.
+update_title=Aktualizacja oprogramowania
+update_found=Na pendrivie znaleziono aktualizację:
+update_signed=Jej podpis został sprawdzony. Instalacja uruchomi urządzenie ponownie i przez kilka minut będzie ono niedostępne.
+update_warning=Instaluj tylko aktualizację, której się spodziewasz. Urządzenie odrzuca każdą aktualizację, która nie jest podpisana przez wydawcę.
+update_install=Zainstaluj
+update_ok=Trwa instalowanie aktualizacji. Urządzenie za chwilę uruchomi się ponownie.
+update_error=Nie udało się zainstalować aktualizacji:

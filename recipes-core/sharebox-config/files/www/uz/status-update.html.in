@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">Dasturni yangilash</h2>
+<p>USB fleshkada yangilanish topildi: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>Uning imzosi tekshirildi. Oʻrnatilganda quti qayta ishga tushadi va bir necha daqiqa ishlamaydi.</p>
+<p class="note">Faqat siz kutgan yangilanishni oʻrnating. Quti ishlab chiquvchisi imzolamagan har qanday yangilanishni rad etadi.</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="uz">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">Oʻrnatish</button>
+</form>
+</section>

@@ -1,0 +1,81 @@
+# ShareBox page strings, Turkish (tr). AI-generated, needs human review.
+#
+# Format: one "key=value" per line, UTF-8. Lines starting with "#" and blank
+# lines are ignored. Values are plain text: the generator HTML-escapes them.
+# Inline markers, replaced by the generator with LTR-safe code spans:
+#   {http}     -> http://
+#   {https}    -> https://
+#   {example}  -> http://sharebox.lan
+# "ShareBox" is a name and is never translated.
+
+# Wi-Fi network name: "ShareBox - <ssid_slogan>". Whole SSID at most 32 bytes
+# in UTF-8, so the slogan has at most 21 bytes.
+ssid_slogan=Özgürce Paylaş
+
+# Shared page parts
+skip_link=İçeriğe geç
+nav_home=Ana sayfa
+nav_how=Nasıl çalışır
+nav_status=Durum
+lang_selector=Dil
+footer_offline=Bu kutu internet olmadan çalışır.
+
+# Home page
+home_title=ShareBox'a hoş geldiniz
+home_lead=Bir ShareBox'a bağlısınız: internet olmadan yakınınızdaki kişilerle dosya paylaşmanızı ve sohbet etmenizi sağlayan küçük bir Wi-Fi kutusu.
+home_offline=Buradaki hiçbir şey kutunun dışına çıkmaz. Kutu internete bağlı değildir; bu nedenle bağlı kaldığınız sürece internet gerektiren web siteleri ve uygulamalar çalışmaz.
+warn_title=Herkese açık ve şifrelenmemiş
+warn_public=Bu Wi-Fi ağı açıktır ve şifrelenmemiştir. Yakındaki herkes gönderdiklerinizi ve aldıklarınızı görebilir.
+warn_uploads=Burada paylaştığınız her şey herkese açıktır: bağlı olan herkes görebilir ve indirebilir. Kişisel veya özel verilerinizi paylaşmayın.
+services_title=Burada neler yapabilirsiniz
+home_more=Nasıl çalışır?
+
+# Service cards (home page, depends on the image)
+svc_files=Dosyalar
+svc_files_desc=Paylaşılan dosyalara göz atın ve indirin.
+svc_upload=Yükle
+svc_upload_desc=Kendi dosyalarınızı buradaki herkesle paylaşın.
+svc_chat=Sohbet
+svc_chat_desc=Bu kutuya bağlı kişilerle konuşun.
+svc_forum=Forum
+svc_forum_desc=Bir tartışma başlatın veya bir tartışmaya katılın.
+svc_library=Kitaplık
+svc_library_desc=Ansiklopedileri, kitapları ve diğer çevrimdışı içerikleri okuyun.
+svc_box=ShareBox'ı aç
+svc_box_desc_classic=Dosyalar, yüklemeler, sohbet ve forum tek bir yerde.
+svc_box_desc_shareboxx=Dosyalar, büyük dosya yüklemeleri ve canlı sohbet tek bir yerde.
+svc_english_note=Bu arayüz İngilizcedir.
+svc_js_note=Bu arayüz için tarayıcınızda JavaScript'in etkin olması gerekir.
+svc_none=Bu kutuda yüklü bir paylaşım hizmeti yok. Kutu yalnızca ağı ve bu sayfayı sunar.
+
+# How it works page
+how_title=Nasıl çalışır
+how_connect_title=Bağlanın
+how_connect=Kutunun Wi-Fi ağına bağlanın. Şifre gerekmez. Çoğu telefonda ana sayfayı gösteren bir pencere kendiliğinden açılır.
+how_open=Hiçbir şey açılmazsa web tarayıcınızı açın ve {http} ile başlayan herhangi bir adres yazın, örneğin {example}. {https} ile başlayan güvenli adresler burada çalışmaz.
+how_share_title=Paylaşın
+how_share=Başkalarının paylaştıklarını indirin, kendi dosyalarınızı ekleyin, sohbet edin. Hesap da şifre de yoktur: herkes anonimdir.
+how_offline_title=Çevrimdışı
+how_offline=Kutu hiçbir zaman internete bağlanmaz. Telefonunuz bu ağda internet erişimi olmadığı konusunda uyarabilir: bu normaldir. Kutuyu kullanmaya devam etmek için bağlı kalın.
+how_privacy_title=Gizlilik
+how_privacy=Ağ açıktır ve şifrelenmemiştir; paylaşılan her şey herkese açıktır. Diğer cihazlar sizinkine doğrudan erişemez, ancak yakındaki herkes kablosuz trafiği dinleyebilir. Yalnızca herkese açık bir ilan panosuna asabileceğiniz şeyleri paylaşın.
+how_limits_title=Sınırlar
+how_limits=Kutu küçüktür: aynı anda yalnızca birkaç cihaz (yaklaşık sekiz) kullanabilir ve depolama alanı sınırlıdır.
+how_about_title=Hakkında
+how_about=ShareBox, PirateBox ve LibraryBox'ın ruhunu taşıyan özgür bir yazılımdır. Bu kutuyu işleten kişi, sunduğu içerikten sorumludur.
+how_back=Ana sayfaya dön
+
+# Status page
+status_title=Kutu durumu
+status_clients=Bağlı cihazlar
+status_disk=Boş depolama alanı
+status_version=Yazılım sürümü
+status_warnings=Uyarılar
+status_no_warnings=Uyarı yok.
+update_title=Yazılım güncellemesi
+update_found=USB bellekte bir güncelleme bulundu:
+update_signed=İmzası doğrulandı. Yüklendiğinde kutu yeniden başlar ve birkaç dakika kullanılamaz.
+update_warning=Yalnızca beklediğiniz bir güncellemeyi yükleyin. Kutu, yayıncısı tarafından imzalanmamış hiçbir güncellemeyi kabul etmez.
+update_install=Yükle
+update_ok=Güncelleme yükleniyor. Kutu birazdan yeniden başlayacak.
+update_error=Güncelleme yüklenemedi:

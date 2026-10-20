@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">Anyaran piranti alus</h2>
+<p>Wonten anyaran ing flashdisk USB: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>Tapak astanipun sampun dipunpriksa. Masang anyaran punika badhe miwiti malih kothak punika, saengga boten saged dipunginakaken sawetawis menit.</p>
+<p class="note">Namung pasang anyaran ingkang panjenengan entosi. Kothak punika nolak anyaran punapa kemawon ingkang boten dipuntapak asta dening penerbitipun.</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="jv">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">Pasang</button>
+</form>
+</section>

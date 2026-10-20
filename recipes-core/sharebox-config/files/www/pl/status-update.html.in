@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">Aktualizacja oprogramowania</h2>
+<p>Na pendrivie znaleziono aktualizację: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>Jej podpis został sprawdzony. Instalacja uruchomi urządzenie ponownie i przez kilka minut będzie ono niedostępne.</p>
+<p class="note">Instaluj tylko aktualizację, której się spodziewasz. Urządzenie odrzuca każdą aktualizację, która nie jest podpisana przez wydawcę.</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="pl">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">Zainstaluj</button>
+</form>
+</section>

@@ -1,0 +1,4 @@
+<div class="notice error" role="alert">
+<p>アップデートをインストールできませんでした：</p>
+<pre dir="ltr">@@ERROR@@</pre>
+</div>

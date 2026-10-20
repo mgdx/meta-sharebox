@@ -1,0 +1,81 @@
+# ShareBox page strings, Arabic (ar). AI-generated, needs human review.
+#
+# Format: one "key=value" per line, UTF-8. Lines starting with "#" and blank
+# lines are ignored. Values are plain text: the generator HTML-escapes them.
+# Inline markers, replaced by the generator with LTR-safe code spans:
+#   {http}     -> http://
+#   {https}    -> https://
+#   {example}  -> http://sharebox.lan
+# "ShareBox" is a name and is never translated.
+
+# Wi-Fi network name: "ShareBox - <ssid_slogan>". Whole SSID at most 32 bytes
+# in UTF-8, so the slogan has at most 21 bytes.
+ssid_slogan=شارك بحرية
+
+# Shared page parts
+skip_link=انتقل إلى المحتوى
+nav_home=الرئيسية
+nav_how=طريقة العمل
+nav_status=الحالة
+lang_selector=اللغة
+footer_offline=يعمل هذا الصندوق دون إنترنت.
+
+# Home page
+home_title=مرحبًا بك في ShareBox
+home_lead=أنت متصل بصندوق ShareBox: صندوق Wi-Fi صغير لمشاركة الملفات والتحدث مع الأشخاص القريبين منك، دون إنترنت.
+home_offline=لا يخرج أي شيء من هذا الصندوق. فهو غير متصل بالإنترنت، لذا لن تعمل المواقع والتطبيقات التي تحتاج إليه ما دمت متصلًا به.
+warn_title=شبكة عامة وغير مشفّرة
+warn_public=شبكة Wi-Fi هذه مفتوحة وغير مشفّرة. يمكن لأي شخص قريب أن يرى ما ترسله وما تستقبله.
+warn_uploads=كل ما تشاركه هنا عام: يمكن لأي شخص متصل أن يراه وينزّله. لا تشارك بيانات شخصية أو خاصة.
+services_title=ما يمكنك فعله هنا
+home_more=كيف يعمل؟
+
+# Service cards (home page, depends on the image)
+svc_files=الملفات
+svc_files_desc=تصفّح الملفات المشتركة ونزّلها.
+svc_upload=الرفع
+svc_upload_desc=شارك ملفاتك مع جميع الموجودين هنا.
+svc_chat=الدردشة
+svc_chat_desc=تحدّث مع الأشخاص المتصلين بهذا الصندوق.
+svc_forum=المنتدى
+svc_forum_desc=ابدأ نقاشًا أو شارك في نقاش قائم.
+svc_library=المكتبة
+svc_library_desc=اقرأ موسوعات وكتبًا ومحتوى آخر متاحًا دون إنترنت.
+svc_box=افتح ShareBox
+svc_box_desc_classic=الملفات والرفع والدردشة والمنتدى في مكان واحد.
+svc_box_desc_shareboxx=الملفات ورفع الملفات الكبيرة والدردشة المباشرة في مكان واحد.
+svc_english_note=هذه الواجهة باللغة الإنجليزية.
+svc_js_note=تتطلب هذه الواجهة تفعيل JavaScript في متصفحك.
+svc_none=لا توجد أي خدمة مشاركة مثبّتة على هذا الصندوق. فهو يوفّر الشبكة وهذه الصفحة فقط.
+
+# How it works page
+how_title=طريقة العمل
+how_connect_title=الاتصال
+how_connect=اتصل بشبكة Wi-Fi الخاصة بالصندوق. لا حاجة إلى كلمة مرور. في معظم الهواتف، تُفتح نافذة الصفحة الرئيسية تلقائيًا.
+how_open=إذا لم يُفتح شيء، فافتح متصفح الويب واكتب أي عنوان يبدأ بـ {http}، مثل {example}. العناوين الآمنة التي تبدأ بـ {https} لا تعمل هنا.
+how_share_title=المشاركة
+how_share=نزّل ما شاركه الآخرون، وأضف ملفاتك، وتحدّث معهم. لا توجد حسابات ولا كلمات مرور: الجميع مجهولو الهوية.
+how_offline_title=دون إنترنت
+how_offline=لا يتصل الصندوق بالإنترنت أبدًا. قد ينبّهك هاتفك إلى أن هذه الشبكة لا تتيح الوصول إلى الإنترنت: هذا أمر طبيعي. ابقَ متصلًا لمواصلة استخدام الصندوق.
+how_privacy_title=الخصوصية
+how_privacy=الشبكة مفتوحة وغير مشفّرة، وكل ما تتم مشاركته عام. لا يمكن للأجهزة الأخرى الوصول إلى جهازك مباشرةً، لكن يمكن لأي شخص قريب التنصّت على الإشارات اللاسلكية. لا تشارك إلا ما يمكنك تعليقه على لوحة إعلانات عامة.
+how_limits_title=الحدود
+how_limits=الصندوق صغير: لا يمكن أن يستخدمه في الوقت نفسه إلا عدد قليل من الأجهزة، نحو ثمانية، ومساحة التخزين فيه محدودة.
+how_about_title=حول
+how_about=ShareBox برنامج حر، على نهج PirateBox و LibraryBox. ومن يشغّل هذا الصندوق مسؤول عمّا يقدّمه.
+how_back=العودة إلى الصفحة الرئيسية
+
+# Status page
+status_title=حالة الصندوق
+status_clients=الأجهزة المتصلة
+status_disk=مساحة التخزين المتاحة
+status_version=إصدار البرنامج
+status_warnings=التحذيرات
+status_no_warnings=لا توجد تحذيرات.
+update_title=تحديث البرنامج
+update_found=تم العثور على تحديث في ذاكرة USB:
+update_signed=تم التحقق من توقيعه. سيؤدي تثبيته إلى إعادة تشغيل الصندوق، ولن يكون متاحًا لبضع دقائق.
+update_warning=لا تثبّت إلا تحديثًا كنت تنتظره. يرفض الصندوق أي تحديث غير موقّع من ناشره.
+update_install=تثبيت
+update_ok=جارٍ تثبيت التحديث. ستتم إعادة تشغيل الصندوق قريبًا.
+update_error=تعذّر تثبيت التحديث:

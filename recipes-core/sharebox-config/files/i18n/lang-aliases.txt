@@ -1,0 +1,22 @@
+# Browser language tags (Accept-Language) that do not match a directory name
+# under /usr/share/sharebox/www, mapped to the shipped language code.
+# Format: alias<TAB>code. Matching is case-insensitive. Suggested lookup for
+# a tag: exact directory name, then this table, then the same two steps
+# after removing the last subtag (pt-BR -> pt, zh-Hant-TW -> zh-Hant).
+zh	zh-Hans
+zh-cn	zh-Hans
+zh-sg	zh-Hans
+zh-my	zh-Hans
+zh-hans-cn	zh-Hans
+zh-tw	zh-Hant
+zh-hk	zh-Hant
+zh-mo	zh-Hant
+zh-hant-tw	zh-Hant
+zh-hant-hk	zh-Hant
+tl	fil
+in	id
+jw	jv
+mo	ro
+pa-guru	pa
+uz-latn	uz
+ms-latn	ms

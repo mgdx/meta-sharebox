@@ -1,0 +1,4 @@
+<div class="notice error" role="alert">
+<p>Actualizarea nu a putut fi instalată:</p>
+<pre dir="ltr">@@ERROR@@</pre>
+</div>

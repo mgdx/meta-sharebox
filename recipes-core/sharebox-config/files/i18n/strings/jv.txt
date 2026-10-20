@@ -1,0 +1,81 @@
+# ShareBox page strings, Javanese (jv). AI-generated, needs human review.
+#
+# Format: one "key=value" per line, UTF-8. Lines starting with "#" and blank
+# lines are ignored. Values are plain text: the generator HTML-escapes them.
+# Inline markers, replaced by the generator with LTR-safe code spans:
+#   {http}     -> http://
+#   {https}    -> https://
+#   {example}  -> http://sharebox.lan
+# "ShareBox" is a name and is never translated.
+
+# Wi-Fi network name: "ShareBox - <ssid_slogan>". Whole SSID at most 32 bytes
+# in UTF-8, so the slogan has at most 21 bytes.
+ssid_slogan=Bebas Andum
+
+# Shared page parts
+skip_link=Langsung dhateng isi
+nav_home=Kaca utama
+nav_how=Caranipun makarya
+nav_status=Status
+lang_selector=Basa
+footer_offline=Kothak punika saged lumampah tanpa internet.
+
+# Home page
+home_title=Sugeng rawuh ing ShareBox
+home_lead=Panjenengan sampun kasambung dhateng ShareBox: kothak Wi-Fi alit kangge andum berkas lan ngobrol kaliyan tiyang ing sakiwa-tengen, tanpa internet.
+home_offline=Boten wonten ingkang medal saking kothak punika. Kothak punika boten kasambung dhateng internet, dados situs web lan aplikasi ingkang mbetahaken internet boten saged dipunginakaken salebetipun panjenengan kasambung.
+warn_title=Umum lan boten dienkripsi
+warn_public=Jaringan Wi-Fi punika kabuka lan boten dienkripsi. Sinten kemawon ing sakiwa-tengen saged ningali punapa ingkang panjenengan kintun lan tampi.
+warn_uploads=Sedaya ingkang panjenengan andum ing ngriki sipatipun umum: sinten kemawon ingkang kasambung saged ningali lan ngundhuh. Sampun ngantos andum data pribadi utawi rahasia.
+services_title=Ingkang saged panjenengan tindakaken ing ngriki
+home_more=Kados pundi caranipun makarya?
+
+# Service cards (home page, depends on the image)
+svc_files=Berkas
+svc_files_desc=Pirsani lan undhuh berkas ingkang dipunandum.
+svc_upload=Unggah
+svc_upload_desc=Andum berkas panjenengan piyambak kaliyan sedaya tiyang ing ngriki.
+svc_chat=Obrolan
+svc_chat_desc=Ngobrol kaliyan tiyang ingkang kasambung dhateng kothak punika.
+svc_forum=Forum
+svc_forum_desc=Wiwiti utawi tumut rembagan.
+svc_library=Pustaka
+svc_library_desc=Waos ensiklopedia, buku, lan isi offline sanesipun.
+svc_box=Bikak ShareBox
+svc_box_desc_classic=Berkas, unggahan, obrolan, lan forum ing satunggal papan.
+svc_box_desc_shareboxx=Berkas, unggahan ageng, lan obrolan langsung ing satunggal papan.
+svc_english_note=Tampilan punika ngagem basa Inggris.
+svc_js_note=Tampilan punika mbetahaken JavaScript ingkang dipunaktifaken ing browser panjenengan.
+svc_none=Boten wonten layanan andum ingkang dipunpasang ing kothak punika. Kothak punika namung nyawisaken jaringan lan kaca punika.
+
+# How it works page
+how_title=Caranipun makarya
+how_connect_title=Nyambung
+how_connect=Sambungaken dhateng jaringan Wi-Fi kothak punika. Boten mbetahaken sandhi. Ing kathah-kathahipun HP, jendela ingkang isi kaca utama badhe kabuka piyambak.
+how_open=Menawi boten wonten ingkang kabuka, bikak browser web panjenengan lan ketik alamat punapa kemawon ingkang kawiwitan {http}, upaminipun {example}. Alamat aman ingkang kawiwitan {https} boten saged dipunginakaken ing ngriki.
+how_share_title=Andum
+how_share=Undhuh punapa ingkang dipunandum tiyang sanes, tambahaken berkas panjenengan piyambak, lan ngobrol. Boten wonten akun lan boten wonten sandhi: sedaya tiyang anonim.
+how_offline_title=Offline
+how_offline=Kothak punika boten nate nyambung dhateng internet. HP panjenengan saged paring pepenget bilih jaringan punika boten gadhah akses internet: punika lumrah. Tetep kasambung supados saged terus ngginakaken kothak punika.
+how_privacy_title=Privasi
+how_privacy=Jaringan punika kabuka lan boten dienkripsi, saha sedaya ingkang dipunandum sipatipun umum. Piranti sanes boten saged nggayuh piranti panjenengan kanthi langsung, nanging sinten kemawon ing sakiwa-tengen saged nyadhap sinyal radhionipun. Namung andum punapa ingkang purun panjenengan tempelaken ing papan woro-woro umum.
+how_limits_title=Watesan
+how_limits=Kothak punika alit: namung sawetawis piranti, kirang langkung wolu, ingkang saged ngginakaken sesarengan, lan papan panyimpenanipun winates.
+how_about_title=Babagan
+how_about=ShareBox punika piranti alus bebas, kanthi semangat PirateBox lan LibraryBox. Sinten kemawon ingkang ngelola kothak punika tanggel jawab dhateng isi ingkang dipunsukakaken.
+how_back=Wangsul dhateng kaca utama
+
+# Status page
+status_title=Status kothak
+status_clients=Piranti ingkang kasambung
+status_disk=Papan panyimpenan ingkang kosong
+status_version=Versi piranti alus
+status_warnings=Pepenget
+status_no_warnings=Boten wonten pepenget.
+update_title=Anyaran piranti alus
+update_found=Wonten anyaran ing flashdisk USB:
+update_signed=Tapak astanipun sampun dipunpriksa. Masang anyaran punika badhe miwiti malih kothak punika, saengga boten saged dipunginakaken sawetawis menit.
+update_warning=Namung pasang anyaran ingkang panjenengan entosi. Kothak punika nolak anyaran punapa kemawon ingkang boten dipuntapak asta dening penerbitipun.
+update_install=Pasang
+update_ok=Anyaran saweg dipunpasang. Kothak punika badhe miwiti malih sakedhap malih.
+update_error=Anyaran boten saged dipunpasang:

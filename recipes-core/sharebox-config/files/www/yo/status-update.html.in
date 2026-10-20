@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">Ìmúdójúìwọ̀n sọ́fítíwià</h2>
+<p>A rí ìmúdójúìwọ̀n kan lórí fíláàṣì USB: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>A ti ṣàyẹ̀wò ìbuwọ́lù rẹ̀. Fífi í sórí ẹ̀rọ yóò tún àpótí náà bẹ̀rẹ̀, kò sì ní ṣeé lò fún ìṣẹ́jú díẹ̀.</p>
+<p class="note">Ẹ fi ìmúdójúìwọ̀n tí ẹ ń retí nìkan sórí ẹ̀rọ. Àpótí náà kò ní gba ìmúdójúìwọ̀n èyíkéyìí tí olùtẹ̀jáde rẹ̀ kò buwọ́ lù.</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="yo">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">Fi sórí ẹ̀rọ</button>
+</form>
+</section>

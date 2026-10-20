@@ -1,0 +1,81 @@
+# ShareBox page strings, Urdu (ur). AI-generated, needs human review.
+#
+# Format: one "key=value" per line, UTF-8. Lines starting with "#" and blank
+# lines are ignored. Values are plain text: the generator HTML-escapes them.
+# Inline markers, replaced by the generator with LTR-safe code spans:
+#   {http}     -> http://
+#   {https}    -> https://
+#   {example}  -> http://sharebox.lan
+# "ShareBox" is a name and is never translated.
+
+# Wi-Fi network name: "ShareBox - <ssid_slogan>". Whole SSID at most 32 bytes
+# in UTF-8, so the slogan has at most 21 bytes.
+ssid_slogan=شیئر کریں
+
+# Shared page parts
+skip_link=سیدھے مواد پر جائیں
+nav_home=ہوم
+nav_how=یہ کیسے کام کرتا ہے
+nav_status=صورتِ حال
+lang_selector=زبان
+footer_offline=یہ باکس انٹرنیٹ کے بغیر کام کرتا ہے۔
+
+# Home page
+home_title=ShareBox میں خوش آمدید
+home_lead=آپ ایک ShareBox سے منسلک ہیں: یہ ایک چھوٹا سا وائی فائی باکس ہے جس کے ذریعے آپ انٹرنیٹ کے بغیر آس پاس کے لوگوں کے ساتھ فائلیں شیئر کر سکتے ہیں اور بات چیت کر سکتے ہیں۔
+home_offline=یہاں کی کوئی چیز باکس سے باہر نہیں جاتی۔ یہ انٹرنیٹ سے منسلک نہیں ہے، اس لیے جب تک آپ اس سے منسلک ہیں، انٹرنیٹ والی ویب سائٹس اور ایپس کام نہیں کریں گی۔
+warn_title=عوامی اور غیر مرموز
+warn_public=یہ وائی فائی نیٹ ورک کھلا ہے اور مرموز نہیں ہے۔ آس پاس موجود کوئی بھی شخص دیکھ سکتا ہے کہ آپ کیا بھیجتے اور وصول کرتے ہیں۔
+warn_uploads=آپ یہاں جو کچھ بھی شیئر کرتے ہیں وہ سب عوامی ہے: منسلک کوئی بھی شخص اسے دیکھ اور ڈاؤن لوڈ کر سکتا ہے۔ ذاتی یا نجی معلومات شیئر نہ کریں۔
+services_title=آپ یہاں کیا کر سکتے ہیں
+home_more=یہ کیسے کام کرتا ہے؟
+
+# Service cards (home page, depends on the image)
+svc_files=فائلیں
+svc_files_desc=شیئر کی گئی فائلیں دیکھیں اور ڈاؤن لوڈ کریں۔
+svc_upload=اپ لوڈ
+svc_upload_desc=اپنی فائلیں یہاں سب کے ساتھ شیئر کریں۔
+svc_chat=چیٹ
+svc_chat_desc=اس باکس سے منسلک لوگوں سے بات کریں۔
+svc_forum=فورم
+svc_forum_desc=کوئی بحث شروع کریں یا اس میں شامل ہوں۔
+svc_library=لائبریری
+svc_library_desc=انسائیکلوپیڈیا، کتابیں اور دیگر آف لائن مواد پڑھیں۔
+svc_box=ShareBox کھولیں
+svc_box_desc_classic=فائلیں، اپ لوڈ، چیٹ اور فورم، سب ایک ہی جگہ۔
+svc_box_desc_shareboxx=فائلیں، بڑے اپ لوڈ اور لائیو چیٹ، سب ایک ہی جگہ۔
+svc_english_note=یہ انٹرفیس انگریزی میں ہے۔
+svc_js_note=اس انٹرفیس کے لیے آپ کے براؤزر میں JavaScript فعال ہونا ضروری ہے۔
+svc_none=اس باکس پر شیئرنگ کی کوئی سروس انسٹال نہیں ہے۔ یہ صرف نیٹ ورک اور یہ صفحہ فراہم کرتا ہے۔
+
+# How it works page
+how_title=یہ کیسے کام کرتا ہے
+how_connect_title=منسلک ہوں
+how_connect=باکس کے وائی فائی نیٹ ورک سے منسلک ہوں۔ کسی پاس ورڈ کی ضرورت نہیں۔ زیادہ تر فونز پر ہوم پیج والی ایک ونڈو خود بخود کھل جاتی ہے۔
+how_open=اگر کچھ نہ کھلے تو اپنا ویب براؤزر کھولیں اور {http} سے شروع ہونے والا کوئی بھی پتہ لکھیں، مثلاً {example}۔ {https} سے شروع ہونے والے محفوظ پتے یہاں کام نہیں کرتے۔
+how_share_title=شیئر کریں
+how_share=دوسروں کی شیئر کی ہوئی چیزیں ڈاؤن لوڈ کریں، اپنی فائلیں شامل کریں، چیٹ کریں۔ نہ کوئی اکاؤنٹ ہے نہ پاس ورڈ: سب گمنام ہیں۔
+how_offline_title=آف لائن
+how_offline=باکس کبھی انٹرنیٹ سے منسلک نہیں ہوتا۔ آپ کا فون بتا سکتا ہے کہ اس نیٹ ورک پر انٹرنیٹ نہیں ہے: یہ معمول کی بات ہے۔ باکس استعمال کرتے رہنے کے لیے منسلک رہیں۔
+how_privacy_title=رازداری
+how_privacy=نیٹ ورک کھلا اور غیر مرموز ہے، اور شیئر کی گئی ہر چیز عوامی ہے۔ دوسرے آلات براہِ راست آپ کے آلے تک نہیں پہنچ سکتے، لیکن آس پاس کوئی بھی ریڈیو ٹریفک سن سکتا ہے۔ صرف وہی شیئر کریں جو آپ کسی عوامی نوٹس بورڈ پر بھی لگا سکیں۔
+how_limits_title=حدود
+how_limits=باکس چھوٹا ہے: ایک وقت میں صرف چند آلات، تقریباً آٹھ، اسے استعمال کر سکتے ہیں، اور اس کی اسٹوریج کی جگہ محدود ہے۔
+how_about_title=تعارف
+how_about=ShareBox ایک آزاد سافٹ ویئر ہے، جو PirateBox اور LibraryBox کی روایت میں بنایا گیا ہے۔ اس باکس کو چلانے والا ہی اس پر پیش کی جانے والی چیزوں کا ذمہ دار ہے۔
+how_back=ہوم پیج پر واپس جائیں
+
+# Status page
+status_title=باکس کی صورتِ حال
+status_clients=منسلک آلات
+status_disk=خالی اسٹوریج
+status_version=سافٹ ویئر ورژن
+status_warnings=انتباہات
+status_no_warnings=کوئی انتباہ نہیں۔
+update_title=سافٹ ویئر اپ ڈیٹ
+update_found=یو ایس بی اسٹک پر ایک اپ ڈیٹ ملی ہے:
+update_signed=اس کے دستخط کی تصدیق ہو چکی ہے۔ اسے انسٹال کرنے پر باکس دوبارہ شروع ہوگا اور چند منٹ تک دستیاب نہیں رہے گا۔
+update_warning=صرف وہی اپ ڈیٹ انسٹال کریں جس کی آپ توقع کر رہے تھے۔ باکس کوئی بھی ایسی اپ ڈیٹ قبول نہیں کرتا جس پر اس کے ناشر کے دستخط نہ ہوں۔
+update_install=انسٹال کریں
+update_ok=اپ ڈیٹ انسٹال ہو رہی ہے۔ باکس جلد ہی دوبارہ شروع ہوگا۔
+update_error=اپ ڈیٹ انسٹال نہیں ہو سکی:

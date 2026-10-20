@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">மென்பொருள் புதுப்பிப்பு</h2>
+<p>பென் டிரைவில் ஒரு புதுப்பிப்பு கண்டறியப்பட்டது: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>இதன் கையொப்பம் சரிபார்க்கப்பட்டது. இதை நிறுவினால் பெட்டி மீண்டும் தொடங்கும், சில நிமிடங்களுக்குக் கிடைக்காது.</p>
+<p class="note">நீங்கள் எதிர்பார்த்த புதுப்பிப்பை மட்டுமே நிறுவுங்கள். வெளியீட்டாளரின் கையொப்பம் இல்லாத எந்தப் புதுப்பிப்பையும் பெட்டி ஏற்காது.</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="ta">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">நிறுவு</button>
+</form>
+</section>

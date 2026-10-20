@@ -1,0 +1,81 @@
+# ShareBox page strings, Gujarati (gu). AI-generated, needs human review.
+#
+# Format: one "key=value" per line, UTF-8. Lines starting with "#" and blank
+# lines are ignored. Values are plain text: the generator HTML-escapes them.
+# Inline markers, replaced by the generator with LTR-safe code spans:
+#   {http}     -> http://
+#   {https}    -> https://
+#   {example}  -> http://sharebox.lan
+# "ShareBox" is a name and is never translated.
+
+# Wi-Fi network name: "ShareBox - <ssid_slogan>". Whole SSID at most 32 bytes
+# in UTF-8, so the slogan has at most 21 bytes.
+ssid_slogan=શેર કરો
+
+# Shared page parts
+skip_link=સીધા સામગ્રી પર જાઓ
+nav_home=હોમ
+nav_how=આ કેવી રીતે કામ કરે છે
+nav_status=સ્થિતિ
+lang_selector=ભાષા
+footer_offline=આ બૉક્સ ઇન્ટરનેટ વગર કામ કરે છે.
+
+# Home page
+home_title=ShareBox માં આપનું સ્વાગત છે
+home_lead=તમે એક ShareBox સાથે કનેક્ટ થયેલા છો: આ એક નાનું વાઇ-ફાઇ બૉક્સ છે, જેનાથી ઇન્ટરનેટ વગર નજીકના લોકો સાથે ફાઇલો શેર કરી શકાય છે અને વાતચીત કરી શકાય છે.
+home_offline=અહીંનું કંઈ પણ બૉક્સની બહાર જતું નથી. તે ઇન્ટરનેટ સાથે કનેક્ટ નથી, તેથી તમે તેની સાથે કનેક્ટ હો ત્યાં સુધી ઇન્ટરનેટની જરૂર હોય તેવી વેબસાઇટ અને ઍપ કામ નહીં કરે.
+warn_title=જાહેર અને એન્ક્રિપ્ટ ન કરેલું
+warn_public=આ વાઇ-ફાઇ નેટવર્ક ખુલ્લું છે અને એન્ક્રિપ્ટ કરેલું નથી. તમે શું મોકલો છો અને શું મેળવો છો તે નજીકની કોઈ પણ વ્યક્તિ જોઈ શકે છે.
+warn_uploads=તમે અહીં જે કંઈ શેર કરો છો તે બધું જાહેર છે: કનેક્ટ થયેલી કોઈ પણ વ્યક્તિ તેને જોઈ અને ડાઉનલોડ કરી શકે છે. અંગત કે ખાનગી માહિતી શેર કરશો નહીં.
+services_title=તમે અહીં શું કરી શકો છો
+home_more=આ કેવી રીતે કામ કરે છે?
+
+# Service cards (home page, depends on the image)
+svc_files=ફાઇલો
+svc_files_desc=શેર કરેલી ફાઇલો જુઓ અને ડાઉનલોડ કરો.
+svc_upload=અપલોડ
+svc_upload_desc=તમારી પોતાની ફાઇલો અહીં બધા સાથે શેર કરો.
+svc_chat=ચૅટ
+svc_chat_desc=આ બૉક્સ સાથે કનેક્ટ થયેલા લોકો સાથે વાત કરો.
+svc_forum=ફોરમ
+svc_forum_desc=ચર્ચા શરૂ કરો અથવા તેમાં જોડાઓ.
+svc_library=લાઇબ્રેરી
+svc_library_desc=જ્ઞાનકોશ, પુસ્તકો અને અન્ય ઑફલાઇન સામગ્રી વાંચો.
+svc_box=ShareBox ખોલો
+svc_box_desc_classic=ફાઇલો, અપલોડ, ચૅટ અને ફોરમ, બધું એક જ જગ્યાએ.
+svc_box_desc_shareboxx=ફાઇલો, મોટા અપલોડ અને લાઇવ ચૅટ, બધું એક જ જગ્યાએ.
+svc_english_note=આ ઇન્ટરફેસ અંગ્રેજીમાં છે.
+svc_js_note=આ ઇન્ટરફેસ માટે તમારા બ્રાઉઝરમાં JavaScript ચાલુ હોવું જરૂરી છે.
+svc_none=આ બૉક્સ પર શેર કરવાની કોઈ સેવા ઇન્સ્ટૉલ કરેલી નથી. તે ફક્ત નેટવર્ક અને આ પેજ આપે છે.
+
+# How it works page
+how_title=આ કેવી રીતે કામ કરે છે
+how_connect_title=કનેક્ટ કરો
+how_connect=બૉક્સના વાઇ-ફાઇ નેટવર્ક સાથે જોડાઓ. કોઈ પાસવર્ડની જરૂર નથી. મોટા ભાગના ફોન પર હોમ પેજવાળી એક વિન્ડો આપમેળે ખૂલે છે.
+how_open=જો કંઈ ન ખૂલે, તો તમારું વેબ બ્રાઉઝર શરૂ કરો અને {http} થી શરૂ થતું કોઈ પણ સરનામું લખો, ઉદાહરણ તરીકે {example}. {https} થી શરૂ થતાં સુરક્ષિત સરનામાં અહીં કામ કરતાં નથી.
+how_share_title=શેર કરો
+how_share=બીજાએ શેર કરેલું ડાઉનલોડ કરો, તમારી ફાઇલો ઉમેરો, ચૅટ કરો. કોઈ એકાઉન્ટ નથી, કોઈ પાસવર્ડ નથી: બધા અનામી છે.
+how_offline_title=ઑફલાઇન
+how_offline=બૉક્સ ક્યારેય ઇન્ટરનેટ સાથે કનેક્ટ થતું નથી. તમારો ફોન ચેતવણી આપી શકે છે કે આ નેટવર્ક પર ઇન્ટરનેટ નથી: આ સામાન્ય છે. બૉક્સનો ઉપયોગ ચાલુ રાખવા માટે કનેક્ટેડ રહો.
+how_privacy_title=ગોપનીયતા
+how_privacy=નેટવર્ક ખુલ્લું અને એન્ક્રિપ્ટ ન કરેલું છે, અને શેર કરેલું બધું જાહેર છે. અન્ય ડિવાઇસ સીધા તમારા ડિવાઇસ સુધી પહોંચી શકતા નથી, પણ નજીકની કોઈ પણ વ્યક્તિ રેડિયો ટ્રાફિક સાંભળી શકે છે. જાહેર નોટિસ બોર્ડ પર લગાવી શકો એટલું જ શેર કરો.
+how_limits_title=મર્યાદાઓ
+how_limits=બૉક્સ નાનું છે: એક સાથે માત્ર થોડાં ડિવાઇસ, લગભગ આઠ, તેનો ઉપયોગ કરી શકે છે, અને તેની સ્ટોરેજ જગ્યા મર્યાદિત છે.
+how_about_title=માહિતી
+how_about=ShareBox એક મુક્ત સૉફ્ટવેર છે, જે PirateBox અને LibraryBox ની ભાવનામાં બનેલું છે. આ બૉક્સ ચલાવનાર વ્યક્તિ તેના પર ઉપલબ્ધ સામગ્રી માટે જવાબદાર છે.
+how_back=હોમ પેજ પર પાછા જાઓ
+
+# Status page
+status_title=બૉક્સની સ્થિતિ
+status_clients=કનેક્ટ થયેલાં ડિવાઇસ
+status_disk=ખાલી સ્ટોરેજ જગ્યા
+status_version=સૉફ્ટવેર વર્ઝન
+status_warnings=ચેતવણીઓ
+status_no_warnings=કોઈ ચેતવણી નથી.
+update_title=સૉફ્ટવેર અપડેટ
+update_found=પેન ડ્રાઇવ પર એક અપડેટ મળ્યું:
+update_signed=તેની સહી ચકાસવામાં આવી છે. તેને ઇન્સ્ટૉલ કરવાથી બૉક્સ ફરી શરૂ થશે અને થોડી મિનિટો માટે ઉપલબ્ધ નહીં રહે.
+update_warning=તમે જેની રાહ જોતા હતા તે જ અપડેટ ઇન્સ્ટૉલ કરો. પ્રકાશકની સહી વગરનું કોઈ પણ અપડેટ બૉક્સ સ્વીકારતું નથી.
+update_install=ઇન્સ્ટૉલ કરો
+update_ok=અપડેટ ઇન્સ્ટૉલ થઈ રહ્યું છે. બૉક્સ થોડી વારમાં ફરી શરૂ થશે.
+update_error=અપડેટ ઇન્સ્ટૉલ થઈ શક્યું નહીં:

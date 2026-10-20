@@ -1,0 +1,81 @@
+# ShareBox page strings, Thai (th). AI-generated, needs human review.
+#
+# Format: one "key=value" per line, UTF-8. Lines starting with "#" and blank
+# lines are ignored. Values are plain text: the generator HTML-escapes them.
+# Inline markers, replaced by the generator with LTR-safe code spans:
+#   {http}     -> http://
+#   {https}    -> https://
+#   {example}  -> http://sharebox.lan
+# "ShareBox" is a name and is never translated.
+
+# Wi-Fi network name: "ShareBox - <ssid_slogan>". Whole SSID at most 32 bytes
+# in UTF-8, so the slogan has at most 21 bytes.
+ssid_slogan=แชร์กัน
+
+# Shared page parts
+skip_link=ข้ามไปยังเนื้อหา
+nav_home=หน้าแรก
+nav_how=วิธีใช้งาน
+nav_status=สถานะ
+lang_selector=ภาษา
+footer_offline=กล่องนี้ทำงานได้โดยไม่ต้องใช้อินเทอร์เน็ต
+
+# Home page
+home_title=ยินดีต้อนรับสู่ ShareBox
+home_lead=คุณเชื่อมต่อกับ ShareBox แล้ว ซึ่งเป็นกล่อง Wi-Fi ขนาดเล็กสำหรับแชร์ไฟล์และพูดคุยกับคนที่อยู่ใกล้ๆ โดยไม่ต้องใช้อินเทอร์เน็ต
+home_offline=ข้อมูลทั้งหมดในนี้จะไม่ออกไปนอกกล่อง กล่องนี้ไม่ได้เชื่อมต่ออินเทอร์เน็ต ดังนั้นระหว่างที่เชื่อมต่ออยู่ เว็บไซต์และแอปที่ต้องใช้อินเทอร์เน็ตจะใช้งานไม่ได้
+warn_title=สาธารณะและไม่มีการเข้ารหัส
+warn_public=เครือข่าย Wi-Fi นี้เป็นเครือข่ายสาธารณะและไม่มีการเข้ารหัส ใครก็ตามที่อยู่ใกล้ๆ สามารถเห็นสิ่งที่คุณส่งและรับได้
+warn_uploads=ทุกสิ่งที่คุณแชร์ที่นี่เป็นสาธารณะ ทุกคนที่เชื่อมต่ออยู่สามารถดูและดาวน์โหลดได้ โปรดอย่าแชร์ข้อมูลส่วนตัวหรือข้อมูลที่เป็นความลับ
+services_title=สิ่งที่คุณทำได้ที่นี่
+home_more=กล่องนี้ทำงานอย่างไร
+
+# Service cards (home page, depends on the image)
+svc_files=ไฟล์
+svc_files_desc=เรียกดูและดาวน์โหลดไฟล์ที่แชร์ไว้
+svc_upload=อัปโหลด
+svc_upload_desc=แชร์ไฟล์ของคุณให้ทุกคนที่นี่
+svc_chat=แชท
+svc_chat_desc=พูดคุยกับคนที่เชื่อมต่อกับกล่องนี้
+svc_forum=กระดานสนทนา
+svc_forum_desc=เริ่มหรือร่วมการสนทนา
+svc_library=ห้องสมุด
+svc_library_desc=อ่านสารานุกรม หนังสือ และเนื้อหาออฟไลน์อื่นๆ
+svc_box=เปิด ShareBox
+svc_box_desc_classic=ไฟล์ การอัปโหลด แชท และกระดานสนทนาในที่เดียว
+svc_box_desc_shareboxx=ไฟล์ การอัปโหลดไฟล์ขนาดใหญ่ และแชทสดในที่เดียว
+svc_english_note=หน้านี้เป็นภาษาอังกฤษ
+svc_js_note=หน้านี้ต้องเปิดใช้ JavaScript ในเบราว์เซอร์ของคุณ
+svc_none=กล่องนี้ไม่ได้ติดตั้งบริการแชร์ใดๆ มีเพียงเครือข่ายและหน้านี้เท่านั้น
+
+# How it works page
+how_title=วิธีใช้งาน
+how_connect_title=เชื่อมต่อ
+how_connect=เชื่อมต่อเครือข่าย Wi-Fi ของกล่องนี้ ไม่ต้องใช้รหัสผ่าน ในโทรศัพท์ส่วนใหญ่ หน้าต่างที่แสดงหน้าแรกจะเปิดขึ้นเอง
+how_open=หากไม่มีอะไรเปิดขึ้น ให้เปิดเว็บเบราว์เซอร์แล้วพิมพ์ที่อยู่ใดก็ได้ที่ขึ้นต้นด้วย {http} เช่น {example} ที่อยู่แบบปลอดภัยที่ขึ้นต้นด้วย {https} จะใช้ที่นี่ไม่ได้
+how_share_title=แชร์
+how_share=ดาวน์โหลดสิ่งที่คนอื่นแชร์ไว้ เพิ่มไฟล์ของคุณเอง และแชท ไม่มีบัญชีและไม่มีรหัสผ่าน ทุกคนไม่ระบุตัวตน
+how_offline_title=ออฟไลน์
+how_offline=กล่องนี้ไม่เชื่อมต่ออินเทอร์เน็ตเลย โทรศัพท์ของคุณอาจแจ้งว่าเครือข่ายนี้ไม่มีอินเทอร์เน็ต ซึ่งเป็นเรื่องปกติ โปรดเชื่อมต่อไว้เพื่อใช้งานกล่องต่อ
+how_privacy_title=ความเป็นส่วนตัว
+how_privacy=เครือข่ายนี้เป็นเครือข่ายสาธารณะและไม่มีการเข้ารหัส และทุกสิ่งที่แชร์เป็นสาธารณะ อุปกรณ์อื่นเข้าถึงอุปกรณ์ของคุณโดยตรงไม่ได้ แต่ใครก็ตามที่อยู่ใกล้ๆ สามารถดักฟังสัญญาณวิทยุได้ โปรดแชร์เฉพาะสิ่งที่คุณยินดีติดไว้บนป้ายประกาศสาธารณะ
+how_limits_title=ข้อจำกัด
+how_limits=กล่องนี้มีขนาดเล็ก ใช้งานพร้อมกันได้เพียงไม่กี่เครื่อง (ประมาณแปดเครื่อง) และพื้นที่เก็บข้อมูลมีจำกัด
+how_about_title=เกี่ยวกับ
+how_about=ShareBox เป็นซอฟต์แวร์เสรีตามแนวทางของ PirateBox และ LibraryBox ผู้ดูแลกล่องนี้เป็นผู้รับผิดชอบต่อเนื้อหาที่กล่องนี้มีให้
+how_back=กลับไปยังหน้าแรก
+
+# Status page
+status_title=สถานะของกล่อง
+status_clients=อุปกรณ์ที่เชื่อมต่อ
+status_disk=พื้นที่เก็บข้อมูลที่ว่าง
+status_version=เวอร์ชันซอฟต์แวร์
+status_warnings=คำเตือน
+status_no_warnings=ไม่มีคำเตือน
+update_title=อัปเดตซอฟต์แวร์
+update_found=พบอัปเดตในแฟลชไดรฟ์ USB:
+update_signed=ตรวจสอบลายเซ็นของอัปเดตแล้ว การติดตั้งจะทำให้กล่องรีสตาร์ทและใช้งานไม่ได้สองสามนาที
+update_warning=โปรดติดตั้งเฉพาะอัปเดตที่คุณรออยู่เท่านั้น กล่องจะปฏิเสธอัปเดตใดๆ ที่ไม่ได้ลงนามโดยผู้เผยแพร่
+update_install=ติดตั้ง
+update_ok=กำลังติดตั้งอัปเดต กล่องจะรีสตาร์ทในอีกสักครู่
+update_error=ไม่สามารถติดตั้งอัปเดตได้:

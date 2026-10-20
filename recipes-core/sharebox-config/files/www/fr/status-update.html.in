@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">Mise à jour du logiciel</h2>
+<p>Une mise à jour a été trouvée sur la clé USB : <code dir="ltr">@@BUNDLE@@</code></p>
+<p>Sa signature a été vérifiée. L'installer redémarre la box, qui sera indisponible pendant quelques minutes.</p>
+<p class="note">N'installez qu'une mise à jour que vous attendiez. La box refuse toute mise à jour qui n'est pas signée par son éditeur.</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="fr">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">Installer</button>
+</form>
+</section>

@@ -1,0 +1,81 @@
+# ShareBox page strings, Hindi (hi). AI-generated, needs human review.
+#
+# Format: one "key=value" per line, UTF-8. Lines starting with "#" and blank
+# lines are ignored. Values are plain text: the generator HTML-escapes them.
+# Inline markers, replaced by the generator with LTR-safe code spans:
+#   {http}     -> http://
+#   {https}    -> https://
+#   {example}  -> http://sharebox.lan
+# "ShareBox" is a name and is never translated.
+
+# Wi-Fi network name: "ShareBox - <ssid_slogan>". Whole SSID at most 32 bytes
+# in UTF-8, so the slogan has at most 21 bytes.
+ssid_slogan=बाँटें!
+
+# Shared page parts
+skip_link=सीधे सामग्री पर जाएँ
+nav_home=होम
+nav_how=यह कैसे काम करता है
+nav_status=स्थिति
+lang_selector=भाषा
+footer_offline=यह बॉक्स इंटरनेट के बिना काम करता है।
+
+# Home page
+home_title=ShareBox में आपका स्वागत है
+home_lead=आप एक ShareBox से जुड़े हैं: यह एक छोटा वाई-फ़ाई बॉक्स है, जिससे आप बिना इंटरनेट के आस-पास के लोगों के साथ फ़ाइलें शेयर कर सकते हैं और बातचीत कर सकते हैं।
+home_offline=यहाँ की कोई भी चीज़ बॉक्स से बाहर नहीं जाती। यह इंटरनेट से नहीं जुड़ा है, इसलिए जब तक आप इससे जुड़े हैं, इंटरनेट पर चलने वाली वेबसाइटें और ऐप काम नहीं करेंगे।
+warn_title=सार्वजनिक और बिना एन्क्रिप्शन
+warn_public=यह वाई-फ़ाई नेटवर्क खुला है और एन्क्रिप्ट नहीं किया गया है। आस-पास का कोई भी व्यक्ति देख सकता है कि आप क्या भेजते और पाते हैं।
+warn_uploads=आप यहाँ जो कुछ भी शेयर करते हैं, वह सार्वजनिक है: जुड़ा हुआ कोई भी व्यक्ति उसे देख और डाउनलोड कर सकता है। निजी या व्यक्तिगत जानकारी शेयर न करें।
+services_title=आप यहाँ क्या कर सकते हैं
+home_more=यह कैसे काम करता है?
+
+# Service cards (home page, depends on the image)
+svc_files=फ़ाइलें
+svc_files_desc=शेयर की गई फ़ाइलें देखें और डाउनलोड करें।
+svc_upload=अपलोड
+svc_upload_desc=अपनी फ़ाइलें यहाँ सभी के साथ शेयर करें।
+svc_chat=चैट
+svc_chat_desc=इस बॉक्स से जुड़े लोगों से बात करें।
+svc_forum=फ़ोरम
+svc_forum_desc=कोई चर्चा शुरू करें या उसमें शामिल हों।
+svc_library=लाइब्रेरी
+svc_library_desc=विश्वकोश, किताबें और अन्य ऑफ़लाइन सामग्री पढ़ें।
+svc_box=ShareBox खोलें
+svc_box_desc_classic=फ़ाइलें, अपलोड, चैट और फ़ोरम, सब एक ही जगह।
+svc_box_desc_shareboxx=फ़ाइलें, बड़े अपलोड और लाइव चैट, सब एक ही जगह।
+svc_english_note=यह इंटरफ़ेस अंग्रेज़ी में है।
+svc_js_note=इस इंटरफ़ेस के लिए आपके ब्राउज़र में JavaScript चालू होना ज़रूरी है।
+svc_none=इस बॉक्स पर शेयर करने की कोई सेवा इंस्टॉल नहीं है। यह सिर्फ़ नेटवर्क और यह पेज देता है।
+
+# How it works page
+how_title=यह कैसे काम करता है
+how_connect_title=कनेक्ट करें
+how_connect=बॉक्स के वाई-फ़ाई नेटवर्क से जुड़ें। पासवर्ड की ज़रूरत नहीं है। ज़्यादातर फ़ोन पर होम पेज वाली एक विंडो अपने-आप खुल जाती है।
+how_open=अगर कुछ नहीं खुलता, तो अपना वेब ब्राउज़र खोलें और {http} से शुरू होने वाला कोई भी पता लिखें, जैसे {example}। {https} से शुरू होने वाले सुरक्षित पते यहाँ काम नहीं करते।
+how_share_title=शेयर करें
+how_share=दूसरों की शेयर की हुई चीज़ें डाउनलोड करें, अपनी फ़ाइलें जोड़ें, चैट करें। न कोई खाता है, न पासवर्ड: सभी गुमनाम हैं।
+how_offline_title=ऑफ़लाइन
+how_offline=बॉक्स कभी इंटरनेट से नहीं जुड़ता। आपका फ़ोन बता सकता है कि इस नेटवर्क पर इंटरनेट नहीं है: यह सामान्य है। बॉक्स का इस्तेमाल करते रहने के लिए जुड़े रहें।
+how_privacy_title=निजता
+how_privacy=नेटवर्क खुला है और एन्क्रिप्ट नहीं किया गया है, और शेयर की गई हर चीज़ सार्वजनिक है। दूसरे डिवाइस सीधे आपके डिवाइस तक नहीं पहुँच सकते, लेकिन आस-पास का कोई भी व्यक्ति रेडियो ट्रैफ़िक सुन सकता है। सिर्फ़ वही शेयर करें जो आप किसी सार्वजनिक नोटिस बोर्ड पर भी लगा सकें।
+how_limits_title=सीमाएँ
+how_limits=बॉक्स छोटा है: एक साथ सिर्फ़ कुछ ही डिवाइस, लगभग आठ, इसका इस्तेमाल कर सकते हैं, और इसकी स्टोरेज जगह सीमित है।
+how_about_title=जानकारी
+how_about=ShareBox मुक्त सॉफ़्टवेयर है, जो PirateBox और LibraryBox की परंपरा में बना है। इस बॉक्स को चलाने वाला व्यक्ति ही इस पर उपलब्ध सामग्री के लिए ज़िम्मेदार है।
+how_back=होम पेज पर वापस जाएँ
+
+# Status page
+status_title=बॉक्स की स्थिति
+status_clients=जुड़े हुए डिवाइस
+status_disk=खाली स्टोरेज
+status_version=सॉफ़्टवेयर वर्शन
+status_warnings=चेतावनियाँ
+status_no_warnings=कोई चेतावनी नहीं।
+update_title=सॉफ़्टवेयर अपडेट
+update_found=पेन ड्राइव पर एक अपडेट मिला है:
+update_signed=इसके हस्ताक्षर की जाँच हो चुकी है। इसे इंस्टॉल करने पर बॉक्स रीस्टार्ट होगा और कुछ मिनट तक उपलब्ध नहीं रहेगा।
+update_warning=वही अपडेट इंस्टॉल करें जिसकी आप उम्मीद कर रहे थे। बॉक्स ऐसा कोई भी अपडेट स्वीकार नहीं करता जिस पर उसके प्रकाशक के हस्ताक्षर न हों।
+update_install=इंस्टॉल करें
+update_ok=अपडेट इंस्टॉल हो रहा है। बॉक्स जल्द ही रीस्टार्ट होगा।
+update_error=अपडेट इंस्टॉल नहीं हो सका:

@@ -1,0 +1,4 @@
+<div class="notice error" role="alert">
+<p>تعذّر تثبيت التحديث:</p>
+<pre dir="ltr">@@ERROR@@</pre>
+</div>

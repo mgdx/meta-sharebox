@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">Обновление ПО</h2>
+<p>На USB-накопителе найдено обновление: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>Его подпись проверена. При установке устройство перезагрузится и будет недоступно несколько минут.</p>
+<p class="note">Устанавливайте только то обновление, которого вы ждали. Устройство отклоняет любое обновление без подписи издателя.</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="ru">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">Установить</button>
+</form>
+</section>

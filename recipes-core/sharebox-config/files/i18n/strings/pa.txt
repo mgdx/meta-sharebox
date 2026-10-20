@@ -1,0 +1,81 @@
+# ShareBox page strings, Punjabi (pa). AI-generated, needs human review.
+#
+# Format: one "key=value" per line, UTF-8. Lines starting with "#" and blank
+# lines are ignored. Values are plain text: the generator HTML-escapes them.
+# Inline markers, replaced by the generator with LTR-safe code spans:
+#   {http}     -> http://
+#   {https}    -> https://
+#   {example}  -> http://sharebox.lan
+# "ShareBox" is a name and is never translated.
+
+# Wi-Fi network name: "ShareBox - <ssid_slogan>". Whole SSID at most 32 bytes
+# in UTF-8, so the slogan has at most 21 bytes.
+ssid_slogan=ਸਾਂਝਾ ਕਰੋ
+
+# Shared page parts
+skip_link=ਸਿੱਧਾ ਸਮੱਗਰੀ 'ਤੇ ਜਾਓ
+nav_home=ਹੋਮ
+nav_how=ਇਹ ਕਿਵੇਂ ਕੰਮ ਕਰਦਾ ਹੈ
+nav_status=ਸਥਿਤੀ
+lang_selector=ਭਾਸ਼ਾ
+footer_offline=ਇਹ ਬਾਕਸ ਇੰਟਰਨੈੱਟ ਤੋਂ ਬਿਨਾਂ ਕੰਮ ਕਰਦਾ ਹੈ।
+
+# Home page
+home_title=ShareBox ਵਿੱਚ ਤੁਹਾਡਾ ਸੁਆਗਤ ਹੈ
+home_lead=ਤੁਸੀਂ ਇੱਕ ShareBox ਨਾਲ ਕਨੈਕਟ ਹੋ: ਇਹ ਇੱਕ ਛੋਟਾ ਵਾਈ-ਫਾਈ ਬਾਕਸ ਹੈ, ਜਿਸ ਨਾਲ ਤੁਸੀਂ ਇੰਟਰਨੈੱਟ ਤੋਂ ਬਿਨਾਂ ਨੇੜਲੇ ਲੋਕਾਂ ਨਾਲ ਫ਼ਾਈਲਾਂ ਸਾਂਝੀਆਂ ਕਰ ਸਕਦੇ ਹੋ ਅਤੇ ਗੱਲਬਾਤ ਕਰ ਸਕਦੇ ਹੋ।
+home_offline=ਇੱਥੋਂ ਦੀ ਕੋਈ ਵੀ ਚੀਜ਼ ਬਾਕਸ ਤੋਂ ਬਾਹਰ ਨਹੀਂ ਜਾਂਦੀ। ਇਹ ਇੰਟਰਨੈੱਟ ਨਾਲ ਕਨੈਕਟ ਨਹੀਂ ਹੈ, ਇਸ ਲਈ ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਇਸ ਨਾਲ ਕਨੈਕਟ ਹੋ, ਇੰਟਰਨੈੱਟ ਵਾਲੀਆਂ ਵੈੱਬਸਾਈਟਾਂ ਅਤੇ ਐਪਾਂ ਕੰਮ ਨਹੀਂ ਕਰਨਗੀਆਂ।
+warn_title=ਜਨਤਕ ਅਤੇ ਬਿਨਾਂ ਇਨਕ੍ਰਿਪਸ਼ਨ
+warn_public=ਇਹ ਵਾਈ-ਫਾਈ ਨੈੱਟਵਰਕ ਖੁੱਲ੍ਹਾ ਹੈ ਅਤੇ ਇਨਕ੍ਰਿਪਟ ਨਹੀਂ ਕੀਤਾ ਗਿਆ। ਨੇੜੇ ਦਾ ਕੋਈ ਵੀ ਵਿਅਕਤੀ ਦੇਖ ਸਕਦਾ ਹੈ ਕਿ ਤੁਸੀਂ ਕੀ ਭੇਜਦੇ ਅਤੇ ਪ੍ਰਾਪਤ ਕਰਦੇ ਹੋ।
+warn_uploads=ਤੁਸੀਂ ਇੱਥੇ ਜੋ ਵੀ ਸਾਂਝਾ ਕਰਦੇ ਹੋ, ਉਹ ਸਭ ਜਨਤਕ ਹੈ: ਕਨੈਕਟ ਹੋਇਆ ਕੋਈ ਵੀ ਵਿਅਕਤੀ ਉਸ ਨੂੰ ਦੇਖ ਅਤੇ ਡਾਊਨਲੋਡ ਕਰ ਸਕਦਾ ਹੈ। ਨਿੱਜੀ ਜਾਂ ਗੁਪਤ ਜਾਣਕਾਰੀ ਸਾਂਝੀ ਨਾ ਕਰੋ।
+services_title=ਤੁਸੀਂ ਇੱਥੇ ਕੀ ਕਰ ਸਕਦੇ ਹੋ
+home_more=ਇਹ ਕਿਵੇਂ ਕੰਮ ਕਰਦਾ ਹੈ?
+
+# Service cards (home page, depends on the image)
+svc_files=ਫ਼ਾਈਲਾਂ
+svc_files_desc=ਸਾਂਝੀਆਂ ਕੀਤੀਆਂ ਫ਼ਾਈਲਾਂ ਦੇਖੋ ਅਤੇ ਡਾਊਨਲੋਡ ਕਰੋ।
+svc_upload=ਅੱਪਲੋਡ
+svc_upload_desc=ਆਪਣੀਆਂ ਫ਼ਾਈਲਾਂ ਇੱਥੇ ਸਾਰਿਆਂ ਨਾਲ ਸਾਂਝੀਆਂ ਕਰੋ।
+svc_chat=ਚੈਟ
+svc_chat_desc=ਇਸ ਬਾਕਸ ਨਾਲ ਕਨੈਕਟ ਲੋਕਾਂ ਨਾਲ ਗੱਲ ਕਰੋ।
+svc_forum=ਫੋਰਮ
+svc_forum_desc=ਕੋਈ ਚਰਚਾ ਸ਼ੁਰੂ ਕਰੋ ਜਾਂ ਉਸ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਵੋ।
+svc_library=ਲਾਇਬ੍ਰੇਰੀ
+svc_library_desc=ਵਿਸ਼ਵਕੋਸ਼, ਕਿਤਾਬਾਂ ਅਤੇ ਹੋਰ ਆਫ਼ਲਾਈਨ ਸਮੱਗਰੀ ਪੜ੍ਹੋ।
+svc_box=ShareBox ਖੋਲ੍ਹੋ
+svc_box_desc_classic=ਫ਼ਾਈਲਾਂ, ਅੱਪਲੋਡ, ਚੈਟ ਅਤੇ ਫੋਰਮ, ਸਭ ਇੱਕੋ ਥਾਂ 'ਤੇ।
+svc_box_desc_shareboxx=ਫ਼ਾਈਲਾਂ, ਵੱਡੇ ਅੱਪਲੋਡ ਅਤੇ ਲਾਈਵ ਚੈਟ, ਸਭ ਇੱਕੋ ਥਾਂ 'ਤੇ।
+svc_english_note=ਇਹ ਇੰਟਰਫ਼ੇਸ ਅੰਗਰੇਜ਼ੀ ਵਿੱਚ ਹੈ।
+svc_js_note=ਇਸ ਇੰਟਰਫ਼ੇਸ ਲਈ ਤੁਹਾਡੇ ਬ੍ਰਾਊਜ਼ਰ ਵਿੱਚ JavaScript ਚਾਲੂ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ।
+svc_none=ਇਸ ਬਾਕਸ 'ਤੇ ਸਾਂਝਾ ਕਰਨ ਦੀ ਕੋਈ ਸੇਵਾ ਸਥਾਪਤ ਨਹੀਂ ਹੈ। ਇਹ ਸਿਰਫ਼ ਨੈੱਟਵਰਕ ਅਤੇ ਇਹ ਪੰਨਾ ਦਿੰਦਾ ਹੈ।
+
+# How it works page
+how_title=ਇਹ ਕਿਵੇਂ ਕੰਮ ਕਰਦਾ ਹੈ
+how_connect_title=ਕਨੈਕਟ ਕਰੋ
+how_connect=ਬਾਕਸ ਦੇ ਵਾਈ-ਫਾਈ ਨੈੱਟਵਰਕ ਨਾਲ ਜੁੜੋ। ਕੋਈ ਪਾਸਵਰਡ ਨਹੀਂ ਚਾਹੀਦਾ। ਜ਼ਿਆਦਾਤਰ ਫ਼ੋਨਾਂ 'ਤੇ ਹੋਮ ਪੰਨੇ ਵਾਲੀ ਇੱਕ ਵਿੰਡੋ ਆਪਣੇ-ਆਪ ਖੁੱਲ੍ਹ ਜਾਂਦੀ ਹੈ।
+how_open=ਜੇ ਕੁਝ ਨਹੀਂ ਖੁੱਲ੍ਹਦਾ, ਤਾਂ ਆਪਣਾ ਵੈੱਬ ਬ੍ਰਾਊਜ਼ਰ ਖੋਲ੍ਹੋ ਅਤੇ {http} ਨਾਲ ਸ਼ੁਰੂ ਹੋਣ ਵਾਲਾ ਕੋਈ ਵੀ ਪਤਾ ਲਿਖੋ, ਜਿਵੇਂ {example}। {https} ਨਾਲ ਸ਼ੁਰੂ ਹੋਣ ਵਾਲੇ ਸੁਰੱਖਿਅਤ ਪਤੇ ਇੱਥੇ ਕੰਮ ਨਹੀਂ ਕਰਦੇ।
+how_share_title=ਸਾਂਝਾ ਕਰੋ
+how_share=ਦੂਜਿਆਂ ਵੱਲੋਂ ਸਾਂਝੀਆਂ ਕੀਤੀਆਂ ਚੀਜ਼ਾਂ ਡਾਊਨਲੋਡ ਕਰੋ, ਆਪਣੀਆਂ ਫ਼ਾਈਲਾਂ ਸ਼ਾਮਲ ਕਰੋ, ਚੈਟ ਕਰੋ। ਨਾ ਕੋਈ ਖਾਤਾ, ਨਾ ਕੋਈ ਪਾਸਵਰਡ: ਹਰ ਕੋਈ ਗੁਮਨਾਮ ਹੈ।
+how_offline_title=ਆਫ਼ਲਾਈਨ
+how_offline=ਬਾਕਸ ਕਦੇ ਵੀ ਇੰਟਰਨੈੱਟ ਨਾਲ ਕਨੈਕਟ ਨਹੀਂ ਹੁੰਦਾ। ਤੁਹਾਡਾ ਫ਼ੋਨ ਦੱਸ ਸਕਦਾ ਹੈ ਕਿ ਇਸ ਨੈੱਟਵਰਕ 'ਤੇ ਇੰਟਰਨੈੱਟ ਨਹੀਂ ਹੈ: ਇਹ ਆਮ ਗੱਲ ਹੈ। ਬਾਕਸ ਵਰਤਦੇ ਰਹਿਣ ਲਈ ਕਨੈਕਟ ਰਹੋ।
+how_privacy_title=ਪਰਦੇਦਾਰੀ
+how_privacy=ਨੈੱਟਵਰਕ ਖੁੱਲ੍ਹਾ ਹੈ ਅਤੇ ਇਨਕ੍ਰਿਪਟ ਨਹੀਂ ਕੀਤਾ ਗਿਆ, ਅਤੇ ਸਾਂਝੀ ਕੀਤੀ ਹਰ ਚੀਜ਼ ਜਨਤਕ ਹੈ। ਦੂਜੇ ਡੀਵਾਈਸ ਸਿੱਧੇ ਤੁਹਾਡੇ ਡੀਵਾਈਸ ਤੱਕ ਨਹੀਂ ਪਹੁੰਚ ਸਕਦੇ, ਪਰ ਨੇੜੇ ਦਾ ਕੋਈ ਵੀ ਵਿਅਕਤੀ ਰੇਡੀਓ ਟ੍ਰੈਫ਼ਿਕ ਸੁਣ ਸਕਦਾ ਹੈ। ਸਿਰਫ਼ ਉਹੀ ਸਾਂਝਾ ਕਰੋ ਜੋ ਤੁਸੀਂ ਕਿਸੇ ਜਨਤਕ ਨੋਟਿਸ ਬੋਰਡ 'ਤੇ ਵੀ ਲਗਾ ਸਕੋ।
+how_limits_title=ਸੀਮਾਵਾਂ
+how_limits=ਬਾਕਸ ਛੋਟਾ ਹੈ: ਇੱਕੋ ਸਮੇਂ ਸਿਰਫ਼ ਕੁਝ ਡੀਵਾਈਸ, ਲਗਭਗ ਅੱਠ, ਇਸ ਨੂੰ ਵਰਤ ਸਕਦੇ ਹਨ, ਅਤੇ ਇਸ ਦੀ ਸਟੋਰੇਜ ਥਾਂ ਸੀਮਤ ਹੈ।
+how_about_title=ਜਾਣਕਾਰੀ
+how_about=ShareBox ਇੱਕ ਮੁਕਤ ਸਾਫ਼ਟਵੇਅਰ ਹੈ, ਜੋ PirateBox ਅਤੇ LibraryBox ਦੀ ਭਾਵਨਾ ਵਿੱਚ ਬਣਾਇਆ ਗਿਆ ਹੈ। ਇਸ ਬਾਕਸ ਨੂੰ ਚਲਾਉਣ ਵਾਲਾ ਵਿਅਕਤੀ ਹੀ ਇਸ 'ਤੇ ਮਿਲਣ ਵਾਲੀ ਸਮੱਗਰੀ ਲਈ ਜ਼ਿੰਮੇਵਾਰ ਹੈ।
+how_back=ਹੋਮ ਪੰਨੇ 'ਤੇ ਵਾਪਸ ਜਾਓ
+
+# Status page
+status_title=ਬਾਕਸ ਦੀ ਸਥਿਤੀ
+status_clients=ਕਨੈਕਟ ਕੀਤੇ ਡੀਵਾਈਸ
+status_disk=ਖਾਲੀ ਸਟੋਰੇਜ ਥਾਂ
+status_version=ਸਾਫ਼ਟਵੇਅਰ ਵਰਜਨ
+status_warnings=ਚਿਤਾਵਨੀਆਂ
+status_no_warnings=ਕੋਈ ਚਿਤਾਵਨੀ ਨਹੀਂ।
+update_title=ਸਾਫ਼ਟਵੇਅਰ ਅੱਪਡੇਟ
+update_found=ਪੈੱਨ ਡਰਾਈਵ 'ਤੇ ਇੱਕ ਅੱਪਡੇਟ ਮਿਲਿਆ ਹੈ:
+update_signed=ਇਸ ਦੇ ਦਸਤਖਤ ਦੀ ਜਾਂਚ ਹੋ ਚੁੱਕੀ ਹੈ। ਇਸ ਨੂੰ ਸਥਾਪਤ ਕਰਨ 'ਤੇ ਬਾਕਸ ਮੁੜ-ਚਾਲੂ ਹੋਵੇਗਾ ਅਤੇ ਕੁਝ ਮਿੰਟਾਂ ਲਈ ਉਪਲਬਧ ਨਹੀਂ ਰਹੇਗਾ।
+update_warning=ਸਿਰਫ਼ ਉਹੀ ਅੱਪਡੇਟ ਸਥਾਪਤ ਕਰੋ ਜਿਸ ਦੀ ਤੁਸੀਂ ਉਡੀਕ ਕਰ ਰਹੇ ਸੀ। ਬਾਕਸ ਅਜਿਹਾ ਕੋਈ ਵੀ ਅੱਪਡੇਟ ਸਵੀਕਾਰ ਨਹੀਂ ਕਰਦਾ ਜਿਸ 'ਤੇ ਉਸ ਦੇ ਪ੍ਰਕਾਸ਼ਕ ਦੇ ਦਸਤਖਤ ਨਾ ਹੋਣ।
+update_install=ਸਥਾਪਤ ਕਰੋ
+update_ok=ਅੱਪਡੇਟ ਸਥਾਪਤ ਹੋ ਰਿਹਾ ਹੈ। ਬਾਕਸ ਜਲਦੀ ਹੀ ਮੁੜ-ਚਾਲੂ ਹੋਵੇਗਾ।
+update_error=ਅੱਪਡੇਟ ਸਥਾਪਤ ਨਹੀਂ ਹੋ ਸਕਿਆ:

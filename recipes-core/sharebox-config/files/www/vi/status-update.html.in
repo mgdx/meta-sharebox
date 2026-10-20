@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">Cập nhật phần mềm</h2>
+<p>Đã tìm thấy bản cập nhật trên USB: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>Chữ ký của bản cập nhật đã được xác minh. Khi cài đặt, hộp sẽ khởi động lại và không dùng được trong vài phút.</p>
+<p class="note">Chỉ cài đặt bản cập nhật mà bạn đang chờ. Hộp sẽ từ chối mọi bản cập nhật không được nhà phát hành ký.</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="vi">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">Cài đặt</button>
+</form>
+</section>

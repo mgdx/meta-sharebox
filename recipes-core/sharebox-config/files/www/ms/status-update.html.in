@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">Kemas kini perisian</h2>
+<p>Kemas kini ditemui pada pemacu kilat USB: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>Tandatangannya telah disemak. Pemasangan akan memulakan semula kotak ini, dan kotak tidak dapat digunakan selama beberapa minit.</p>
+<p class="note">Pasang hanya kemas kini yang anda jangkakan. Kotak ini menolak sebarang kemas kini yang tidak ditandatangani oleh penerbitnya.</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="ms">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">Pasang</button>
+</form>
+</section>

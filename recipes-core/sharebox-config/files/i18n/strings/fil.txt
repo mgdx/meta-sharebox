@@ -1,0 +1,81 @@
+# ShareBox page strings, Filipino (fil). AI-generated, needs human review.
+#
+# Format: one "key=value" per line, UTF-8. Lines starting with "#" and blank
+# lines are ignored. Values are plain text: the generator HTML-escapes them.
+# Inline markers, replaced by the generator with LTR-safe code spans:
+#   {http}     -> http://
+#   {https}    -> https://
+#   {example}  -> http://sharebox.lan
+# "ShareBox" is a name and is never translated.
+
+# Wi-Fi network name: "ShareBox - <ssid_slogan>". Whole SSID at most 32 bytes
+# in UTF-8, so the slogan has at most 21 bytes.
+ssid_slogan=Magbahagi nang malaya
+
+# Shared page parts
+skip_link=Lumaktaw sa nilalaman
+nav_home=Home
+nav_how=Paano ito gumagana
+nav_status=Status
+lang_selector=Wika
+footer_offline=Gumagana ang box na ito nang walang Internet.
+
+# Home page
+home_title=Maligayang pagdating sa ShareBox
+home_lead=Nakakonekta ka sa isang ShareBox: isang maliit na Wi-Fi box para magbahagi ng mga file at makipag-usap sa mga taong malapit sa iyo, nang walang Internet.
+home_offline=Walang anumang lumalabas sa box na ito. Hindi ito nakakonekta sa Internet, kaya hindi gagana ang mga website at app na nangangailangan nito habang nakakonekta ka.
+warn_title=Pampubliko at hindi naka-encrypt
+warn_public=Bukas at hindi naka-encrypt ang Wi-Fi network na ito. Makikita ng sinumang nasa malapit ang ipinapadala at natatanggap mo.
+warn_uploads=Pampubliko ang lahat ng ibinabahagi mo rito: makikita at mada-download ito ng sinumang nakakonekta. Huwag magbahagi ng personal o pribadong impormasyon.
+services_title=Ano ang magagawa mo rito
+home_more=Paano ito gumagana?
+
+# Service cards (home page, depends on the image)
+svc_files=Mga File
+svc_files_desc=Mag-browse at mag-download ng mga ibinahaging file.
+svc_upload=Mag-upload
+svc_upload_desc=Ibahagi ang sarili mong mga file sa lahat ng narito.
+svc_chat=Chat
+svc_chat_desc=Makipag-usap sa mga taong nakakonekta sa box na ito.
+svc_forum=Forum
+svc_forum_desc=Magsimula o sumali sa isang talakayan.
+svc_library=Library
+svc_library_desc=Magbasa ng mga encyclopedia, aklat, at iba pang offline na nilalaman.
+svc_box=Buksan ang ShareBox
+svc_box_desc_classic=Mga file, upload, chat, at forum sa iisang lugar.
+svc_box_desc_shareboxx=Mga file, malalaking upload, at live chat sa iisang lugar.
+svc_english_note=Nasa English ang interface na ito.
+svc_js_note=Kailangang naka-enable ang JavaScript sa iyong browser para gumana ang interface na ito.
+svc_none=Walang naka-install na serbisyo sa pagbabahagi sa box na ito. Ang network at ang page na ito lang ang ibinibigay nito.
+
+# How it works page
+how_title=Paano ito gumagana
+how_connect_title=Kumonekta
+how_connect=Kumonekta sa Wi-Fi network ng box. Hindi kailangan ng password. Sa karamihan ng telepono, kusang magbubukas ang isang window na may home page.
+how_open=Kung walang magbukas, buksan ang iyong web browser at mag-type ng anumang address na nagsisimula sa {http}, halimbawa {example}. Hindi gumagana rito ang mga secure na address na nagsisimula sa {https}.
+how_share_title=Magbahagi
+how_share=I-download ang ibinahagi ng iba, idagdag ang sarili mong mga file, at makipag-chat. Walang account at walang password: anonymous ang lahat.
+how_offline_title=Offline
+how_offline=Hindi kailanman kumokonekta sa Internet ang box. Maaaring magbabala ang iyong telepono na walang Internet access ang network na ito: normal lang ito. Manatiling nakakonekta para patuloy na magamit ang box.
+how_privacy_title=Privacy
+how_privacy=Bukas at hindi naka-encrypt ang network, at pampubliko ang lahat ng ibinabahagi. Hindi direktang maaabot ng ibang device ang iyong device, pero puwedeng makinig sa radio traffic ang sinumang nasa malapit. Ibahagi lang ang mga bagay na handa mong idikit sa isang pampublikong bulletin board.
+how_limits_title=Mga limitasyon
+how_limits=Maliit ang box: iilang device lang, mga walo, ang puwedeng gumamit nito nang sabay-sabay, at limitado ang storage space nito.
+how_about_title=Tungkol dito
+how_about=Ang ShareBox ay libreng software, sa diwa ng PirateBox at LibraryBox. Ang nagpapatakbo ng box na ito ang may pananagutan sa mga iniaalok nito.
+how_back=Bumalik sa home page
+
+# Status page
+status_title=Status ng box
+status_clients=Mga nakakonektang device
+status_disk=Bakanteng storage space
+status_version=Bersyon ng software
+status_warnings=Mga babala
+status_no_warnings=Walang babala.
+update_title=Update ng software
+update_found=May nakitang update sa USB stick:
+update_signed=Nasuri na ang lagda nito. Magre-restart ang box kapag in-install ito, at hindi ito magagamit nang ilang minuto.
+update_warning=Mag-install lang ng update na inaasahan mo. Tinatanggihan ng box ang anumang update na hindi pinirmahan ng publisher nito.
+update_install=I-install
+update_ok=Ini-install ang update. Malapit nang mag-restart ang box.
+update_error=Hindi ma-install ang update:

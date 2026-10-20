@@ -1,0 +1,81 @@
+# ShareBox page strings, Romanian (ro). AI-generated, needs human review.
+#
+# Format: one "key=value" per line, UTF-8. Lines starting with "#" and blank
+# lines are ignored. Values are plain text: the generator HTML-escapes them.
+# Inline markers, replaced by the generator with LTR-safe code spans:
+#   {http}     -> http://
+#   {https}    -> https://
+#   {example}  -> http://sharebox.lan
+# "ShareBox" is a name and is never translated.
+
+# Wi-Fi network name: "ShareBox - <ssid_slogan>". Whole SSID at most 32 bytes
+# in UTF-8, so the slogan has at most 21 bytes.
+ssid_slogan=Partajează liber
+
+# Shared page parts
+skip_link=Salt la conținut
+nav_home=Acasă
+nav_how=Cum funcționează
+nav_status=Stare
+lang_selector=Limbă
+footer_offline=Această cutie funcționează fără internet.
+
+# Home page
+home_title=Bun venit la ShareBox
+home_lead=Ești conectat la o ShareBox: o cutie Wi-Fi mică pentru a partaja fișiere și a vorbi cu oamenii din apropiere, fără internet.
+home_offline=Nimic de aici nu iese din cutie. Nu este conectată la internet, așa că site-urile și aplicațiile care au nevoie de el nu vor funcționa cât timp ești conectat.
+warn_title=Publică și necriptată
+warn_public=Această rețea Wi-Fi este deschisă și necriptată. Oricine din apropiere poate vedea ce trimiți și ce primești.
+warn_uploads=Tot ce partajezi aici este public: oricine este conectat poate vedea și descărca. Nu partaja date personale sau private.
+services_title=Ce poți face aici
+home_more=Cum funcționează?
+
+# Service cards (home page, depends on the image)
+svc_files=Fișiere
+svc_files_desc=Răsfoiește și descarcă fișierele partajate.
+svc_upload=Încarcă
+svc_upload_desc=Partajează propriile fișiere cu toți cei de aici.
+svc_chat=Chat
+svc_chat_desc=Vorbește cu persoanele conectate la această cutie.
+svc_forum=Forum
+svc_forum_desc=Începe o discuție sau alătură-te uneia.
+svc_library=Bibliotecă
+svc_library_desc=Citește enciclopedii, cărți și alt conținut offline.
+svc_box=Deschide ShareBox
+svc_box_desc_classic=Fișiere, încărcări, chat și forum într-un singur loc.
+svc_box_desc_shareboxx=Fișiere, încărcări mari și chat live într-un singur loc.
+svc_english_note=Această interfață este în engleză.
+svc_js_note=Această interfață necesită ca JavaScript să fie activat în browser.
+svc_none=Pe această cutie nu este instalat niciun serviciu de partajare. Oferă doar rețeaua și această pagină.
+
+# How it works page
+how_title=Cum funcționează
+how_connect_title=Conectare
+how_connect=Conectează-te la rețeaua Wi-Fi a cutiei. Nu este nevoie de parolă. Pe majoritatea telefoanelor se deschide singură o fereastră cu pagina principală.
+how_open=Dacă nu se deschide nimic, pornește browserul și scrie orice adresă care începe cu {http}, de exemplu {example}. Adresele securizate care încep cu {https} nu funcționează aici.
+how_share_title=Partajare
+how_share=Descarcă ce au partajat alții, adaugă propriile fișiere, conversează pe chat. Nu există conturi și nici parole: toată lumea este anonimă.
+how_offline_title=Offline
+how_offline=Cutia nu se conectează niciodată la internet. Telefonul te poate avertiza că această rețea nu are acces la internet: este normal. Rămâi conectat ca să folosești în continuare cutia.
+how_privacy_title=Confidențialitate
+how_privacy=Rețeaua este deschisă și necriptată, iar tot ce se partajează este public. Celelalte dispozitive nu pot accesa direct dispozitivul tău, dar oricine din apropiere poate intercepta traficul radio. Partajează doar ce ai pune pe un panou public de anunțuri.
+how_limits_title=Limite
+how_limits=Cutia este mică: doar câteva dispozitive, în jur de opt, o pot folosi în același timp, iar spațiul de stocare este limitat.
+how_about_title=Despre
+how_about=ShareBox este software liber, în spiritul PirateBox și LibraryBox. Cine administrează această cutie este responsabil pentru ce oferă.
+how_back=Înapoi la pagina principală
+
+# Status page
+status_title=Starea cutiei
+status_clients=Dispozitive conectate
+status_disk=Spațiu de stocare liber
+status_version=Versiunea software
+status_warnings=Avertismente
+status_no_warnings=Niciun avertisment.
+update_title=Actualizare software
+update_found=Pe stick-ul USB a fost găsită o actualizare:
+update_signed=Semnătura ei a fost verificată. Instalarea repornește cutia, care va fi indisponibilă câteva minute.
+update_warning=Instalează doar o actualizare pe care o așteptai. Cutia refuză orice actualizare care nu este semnată de editorul ei.
+update_install=Instalează
+update_ok=Actualizarea se instalează. Cutia va reporni în curând.
+update_error=Actualizarea nu a putut fi instalată:

@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">Actualizare software</h2>
+<p>Pe stick-ul USB a fost găsită o actualizare: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>Semnătura ei a fost verificată. Instalarea repornește cutia, care va fi indisponibilă câteva minute.</p>
+<p class="note">Instalează doar o actualizare pe care o așteptai. Cutia refuză orice actualizare care nu este semnată de editorul ei.</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="ro">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">Instalează</button>
+</form>
+</section>

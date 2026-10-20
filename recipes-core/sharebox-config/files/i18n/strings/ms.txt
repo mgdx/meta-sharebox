@@ -1,0 +1,81 @@
+# ShareBox page strings, Malay (ms). AI-generated, needs human review.
+#
+# Format: one "key=value" per line, UTF-8. Lines starting with "#" and blank
+# lines are ignored. Values are plain text: the generator HTML-escapes them.
+# Inline markers, replaced by the generator with LTR-safe code spans:
+#   {http}     -> http://
+#   {https}    -> https://
+#   {example}  -> http://sharebox.lan
+# "ShareBox" is a name and is never translated.
+
+# Wi-Fi network name: "ShareBox - <ssid_slogan>". Whole SSID at most 32 bytes
+# in UTF-8, so the slogan has at most 21 bytes.
+ssid_slogan=Bebas Berkongsi
+
+# Shared page parts
+skip_link=Langkau ke kandungan
+nav_home=Laman utama
+nav_how=Cara ia berfungsi
+nav_status=Status
+lang_selector=Bahasa
+footer_offline=Kotak ini berfungsi tanpa Internet.
+
+# Home page
+home_title=Selamat datang ke ShareBox
+home_lead=Anda disambungkan ke ShareBox: kotak Wi-Fi kecil untuk berkongsi fail dan bersembang dengan orang berdekatan, tanpa Internet.
+home_offline=Tiada apa-apa di sini yang keluar dari kotak ini. Kotak ini tidak disambungkan ke Internet, jadi laman web dan aplikasi yang memerlukan Internet tidak akan berfungsi semasa anda disambungkan.
+warn_title=Awam dan tidak disulitkan
+warn_public=Rangkaian Wi-Fi ini terbuka dan tidak disulitkan. Sesiapa sahaja yang berdekatan boleh melihat apa yang anda hantar dan terima.
+warn_uploads=Semua yang anda kongsi di sini adalah awam: sesiapa sahaja yang disambungkan boleh melihat dan memuat turunnya. Jangan kongsi data peribadi atau sulit.
+services_title=Perkara yang boleh anda lakukan di sini
+home_more=Bagaimanakah ia berfungsi?
+
+# Service cards (home page, depends on the image)
+svc_files=Fail
+svc_files_desc=Semak imbas dan muat turun fail yang dikongsi.
+svc_upload=Muat naik
+svc_upload_desc=Kongsi fail anda sendiri dengan semua orang di sini.
+svc_chat=Sembang
+svc_chat_desc=Bersembang dengan orang yang disambungkan ke kotak ini.
+svc_forum=Forum
+svc_forum_desc=Mulakan atau sertai perbincangan.
+svc_library=Perpustakaan
+svc_library_desc=Baca ensiklopedia, buku dan kandungan luar talian yang lain.
+svc_box=Buka ShareBox
+svc_box_desc_classic=Fail, muat naik, sembang dan forum di satu tempat.
+svc_box_desc_shareboxx=Fail, muat naik fail besar dan sembang langsung di satu tempat.
+svc_english_note=Antara muka ini dalam bahasa Inggeris.
+svc_js_note=Antara muka ini memerlukan JavaScript didayakan dalam penyemak imbas anda.
+svc_none=Tiada perkhidmatan perkongsian dipasang pada kotak ini. Kotak ini hanya menyediakan rangkaian dan halaman ini.
+
+# How it works page
+how_title=Cara ia berfungsi
+how_connect_title=Sambung
+how_connect=Sertai rangkaian Wi-Fi kotak ini. Kata laluan tidak diperlukan. Pada kebanyakan telefon, tetingkap yang memaparkan laman utama akan terbuka dengan sendirinya.
+how_open=Jika tiada apa-apa yang terbuka, buka penyemak imbas web anda dan taip mana-mana alamat yang bermula dengan {http}, contohnya {example}. Alamat selamat yang bermula dengan {https} tidak berfungsi di sini.
+how_share_title=Kongsi
+how_share=Muat turun apa yang dikongsi oleh orang lain, tambah fail anda sendiri dan bersembang. Tiada akaun dan tiada kata laluan: semua orang adalah tanpa nama.
+how_offline_title=Luar talian
+how_offline=Kotak ini tidak pernah bersambung ke Internet. Telefon anda mungkin memberi amaran bahawa rangkaian ini tiada akses Internet: ini perkara biasa. Kekal bersambung untuk terus menggunakan kotak ini.
+how_privacy_title=Privasi
+how_privacy=Rangkaian ini terbuka dan tidak disulitkan, dan semua yang dikongsi adalah awam. Peranti lain tidak boleh mencapai peranti anda secara langsung, tetapi sesiapa sahaja yang berdekatan boleh mencuri dengar isyarat radionya. Kongsi hanya perkara yang sanggup anda tampal pada papan kenyataan awam.
+how_limits_title=Had
+how_limits=Kotak ini kecil: hanya beberapa peranti, kira-kira lapan, boleh menggunakannya pada masa yang sama, dan ruang storannya terhad.
+how_about_title=Perihal
+how_about=ShareBox ialah perisian bebas, mengikut semangat PirateBox dan LibraryBox. Sesiapa yang mengendalikan kotak ini bertanggungjawab atas kandungan yang ditawarkannya.
+how_back=Kembali ke laman utama
+
+# Status page
+status_title=Status kotak
+status_clients=Peranti yang disambungkan
+status_disk=Ruang storan kosong
+status_version=Versi perisian
+status_warnings=Amaran
+status_no_warnings=Tiada amaran.
+update_title=Kemas kini perisian
+update_found=Kemas kini ditemui pada pemacu kilat USB:
+update_signed=Tandatangannya telah disemak. Pemasangan akan memulakan semula kotak ini, dan kotak tidak dapat digunakan selama beberapa minit.
+update_warning=Pasang hanya kemas kini yang anda jangkakan. Kotak ini menolak sebarang kemas kini yang tidak ditandatangani oleh penerbitnya.
+update_install=Pasang
+update_ok=Kemas kini sedang dipasang. Kotak ini akan dimulakan semula sebentar lagi.
+update_error=Kemas kini tidak dapat dipasang:

@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">ソフトウェア アップデート</h2>
+<p>USB メモリにアップデートが見つかりました： <code dir="ltr">@@BUNDLE@@</code></p>
+<p>署名は確認済みです。インストールするとボックスが再起動し、数分間使えなくなります。</p>
+<p class="note">予定していたアップデートだけをインストールしてください。発行元の署名がないアップデートは、ボックスがすべて拒否します。</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="ja">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">インストール</button>
+</form>
+</section>
