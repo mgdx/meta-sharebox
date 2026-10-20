@@ -83,14 +83,27 @@ allowed in snippets (`docs/ARCHITECTURE.md`). It is built into lighttpd
 
 ### dufs packaging
 
-One recipe, three packages: `dufs` (binary and `dufs.service`, read-write
-public share on port 5000), `dufs-ro` (only `dufs-ro.service`, read-only
-on port 5001, used by the library and full engines) and `dufs-lighttpd`
-(`/files/` proxy to port 5000). `dufs-ro` ships no lighttpd snippet: the
-library engine maps `/files/` to port 5001 itself.
+One recipe, six packages, selected per image:
+
+| Package | Content | modular | library | full |
+| --- | --- | --- | --- | --- |
+| `dufs` | binary, `sharebox` user | x | x | x |
+| `dufs-rw` | `dufs.service`, writable, 127.0.0.1:5000 | x | | x |
+| `dufs-ro` | `dufs-ro.service`, read-only, 127.0.0.1:5001 | | x | x |
+| `dufs-lighttpd` | `/files/` → 5000 | x | | |
+| `dufs-ro-lighttpd` | `/files/` → 5001 | | x | x |
+| `dufs-upload-lighttpd` | `/upload/` → 5000 | | | x |
+
+`dufs-lighttpd` and `dufs-ro-lighttpd` claim the same URL and conflict
+(`RCONFLICTS`). `packagegroup-sharebox-engine-modular` only recommends
+`dufs-lighttpd`, so the full image drops it with `BAD_RECOMMENDATIONS` and
+installs `dufs-upload-lighttpd`. `dufs.service` reads `SHAREBOX_ENGINE` from
+`/run/sharebox/env`: with `full` it serves only `/data/share/upload` (all
+writable) under `--path-prefix /upload`, otherwise the whole share under
+`/files` with writes restricted to `upload/`.
 
 dufs has no upload size limit: lighttpd `server.max-request-size` is the
-only limit. `dufs.service` starts dufs through `/usr/libexec/dufs/dufs-start`
+only limit. `dufs.service` (package `dufs-rw`) starts dufs through `/usr/libexec/dufs/dufs-start`
 (POSIX shell) so that `--allow-upload` is dropped when
 `SHAREBOX_UPLOAD_MAX` is `0`. Anonymous users may write only under
 `/data/share/upload` (`--auth '@/,/upload:rw'`); without `--allow-delete`

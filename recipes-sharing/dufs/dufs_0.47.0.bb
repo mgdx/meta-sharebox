@@ -18,6 +18,8 @@ SRC_URI = " \
     file://dufs.service \
     file://dufs-ro.service \
     file://50-dufs.conf \
+    file://50-dufs-ro.conf \
+    file://50-dufs-upload.conf \
 "
 SRCREV = "225f2542670d8f5a58a9f5fe918791f0987759c8"
 
@@ -52,22 +54,39 @@ do_install:append() {
         ${D}${libexecdir}/dufs/dufs-start
 
     install -d ${D}${sysconfdir}/lighttpd/conf.d
-    install -m 0644 ${UNPACKDIR}/50-dufs.conf ${D}${sysconfdir}/lighttpd/conf.d/50-dufs.conf
+    for f in 50-dufs.conf 50-dufs-ro.conf 50-dufs-upload.conf; do
+        install -m 0644 ${UNPACKDIR}/$f ${D}${sysconfdir}/lighttpd/conf.d/$f
+    done
 }
 
-# dufs: binary + read-write public share unit (modular engine)
-# dufs-ro: read-only unit on port 5001 (library and full engines)
-# dufs-lighttpd: /files/ reverse proxy snippet for the dufs unit
-PACKAGES =+ "${PN}-ro ${PN}-lighttpd"
+# Packages and the images that use them:
+#   dufs                  binary and the "sharebox" user (all)
+#   dufs-rw               dufs.service, writable instance on 127.0.0.1:5000:
+#                         whole share at /files/ (modular) or only the upload
+#                         directory at /upload/ (SHAREBOX_ENGINE=full)
+#   dufs-ro               dufs-ro.service, read-only share on 127.0.0.1:5001
+#                         (library, full)
+#   dufs-lighttpd         /files/ -> 5000 (modular)
+#   dufs-ro-lighttpd      /files/ -> 5001 (library, full)
+#   dufs-upload-lighttpd  /upload/ -> 5000 (full)
+# dufs-lighttpd and dufs-ro-lighttpd claim the same URL and conflict.
+PACKAGES =+ "${PN}-rw ${PN}-ro ${PN}-lighttpd ${PN}-ro-lighttpd ${PN}-upload-lighttpd"
 
-FILES:${PN} += "${libexecdir}/dufs ${systemd_system_unitdir}/dufs.service"
+FILES:${PN}-rw = "${libexecdir}/dufs ${systemd_system_unitdir}/dufs.service"
 FILES:${PN}-ro = "${systemd_system_unitdir}/dufs-ro.service"
 FILES:${PN}-lighttpd = "${sysconfdir}/lighttpd/conf.d/50-dufs.conf"
+FILES:${PN}-ro-lighttpd = "${sysconfdir}/lighttpd/conf.d/50-dufs-ro.conf"
+FILES:${PN}-upload-lighttpd = "${sysconfdir}/lighttpd/conf.d/50-dufs-upload.conf"
 
+RDEPENDS:${PN}-rw = "${PN}"
 RDEPENDS:${PN}-ro = "${PN}"
-RDEPENDS:${PN}-lighttpd = "lighttpd lighttpd-module-proxy"
+RDEPENDS:${PN}-lighttpd = "${PN}-rw lighttpd lighttpd-module-proxy"
+RDEPENDS:${PN}-ro-lighttpd = "${PN}-ro lighttpd lighttpd-module-proxy"
+RDEPENDS:${PN}-upload-lighttpd = "${PN}-rw lighttpd lighttpd-module-proxy"
+RCONFLICTS:${PN}-lighttpd = "${PN}-ro-lighttpd"
+RCONFLICTS:${PN}-ro-lighttpd = "${PN}-lighttpd"
 
-SYSTEMD_PACKAGES = "${PN} ${PN}-ro"
-SYSTEMD_SERVICE:${PN} = "dufs.service"
+SYSTEMD_PACKAGES = "${PN}-rw ${PN}-ro"
+SYSTEMD_SERVICE:${PN}-rw = "dufs.service"
 SYSTEMD_SERVICE:${PN}-ro = "dufs-ro.service"
 SYSTEMD_AUTO_ENABLE = "enable"

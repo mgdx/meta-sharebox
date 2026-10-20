@@ -9,10 +9,14 @@ inherit packagegroup
 
 # No forum: Sriracha is not packaged, see docs/deviations.md ("Modular engine").
 RDEPENDS:${PN} = " \
-    dufs \
-    dufs-lighttpd \
+    dufs-rw \
     ergo \
     ergo-lighttpd \
     gamja \
     gamja-lighttpd \
 "
+
+# /files/ -> writable dufs (port 5000). A recommendation, not a dependency:
+# the full image drops it (BAD_RECOMMENDATIONS) and installs
+# dufs-ro-lighttpd (/files/, read-only) and dufs-upload-lighttpd (/upload/).
+RRECOMMENDS:${PN} = "dufs-lighttpd"

@@ -107,7 +107,9 @@ Snippets of the modular engine:
 
 | Package | File | Content |
 | --- | --- | --- |
-| `dufs-lighttpd` | `50-dufs.conf` | `/files/` → `127.0.0.1:5000` (streamed, `nosniff`) |
+| `dufs-lighttpd` | `50-dufs.conf` | `/files/` → `127.0.0.1:5000` (streamed, `nosniff`), modular |
+| `dufs-ro-lighttpd` | `50-dufs-ro.conf` | `/files/` → `127.0.0.1:5001`, library and full |
+| `dufs-upload-lighttpd` | `50-dufs-upload.conf` | `/upload/` → `127.0.0.1:5000`, full |
 | `ergo-lighttpd` | `50-ergo.conf` | `/socket` → `127.0.0.1:8097` (WebSocket, 600 s idle) |
 | `gamja-lighttpd` | `50-gamja.conf` | `/chat/` → `/usr/share/gamja/` (`alias.url`) |
 - Document root: `/usr/share/sharebox/www` (home pages, one directory per
