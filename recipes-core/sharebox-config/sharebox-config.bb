@@ -107,7 +107,7 @@ do_install() {
     # Translations (data only)
     install -d ${D}${datadir}/sharebox/i18n
     for f in ${S}/i18n/*; do
-        [ -f "$f" ] && install -m 0644 "$f" ${D}${datadir}/sharebox/i18n/
+        if [ -f "$f" ]; then install -m 0644 "$f" ${D}${datadir}/sharebox/i18n/; fi
     done
 
     # Pages: docroot gets the final pages, templates/ the CGI templates, and
@@ -115,7 +115,7 @@ do_install() {
     www=${D}${datadir}/sharebox/www
     tpl=${D}${datadir}/sharebox/templates
     install -d $www $tpl
-    [ -f ${S}/www/style.css ] && install -m 0644 ${S}/www/style.css $www/
+    if [ -f ${S}/www/style.css ]; then install -m 0644 ${S}/www/style.css $www/; fi
     for dir in ${S}/www/*/; do
         lang=$(basename $dir)
         install -d $www/$lang $tpl/$lang
