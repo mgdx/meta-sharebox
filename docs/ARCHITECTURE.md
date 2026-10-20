@@ -79,8 +79,9 @@ IMAGE_INSTALL += "packagegroup-sharebox-frontend packagegroup-sharebox-engine-mo
 | dufs (public share, modular) | 5000 | `/files/` |
 | dufs read-only (library, full) | 5001 | `/files/` (library) or `/files/` + `/upload/` (full) |
 | ergo websocket | 8097 | `/socket` |
+| ergo plain IRC (local tools only) | 6667 | - |
 | gamja (static) | - | `/chat/` |
-| sriracha | 8080 | `/forum/` |
+| forum (reserved, not packaged, see `docs/deviations.md`) | 8080 | `/forum/` |
 | kiwix-serve | 8081 | `/wiki/` |
 
 ## lighttpd
@@ -91,9 +92,24 @@ IMAGE_INSTALL += "packagegroup-sharebox-frontend packagegroup-sharebox-engine-mo
 - Each engine recipe ships its lighttpd snippet in a `${PN}-lighttpd` package
   as `/etc/lighttpd/conf.d/50-<name>.conf`, pulled in by its
   `packagegroup-sharebox-engine-*`. Snippets use only `mod_proxy`,
-  `mod_redirect`, `mod_rewrite`, `mod_setenv`, `mod_webdav`, `mod_cgi`,
-  `mod_staticfile`, `mod_indexfile`, `mod_access`. Snippets must not load
-  modules: `server.modules` is set once in the main config.
+  `mod_redirect`, `mod_rewrite`, `mod_setenv`, `mod_alias`, `mod_webdav`,
+  `mod_cgi`, `mod_staticfile`, `mod_indexfile`, `mod_access`. Snippets must
+  not load modules: `server.modules` is set once in the main config (built-in
+  modules such as `mod_setenv`, `mod_alias`, `mod_redirect` must be listed
+  there too).
+- Snippets append with `+=` to shared settings (`url.redirect`,
+  `alias.url`, `setenv.add-response-header`) so that they compose.
+- WebSocket proxying (`/socket`): `proxy.header = ( "upgrade" => "enable" )`
+  inside the conditional; large transfers (`/files/`) use
+  `server.stream-request-body = 2` and `server.stream-response-body = 2`.
+
+Snippets of the modular engine:
+
+| Package | File | Content |
+| --- | --- | --- |
+| `dufs-lighttpd` | `50-dufs.conf` | `/files/` → `127.0.0.1:5000` (streamed, `nosniff`) |
+| `ergo-lighttpd` | `50-ergo.conf` | `/socket` → `127.0.0.1:8097` (WebSocket, 600 s idle) |
+| `gamja-lighttpd` | `50-gamja.conf` | `/chat/` → `/usr/share/gamja/` (`alias.url`) |
 - Document root: `/usr/share/sharebox/www` (home pages, one directory per
   language, `/en/` always present).
 
@@ -171,7 +187,9 @@ proven necessary; document it in the unit.)
 - `LICENSE` is an exact SPDX identifier, `LIC_FILES_CHKSUM` on the upstream file.
 - Go recipes: `inherit go-mod go-mod-update-modules`, generated
   `<pn>-go-mods.inc` and `<pn>-licenses.inc` committed, `CGO_ENABLED = "0"`
-  where possible, `GOBUILDFLAGS:append = " -trimpath"`.
+  where possible, `GOBUILDFLAGS:append = " -trimpath"`. Exception: when
+  upstream commits a complete `vendor/` (ergo), build with `-mod=vendor`,
+  skip `go-mod-update-modules` and commit only `<pn>-licenses.inc`.
 - Rust recipes: `inherit cargo cargo-update-recipe-crates`, generated
   `<pn>-crates.inc` committed.
 - No `-native` Node.js, Python or Perl beyond what oe-core already uses.
