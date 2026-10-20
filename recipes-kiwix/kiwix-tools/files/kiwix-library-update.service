@@ -1,0 +1,58 @@
+[Unit]
+Description=Rebuild the Kiwix library from the available ZIM files
+Documentation=man:kiwix-manage(1)
+After=sharebox-setup.service
+Requires=sharebox-setup.service
+Before=kiwix-serve.service
+RequiresMountsFor=/data/zim
+
+[Service]
+Type=oneshot
+User=kiwix
+Group=kiwix
+EnvironmentFile=/run/sharebox/env
+# Scans /data/zim/*.zim and /media/usb-*/zim/*.zim. Restarted by the USB
+# hook /usr/lib/sharebox/usb-hooks.d/60-kiwix when a stick is mounted.
+ExecStart=@BINDIR@/kiwix-library-update
+Nice=10
+IOSchedulingClass=idle
+
+# Files: only the library directory is writable.
+ReadWritePaths=/data/zim
+ReadOnlyPaths=-/media
+
+# Hardening (docs/ARCHITECTURE.md). No network at all.
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+DevicePolicy=closed
+PrivateNetwork=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+ProtectClock=yes
+ProtectHostname=yes
+ProtectProc=invisible
+ProcSubset=pid
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+RemoveIPC=yes
+KeyringMode=private
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+SystemCallFilter=~@privileged @resources
+SystemCallErrorNumber=EPERM
+CapabilityBoundingSet=
+AmbientCapabilities=
+RestrictAddressFamilies=AF_UNIX
+IPAddressDeny=any
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

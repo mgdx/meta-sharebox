@@ -1,0 +1,70 @@
+[Unit]
+Description=Kiwix offline library server (ZIM files)
+Documentation=man:kiwix-serve(1)
+After=sharebox-setup.service kiwix-library-update.service
+Requires=sharebox-setup.service
+Wants=kiwix-library-update.service
+RequiresMountsFor=/data/zim
+
+[Service]
+Type=simple
+User=kiwix
+Group=kiwix
+EnvironmentFile=/run/sharebox/env
+# Served by lighttpd under /wiki/. --monitorLibrary reloads library.xml when
+# kiwix-library-update rewrites it (boot and USB stick insertion).
+# --blockexternal: the box is offline, show a notice instead of dead links.
+ExecStart=@BINDIR@/kiwix-serve \
+    --address 127.0.0.1 \
+    --port 8081 \
+    --urlRootLocation /wiki \
+    --nodatealiases \
+    --monitorLibrary \
+    --blockexternal \
+    --library /data/zim/library.xml
+Restart=on-failure
+RestartSec=5
+
+# Resources
+MemoryMax=@MEMORY_MAX@
+TasksMax=64
+
+# Files: kiwix-serve only reads. library.xml is written by
+# kiwix-library-update.service, not by this unit.
+ReadOnlyPaths=/data/zim -/media
+
+# Hardening (docs/ARCHITECTURE.md)
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+DevicePolicy=closed
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+ProtectClock=yes
+ProtectHostname=yes
+ProtectProc=invisible
+ProcSubset=pid
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+RemoveIPC=yes
+KeyringMode=private
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+SystemCallFilter=~@privileged @resources
+SystemCallErrorNumber=EPERM
+CapabilityBoundingSet=
+AmbientCapabilities=
+RestrictAddressFamilies=AF_INET AF_UNIX
+IPAddressDeny=any
+IPAddressAllow=localhost
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target
