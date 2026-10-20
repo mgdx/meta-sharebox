@@ -1,0 +1,81 @@
+# ShareBox page strings, Indonesian (id). AI-generated, needs human review.
+#
+# Format: one "key=value" per line, UTF-8. Lines starting with "#" and blank
+# lines are ignored. Values are plain text: the generator HTML-escapes them.
+# Inline markers, replaced by the generator with LTR-safe code spans:
+#   {http}     -> http://
+#   {https}    -> https://
+#   {example}  -> http://sharebox.lan
+# "ShareBox" is a name and is never translated.
+
+# Wi-Fi network name: "ShareBox - <ssid_slogan>". Whole SSID at most 32 bytes
+# in UTF-8, so the slogan has at most 21 bytes.
+ssid_slogan=Bebas Berbagi
+
+# Shared page parts
+skip_link=Langsung ke konten
+nav_home=Beranda
+nav_how=Cara kerja
+nav_status=Status
+lang_selector=Bahasa
+footer_offline=Kotak ini berfungsi tanpa internet.
+
+# Home page
+home_title=Selamat datang di ShareBox
+home_lead=Anda terhubung ke ShareBox: kotak Wi-Fi kecil untuk berbagi file dan mengobrol dengan orang-orang di sekitar, tanpa internet.
+home_offline=Tidak ada yang keluar dari kotak ini. Kotak ini tidak terhubung ke internet, jadi situs web dan aplikasi yang memerlukan internet tidak akan berfungsi selama Anda terhubung.
+warn_title=Publik dan tidak terenkripsi
+warn_public=Jaringan Wi-Fi ini terbuka dan tidak terenkripsi. Siapa pun di sekitar dapat melihat apa yang Anda kirim dan terima.
+warn_uploads=Semua yang Anda bagikan di sini bersifat publik: siapa pun yang terhubung dapat melihat dan mendownloadnya. Jangan bagikan data pribadi atau rahasia.
+services_title=Yang dapat Anda lakukan di sini
+home_more=Bagaimana cara kerjanya?
+
+# Service cards (home page, depends on the image)
+svc_files=File
+svc_files_desc=Jelajahi dan download file yang dibagikan.
+svc_upload=Upload
+svc_upload_desc=Bagikan file Anda sendiri dengan semua orang di sini.
+svc_chat=Chat
+svc_chat_desc=Mengobrol dengan orang-orang yang terhubung ke kotak ini.
+svc_forum=Forum
+svc_forum_desc=Mulai atau ikuti diskusi.
+svc_library=Perpustakaan
+svc_library_desc=Baca ensiklopedia, buku, dan konten offline lainnya.
+svc_box=Buka ShareBox
+svc_box_desc_classic=File, upload, chat, dan forum dalam satu tempat.
+svc_box_desc_shareboxx=File, upload file besar, dan chat langsung dalam satu tempat.
+svc_english_note=Tampilan ini dalam bahasa Inggris.
+svc_js_note=Tampilan ini memerlukan JavaScript yang diaktifkan di browser Anda.
+svc_none=Tidak ada layanan berbagi yang terinstal di kotak ini. Kotak ini hanya menyediakan jaringan dan halaman ini.
+
+# How it works page
+how_title=Cara kerja
+how_connect_title=Sambungkan
+how_connect=Sambungkan ke jaringan Wi-Fi kotak ini. Tidak perlu sandi. Di sebagian besar ponsel, jendela berisi halaman beranda akan terbuka dengan sendirinya.
+how_open=Jika tidak ada yang terbuka, buka browser web Anda dan ketik alamat apa saja yang diawali {http}, misalnya {example}. Alamat aman yang diawali {https} tidak berfungsi di sini.
+how_share_title=Berbagi
+how_share=Download apa yang dibagikan orang lain, tambahkan file Anda sendiri, dan mengobrol. Tidak ada akun dan tidak ada sandi: semua orang anonim.
+how_offline_title=Offline
+how_offline=Kotak ini tidak pernah terhubung ke internet. Ponsel Anda mungkin memberi tahu bahwa jaringan ini tidak memiliki akses internet: ini normal. Tetap terhubung agar dapat terus menggunakan kotak ini.
+how_privacy_title=Privasi
+how_privacy=Jaringan ini terbuka dan tidak terenkripsi, dan semua yang dibagikan bersifat publik. Perangkat lain tidak dapat mengakses perangkat Anda secara langsung, tetapi siapa pun di sekitar dapat menyadap sinyal radionya. Bagikan hanya hal yang rela Anda tempel di papan pengumuman umum.
+how_limits_title=Batasan
+how_limits=Kotak ini kecil: hanya beberapa perangkat, sekitar delapan, yang dapat menggunakannya bersamaan, dan ruang penyimpanannya terbatas.
+how_about_title=Tentang
+how_about=ShareBox adalah perangkat lunak bebas, dengan semangat PirateBox dan LibraryBox. Siapa pun yang mengelola kotak ini bertanggung jawab atas isi yang ditawarkannya.
+how_back=Kembali ke beranda
+
+# Status page
+status_title=Status kotak
+status_clients=Perangkat terhubung
+status_disk=Ruang penyimpanan kosong
+status_version=Versi software
+status_warnings=Peringatan
+status_no_warnings=Tidak ada peringatan.
+update_title=Update software
+update_found=Update ditemukan di flashdisk USB:
+update_signed=Tanda tangannya sudah diperiksa. Menginstalnya akan memulai ulang kotak ini, sehingga tidak dapat digunakan selama beberapa menit.
+update_warning=Instal hanya update yang memang Anda tunggu. Kotak ini menolak update apa pun yang tidak ditandatangani oleh penerbitnya.
+update_install=Instal
+update_ok=Update sedang diinstal. Kotak ini akan segera dimulai ulang.
+update_error=Update tidak dapat diinstal:

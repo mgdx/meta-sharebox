@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">Software update</h2>
+<p>An update was found on the USB stick: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>Its signature has been checked. Installing it restarts the box, which will be unavailable for a few minutes.</p>
+<p class="note">Only install an update you were expecting. The box refuses any update that is not signed by its publisher.</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="en">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">Install</button>
+</form>
+</section>

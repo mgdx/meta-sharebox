@@ -1,0 +1,81 @@
+# ShareBox page strings, Dutch (nl). AI-generated, needs human review.
+#
+# Format: one "key=value" per line, UTF-8. Lines starting with "#" and blank
+# lines are ignored. Values are plain text: the generator HTML-escapes them.
+# Inline markers, replaced by the generator with LTR-safe code spans:
+#   {http}     -> http://
+#   {https}    -> https://
+#   {example}  -> http://sharebox.lan
+# "ShareBox" is a name and is never translated.
+
+# Wi-Fi network name: "ShareBox - <ssid_slogan>". Whole SSID at most 32 bytes
+# in UTF-8, so the slogan has at most 21 bytes.
+ssid_slogan=Deel vrijuit
+
+# Shared page parts
+skip_link=Naar de inhoud
+nav_home=Start
+nav_how=Hoe het werkt
+nav_status=Status
+lang_selector=Taal
+footer_offline=Deze box werkt zonder internet.
+
+# Home page
+home_title=Welkom bij de ShareBox
+home_lead=Je bent verbonden met een ShareBox: een kleine wifi-box om bestanden te delen en te praten met mensen in de buurt, zonder internet.
+home_offline=Niets hier verlaat de box. Hij is niet verbonden met internet, dus websites en apps die internet nodig hebben, werken niet zolang je verbonden bent.
+warn_title=Openbaar en onversleuteld
+warn_public=Dit wifi-netwerk is open en niet versleuteld. Iedereen in de buurt kan zien wat je verstuurt en ontvangt.
+warn_uploads=Alles wat je hier deelt, is openbaar: iedereen die verbonden is, kan het zien en downloaden. Deel geen persoonlijke of privégegevens.
+services_title=Wat je hier kunt doen
+home_more=Hoe werkt het?
+
+# Service cards (home page, depends on the image)
+svc_files=Bestanden
+svc_files_desc=Bekijk en download gedeelde bestanden.
+svc_upload=Uploaden
+svc_upload_desc=Deel je eigen bestanden met iedereen hier.
+svc_chat=Chat
+svc_chat_desc=Praat met de mensen die met deze box verbonden zijn.
+svc_forum=Forum
+svc_forum_desc=Begin een discussie of doe mee.
+svc_library=Bibliotheek
+svc_library_desc=Lees encyclopedieën, boeken en andere offline inhoud.
+svc_box=ShareBox openen
+svc_box_desc_classic=Bestanden, uploads, chat en forum op één plek.
+svc_box_desc_shareboxx=Bestanden, grote uploads en livechat op één plek.
+svc_english_note=Deze interface is in het Engels.
+svc_js_note=Voor deze interface moet JavaScript aanstaan in je browser.
+svc_none=Er is geen deelservice op deze box geïnstalleerd. Hij biedt alleen het netwerk en deze pagina.
+
+# How it works page
+how_title=Hoe het werkt
+how_connect_title=Verbinden
+how_connect=Maak verbinding met het wifi-netwerk van de box. Je hebt geen wachtwoord nodig. Op de meeste telefoons opent er vanzelf een venster met de startpagina.
+how_open=Opent er niets? Start dan je browser en typ een willekeurig adres dat begint met {http}, bijvoorbeeld {example}. Beveiligde adressen die met {https} beginnen, werken hier niet.
+how_share_title=Delen
+how_share=Download wat anderen hebben gedeeld, voeg je eigen bestanden toe, chat. Er zijn geen accounts en geen wachtwoorden: iedereen is anoniem.
+how_offline_title=Offline
+how_offline=De box maakt nooit verbinding met internet. Je telefoon meldt misschien dat dit netwerk geen internettoegang heeft: dat is normaal. Blijf verbonden om de box te blijven gebruiken.
+how_privacy_title=Privacy
+how_privacy=Het netwerk is open en onversleuteld, en alles wat gedeeld wordt, is openbaar. Andere apparaten kunnen het jouwe niet rechtstreeks bereiken, maar iedereen in de buurt kan het radioverkeer afluisteren. Deel alleen wat je ook op een openbaar prikbord zou hangen.
+how_limits_title=Beperkingen
+how_limits=De box is klein: maar een paar apparaten, ongeveer acht, kunnen hem tegelijk gebruiken, en de opslagruimte is beperkt.
+how_about_title=Over
+how_about=ShareBox is vrije software, in de geest van PirateBox en LibraryBox. Wie deze box beheert, is verantwoordelijk voor wat hij aanbiedt.
+how_back=Terug naar de startpagina
+
+# Status page
+status_title=Status van de box
+status_clients=Verbonden apparaten
+status_disk=Vrije opslagruimte
+status_version=Softwareversie
+status_warnings=Waarschuwingen
+status_no_warnings=Geen waarschuwingen.
+update_title=Software-update
+update_found=Er is een update gevonden op de USB-stick:
+update_signed=De handtekening is gecontroleerd. Bij het installeren start de box opnieuw op en is hij een paar minuten niet beschikbaar.
+update_warning=Installeer alleen een update die je verwachtte. De box weigert elke update die niet door de uitgever is ondertekend.
+update_install=Installeren
+update_ok=De update wordt geïnstalleerd. De box start zo opnieuw op.
+update_error=De update kan niet worden geïnstalleerd:

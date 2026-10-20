@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">อัปเดตซอฟต์แวร์</h2>
+<p>พบอัปเดตในแฟลชไดรฟ์ USB: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>ตรวจสอบลายเซ็นของอัปเดตแล้ว การติดตั้งจะทำให้กล่องรีสตาร์ทและใช้งานไม่ได้สองสามนาที</p>
+<p class="note">โปรดติดตั้งเฉพาะอัปเดตที่คุณรออยู่เท่านั้น กล่องจะปฏิเสธอัปเดตใดๆ ที่ไม่ได้ลงนามโดยผู้เผยแพร่</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="th">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">ติดตั้ง</button>
+</form>
+</section>

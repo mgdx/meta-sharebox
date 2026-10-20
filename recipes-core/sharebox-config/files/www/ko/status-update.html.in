@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">소프트웨어 업데이트</h2>
+<p>USB 메모리에서 업데이트를 찾았습니다: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>서명이 확인되었습니다. 설치하면 박스가 다시 시작되며 몇 분 동안 사용할 수 없습니다.</p>
+<p class="note">예정된 업데이트만 설치하세요. 박스는 배포자가 서명하지 않은 업데이트를 모두 거부합니다.</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="ko">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">설치</button>
+</form>
+</section>

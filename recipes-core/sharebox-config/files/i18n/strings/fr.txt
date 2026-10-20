@@ -1,0 +1,81 @@
+# ShareBox page strings, French (fr). AI-generated, needs human review.
+#
+# Format: one "key=value" per line, UTF-8. Lines starting with "#" and blank
+# lines are ignored. Values are plain text: the generator HTML-escapes them.
+# Inline markers, replaced by the generator with LTR-safe code spans:
+#   {http}     -> http://
+#   {https}    -> https://
+#   {example}  -> http://sharebox.lan
+# "ShareBox" is a name and is never translated.
+
+# Wi-Fi network name: "ShareBox - <ssid_slogan>". Whole SSID at most 32 bytes
+# in UTF-8, so the slogan has at most 21 bytes.
+ssid_slogan=Partagez librement
+
+# Shared page parts
+skip_link=Aller au contenu
+nav_home=Accueil
+nav_how=Comment ça marche
+nav_status=État
+lang_selector=Langue
+footer_offline=Cette box fonctionne sans Internet.
+
+# Home page
+home_title=Bienvenue sur la ShareBox
+home_lead=Vous êtes connecté à une ShareBox : un petit boîtier Wi-Fi pour partager des fichiers et discuter avec les personnes à proximité, sans Internet.
+home_offline=Rien ne sort de la box. Elle n'est pas reliée à Internet : les sites et applications qui en ont besoin ne fonctionnent pas tant que vous êtes connecté.
+warn_title=Public et non chiffré
+warn_public=Ce réseau Wi-Fi est ouvert et non chiffré. Toute personne à proximité peut voir ce que vous envoyez et recevez.
+warn_uploads=Tout ce que vous partagez ici est public : toute personne connectée peut le voir et le télécharger. Ne partagez pas de données personnelles ou privées.
+services_title=Que faire ici ?
+home_more=Comment ça marche ?
+
+# Service cards (home page, depends on the image)
+svc_files=Fichiers
+svc_files_desc=Parcourez et téléchargez les fichiers partagés.
+svc_upload=Déposer
+svc_upload_desc=Partagez vos propres fichiers avec tout le monde ici.
+svc_chat=Discussion
+svc_chat_desc=Discutez avec les personnes connectées à cette box.
+svc_forum=Forum
+svc_forum_desc=Lancez une discussion ou participez-y.
+svc_library=Bibliothèque
+svc_library_desc=Lisez des encyclopédies, des livres et d'autres contenus hors ligne.
+svc_box=Ouvrir la ShareBox
+svc_box_desc_classic=Fichiers, dépôts, discussion et forum au même endroit.
+svc_box_desc_shareboxx=Fichiers, dépôt de gros fichiers et discussion en direct au même endroit.
+svc_english_note=Cette interface est en anglais.
+svc_js_note=Cette interface nécessite que JavaScript soit activé dans votre navigateur.
+svc_none=Aucun service de partage n'est installé sur cette box. Elle fournit seulement le réseau et cette page.
+
+# How it works page
+how_title=Comment ça marche
+how_connect_title=Se connecter
+how_connect=Rejoignez le réseau Wi-Fi de la box. Aucun mot de passe n'est nécessaire. Sur la plupart des téléphones, une fenêtre s'ouvre d'elle-même sur la page d'accueil.
+how_open=Si rien ne s'ouvre, lancez votre navigateur et saisissez n'importe quelle adresse commençant par {http}, par exemple {example}. Les adresses sécurisées commençant par {https} ne fonctionnent pas ici.
+how_share_title=Partager
+how_share=Téléchargez ce que d'autres ont partagé, ajoutez vos fichiers, discutez. Pas de compte ni de mot de passe : tout le monde est anonyme.
+how_offline_title=Hors ligne
+how_offline=La box ne se connecte jamais à Internet. Votre téléphone peut signaler que ce réseau n'a pas d'accès à Internet : c'est normal. Restez connecté pour continuer à utiliser la box.
+how_privacy_title=Confidentialité
+how_privacy=Le réseau est ouvert et non chiffré, et tout ce qui est partagé est public. Les autres appareils ne peuvent pas joindre le vôtre directement, mais toute personne à proximité peut écouter les échanges radio. Ne partagez que ce que vous afficheriez sur un panneau public.
+how_limits_title=Limites
+how_limits=La box est petite : seuls quelques appareils, environ huit, peuvent l'utiliser en même temps, et son espace de stockage est limité.
+how_about_title=À propos
+how_about=ShareBox est un logiciel libre, dans l'esprit de PirateBox et LibraryBox. La personne qui gère cette box est responsable de ce qu'elle propose.
+how_back=Retour à l'accueil
+
+# Status page
+status_title=État de la box
+status_clients=Appareils connectés
+status_disk=Espace de stockage libre
+status_version=Version du logiciel
+status_warnings=Avertissements
+status_no_warnings=Aucun avertissement.
+update_title=Mise à jour du logiciel
+update_found=Une mise à jour a été trouvée sur la clé USB :
+update_signed=Sa signature a été vérifiée. L'installer redémarre la box, qui sera indisponible pendant quelques minutes.
+update_warning=N'installez qu'une mise à jour que vous attendiez. La box refuse toute mise à jour qui n'est pas signée par son éditeur.
+update_install=Installer
+update_ok=La mise à jour est en cours d'installation. La box va redémarrer sous peu.
+update_error=La mise à jour n'a pas pu être installée :

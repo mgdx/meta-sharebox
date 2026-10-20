@@ -1,0 +1,81 @@
+# ShareBox page strings, Japanese (ja). AI-generated, needs human review.
+#
+# Format: one "key=value" per line, UTF-8. Lines starting with "#" and blank
+# lines are ignored. Values are plain text: the generator HTML-escapes them.
+# Inline markers, replaced by the generator with LTR-safe code spans:
+#   {http}     -> http://
+#   {https}    -> https://
+#   {example}  -> http://sharebox.lan
+# "ShareBox" is a name and is never translated.
+
+# Wi-Fi network name: "ShareBox - <ssid_slogan>". Whole SSID at most 32 bytes
+# in UTF-8, so the slogan has at most 21 bytes.
+ssid_slogan=自由にシェア
+
+# Shared page parts
+skip_link=本文へスキップ
+nav_home=ホーム
+nav_how=使い方
+nav_status=ステータス
+lang_selector=言語
+footer_offline=このボックスはインターネットなしで動作します。
+
+# Home page
+home_title=ShareBox へようこそ
+home_lead=ShareBox に接続しました。インターネットを使わずに、近くの人とファイルを共有したり話したりできる小さな Wi-Fi ボックスです。
+home_offline=ここにあるものがボックスの外に出ることはありません。インターネットにはつながっていないため、接続中はインターネットが必要なウェブサイトやアプリは使えません。
+warn_title=公開・暗号化なし
+warn_public=この Wi-Fi ネットワークはオープンで、暗号化されていません。近くにいる人なら誰でも、あなたが送受信する内容を見ることができます。
+warn_uploads=ここで共有したものはすべて公開されます。接続している人なら誰でも閲覧・ダウンロードできます。個人情報やプライベートなデータは共有しないでください。
+services_title=ここでできること
+home_more=しくみについて
+
+# Service cards (home page, depends on the image)
+svc_files=ファイル
+svc_files_desc=共有されたファイルを閲覧・ダウンロードできます。
+svc_upload=アップロード
+svc_upload_desc=自分のファイルをここにいるみんなと共有できます。
+svc_chat=チャット
+svc_chat_desc=このボックスに接続している人と話せます。
+svc_forum=掲示板
+svc_forum_desc=話題を立てたり、議論に参加したりできます。
+svc_library=ライブラリ
+svc_library_desc=百科事典や本など、オフラインのコンテンツを読めます。
+svc_box=ShareBox を開く
+svc_box_desc_classic=ファイル、アップロード、チャット、掲示板をひとつの場所で。
+svc_box_desc_shareboxx=ファイル、大容量アップロード、リアルタイムチャットをひとつの場所で。
+svc_english_note=この画面は英語です。
+svc_js_note=この画面を使うには、ブラウザで JavaScript を有効にする必要があります。
+svc_none=このボックスには共有サービスがインストールされていません。ネットワークとこのページのみを提供しています。
+
+# How it works page
+how_title=使い方
+how_connect_title=接続する
+how_connect=ボックスの Wi-Fi ネットワークに接続してください。パスワードは不要です。ほとんどのスマートフォンでは、ホームページを表示するウィンドウが自動的に開きます。
+how_open=何も開かない場合は、ブラウザを起動して、{http} で始まる任意のアドレス（例：{example}）を入力してください。{https} で始まる安全なアドレスはここでは使えません。
+how_share_title=共有する
+how_share=ほかの人が共有したものをダウンロードしたり、自分のファイルを追加したり、チャットしたりできます。アカウントもパスワードもなく、全員が匿名です。
+how_offline_title=オフライン
+how_offline=ボックスがインターネットに接続することはありません。スマートフォンに「インターネットに接続されていません」などと表示されることがありますが、問題ありません。ボックスを使い続けるには、接続したままにしてください。
+how_privacy_title=プライバシー
+how_privacy=ネットワークはオープンで暗号化されておらず、共有したものはすべて公開されます。ほかの端末からあなたの端末に直接アクセスすることはできませんが、近くにいる人なら誰でも無線通信を傍受できます。公共の掲示板に貼り出してもよいものだけを共有してください。
+how_limits_title=制限
+how_limits=ボックスは小型のため、同時に使えるのは数台（8 台ほど）の端末だけで、保存容量も限られています。
+how_about_title=このボックスについて
+how_about=ShareBox は、PirateBox や LibraryBox の精神を受け継ぐフリーソフトウェアです。このボックスで提供される内容については、ボックスの運営者が責任を負います。
+how_back=ホームページに戻る
+
+# Status page
+status_title=ボックスの状態
+status_clients=接続中の端末
+status_disk=空き容量
+status_version=ソフトウェアのバージョン
+status_warnings=警告
+status_no_warnings=警告はありません。
+update_title=ソフトウェア アップデート
+update_found=USB メモリにアップデートが見つかりました：
+update_signed=署名は確認済みです。インストールするとボックスが再起動し、数分間使えなくなります。
+update_warning=予定していたアップデートだけをインストールしてください。発行元の署名がないアップデートは、ボックスがすべて拒否します。
+update_install=インストール
+update_ok=アップデートをインストールしています。まもなくボックスが再起動します。
+update_error=アップデートをインストールできませんでした：

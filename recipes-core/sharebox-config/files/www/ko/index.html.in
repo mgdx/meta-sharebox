@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ShareBox</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+<header class="site-header">
+<a class="brand" href="/ko/"><span class="logo" aria-hidden="true"></span>ShareBox</a>
+<nav class="site-nav">
+<ul>
+<li><a href="/ko/" aria-current="page">홈</a></li>
+<li><a href="/ko/how-it-works.html">이용 방법</a></li>
+<li><a href="/status?lang=ko">상태</a></li>
+</ul>
+</nav>
+</header>
+<main id="main">
+<section class="hero">
+<h1>ShareBox에 오신 것을 환영합니다</h1>
+<p class="lead">ShareBox에 연결되었습니다. 인터넷 없이 근처 사람들과 파일을 공유하고 대화할 수 있는 작은 Wi-Fi 박스입니다.</p>
+<p>이곳의 어떤 것도 박스 밖으로 나가지 않습니다. 박스는 인터넷에 연결되어 있지 않으므로, 연결된 동안에는 인터넷이 필요한 웹사이트와 앱을 사용할 수 없습니다.</p>
+</section>
+<section class="services-box" aria-labelledby="svc-h">
+<h2 id="svc-h">이곳에서 할 수 있는 일</h2>
+@@ENGINE_LINKS@@
+</section>
+<aside class="warning" aria-labelledby="warn-h">
+<h2 id="warn-h">공개 네트워크, 암호화 안 됨</h2>
+<p>이 Wi-Fi 네트워크는 개방형이며 암호화되지 않습니다. 근처에 있는 누구나 내가 주고받는 내용을 볼 수 있습니다.</p>
+<p>이곳에서 공유하는 모든 것은 공개됩니다. 연결된 사람은 누구나 보고 다운로드할 수 있습니다. 개인 정보나 사적인 데이터는 공유하지 마세요.</p>
+</aside>
+<p class="more"><a href="/ko/how-it-works.html">어떻게 작동하나요?</a></p>
+</main>
+<footer class="site-footer">
+<p>이 박스는 인터넷 없이 작동합니다.</p>
+<nav class="langs" aria-labelledby="langs-h">
+<h2 id="langs-h">언어</h2>
+<ul>
+<li><a href="/en/" hreflang="en" lang="en">English</a></li>
+<li><a href="/zh-Hans/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a></li>
+<li><a href="/zh-Hant/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a></li>
+<li><a href="/hi/" hreflang="hi" lang="hi">हिन्दी</a></li>
+<li><a href="/es/" hreflang="es" lang="es">Español</a></li>
+<li><a href="/fr/" hreflang="fr" lang="fr">Français</a></li>
+<li><a href="/ar/" hreflang="ar" lang="ar" dir="rtl">العربية</a></li>
+<li><a href="/bn/" hreflang="bn" lang="bn">বাংলা</a></li>
+<li><a href="/pt/" hreflang="pt" lang="pt">Português</a></li>
+<li><a href="/ru/" hreflang="ru" lang="ru">Русский</a></li>
+<li><a href="/ur/" hreflang="ur" lang="ur" dir="rtl">اردو</a></li>
+<li><a href="/id/" hreflang="id" lang="id">Bahasa Indonesia</a></li>
+<li><a href="/de/" hreflang="de" lang="de">Deutsch</a></li>
+<li><a href="/ja/" hreflang="ja" lang="ja">日本語</a></li>
+<li><a href="/mr/" hreflang="mr" lang="mr">मराठी</a></li>
+<li><a href="/te/" hreflang="te" lang="te">తెలుగు</a></li>
+<li><a href="/tr/" hreflang="tr" lang="tr">Türkçe</a></li>
+<li><a href="/ta/" hreflang="ta" lang="ta">தமிழ்</a></li>
+<li><a href="/vi/" hreflang="vi" lang="vi">Tiếng Việt</a></li>
+<li><a href="/fil/" hreflang="fil" lang="fil">Filipino</a></li>
+<li><a href="/ko/" hreflang="ko" lang="ko" aria-current="true">한국어</a></li>
+<li><a href="/fa/" hreflang="fa" lang="fa" dir="rtl">فارسی</a></li>
+<li><a href="/ha/" hreflang="ha" lang="ha">Hausa</a></li>
+<li><a href="/sw/" hreflang="sw" lang="sw">Kiswahili</a></li>
+<li><a href="/jv/" hreflang="jv" lang="jv">Basa Jawa</a></li>
+<li><a href="/it/" hreflang="it" lang="it">Italiano</a></li>
+<li><a href="/pa/" hreflang="pa" lang="pa">ਪੰਜਾਬੀ</a></li>
+<li><a href="/gu/" hreflang="gu" lang="gu">ગુજરાતી</a></li>
+<li><a href="/th/" hreflang="th" lang="th">ไทย</a></li>
+<li><a href="/kn/" hreflang="kn" lang="kn">ಕನ್ನಡ</a></li>
+<li><a href="/am/" hreflang="am" lang="am">አማርኛ</a></li>
+<li><a href="/pl/" hreflang="pl" lang="pl">Polski</a></li>
+<li><a href="/yo/" hreflang="yo" lang="yo">Yorùbá</a></li>
+<li><a href="/ml/" hreflang="ml" lang="ml">മലയാളം</a></li>
+<li><a href="/my/" hreflang="my" lang="my">မြန်မာ</a></li>
+<li><a href="/uk/" hreflang="uk" lang="uk">Українська</a></li>
+<li><a href="/nl/" hreflang="nl" lang="nl">Nederlands</a></li>
+<li><a href="/ms/" hreflang="ms" lang="ms">Bahasa Melayu</a></li>
+<li><a href="/ro/" hreflang="ro" lang="ro">Română</a></li>
+<li><a href="/uz/" hreflang="uz" lang="uz">Oʻzbekcha</a></li>
+<li><a href="/ps/" hreflang="ps" lang="ps" dir="rtl">پښتو</a></li>
+</ul>
+</nav>
+</footer>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">Update ng software</h2>
+<p>May nakitang update sa USB stick: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>Nasuri na ang lagda nito. Magre-restart ang box kapag in-install ito, at hindi ito magagamit nang ilang minuto.</p>
+<p class="note">Mag-install lang ng update na inaasahan mo. Tinatanggihan ng box ang anumang update na hindi pinirmahan ng publisher nito.</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="fil">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">I-install</button>
+</form>
+</section>

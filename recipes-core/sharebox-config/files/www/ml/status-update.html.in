@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">സോഫ്റ്റ്‌വെയർ അപ്ഡേറ്റ്</h2>
+<p>പെൻ ഡ്രൈവിൽ ഒരു അപ്ഡേറ്റ് കണ്ടെത്തി: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>ഇതിന്റെ ഒപ്പ് പരിശോധിച്ചു. ഇത് ഇൻസ്റ്റാൾ ചെയ്താൽ ബോക്സ് റീസ്റ്റാർട്ട് ആകും, കുറച്ച് മിനിറ്റ് ലഭ്യമാകില്ല.</p>
+<p class="note">നിങ്ങൾ പ്രതീക്ഷിച്ചിരുന്ന അപ്ഡേറ്റ് മാത്രം ഇൻസ്റ്റാൾ ചെയ്യുക. പ്രസാധകൻ ഒപ്പിടാത്ത ഒരു അപ്ഡേറ്റും ബോക്സ് സ്വീകരിക്കില്ല.</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="ml">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">ഇൻസ്റ്റാൾ ചെയ്യുക</button>
+</form>
+</section>

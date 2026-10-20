@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">የሶፍትዌር ዝማኔ</h2>
+<p>በUSB ፍላሽ ላይ ዝማኔ ተገኝቷል፦ <code dir="ltr">@@BUNDLE@@</code></p>
+<p>ፊርማው ተረጋግጧል። መጫኑ ሳጥኑን ዳግም ያስጀምረዋል፤ ሳጥኑም ለጥቂት ደቂቃዎች አይገኝም።</p>
+<p class="note">የሚጠብቁትን ዝማኔ ብቻ ይጫኑ። ሳጥኑ በአሳታሚው ያልተፈረመ ማንኛውንም ዝማኔ አይቀበልም።</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="am">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">ጫን</button>
+</form>
+</section>

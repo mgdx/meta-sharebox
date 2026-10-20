@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">سافٹ ویئر اپ ڈیٹ</h2>
+<p>یو ایس بی اسٹک پر ایک اپ ڈیٹ ملی ہے: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>اس کے دستخط کی تصدیق ہو چکی ہے۔ اسے انسٹال کرنے پر باکس دوبارہ شروع ہوگا اور چند منٹ تک دستیاب نہیں رہے گا۔</p>
+<p class="note">صرف وہی اپ ڈیٹ انسٹال کریں جس کی آپ توقع کر رہے تھے۔ باکس کوئی بھی ایسی اپ ڈیٹ قبول نہیں کرتا جس پر اس کے ناشر کے دستخط نہ ہوں۔</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="ur">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">انسٹال کریں</button>
+</form>
+</section>

@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">軟體更新</h2>
+<p>在隨身碟上找到一個更新： <code dir="ltr">@@BUNDLE@@</code></p>
+<p>已驗證其簽章。安裝後盒子會重新啟動，幾分鐘內無法使用。</p>
+<p class="note">請只安裝您預期中的更新。盒子會拒絕任何未經發行者簽署的更新。</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="zh-Hant">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">安裝</button>
+</form>
+</section>

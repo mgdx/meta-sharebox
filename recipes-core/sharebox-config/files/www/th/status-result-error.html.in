@@ -1,0 +1,4 @@
+<div class="notice error" role="alert">
+<p>ไม่สามารถติดตั้งอัปเดตได้:</p>
+<pre dir="ltr">@@ERROR@@</pre>
+</div>

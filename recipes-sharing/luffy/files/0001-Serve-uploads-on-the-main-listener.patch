@@ -1,0 +1,114 @@
+From: meta-sharebox maintainers <leo@magacyber.fr>
+Subject: [PATCH] Serve uploads on the main listener and allow a separate listing folder
+
+ShareBox only opens TCP port 80 on the access point, so the droopy
+compatible upload server on port 8080 is unreachable from clients.
+
+- Mount the upload form on the main listener under /upload/ when
+  DROOPY_ENABLED is "yes", and make the start page iframe point there.
+- DROOPY_PORT="0" disables the separate upload listener.
+- Use relative links and redirects in the upload pages so they work under
+  a path prefix as well as on their own port.
+- New DIRLIST_FOLDER key (default: UPLOADFOLDER) selects the folder listed
+  under /Shared, so the whole public share can be browsed while uploads
+  land in a dedicated subfolder.
+
+Upstream-Status: Pending
+Signed-off-by: meta-sharebox maintainers <leo@magacyber.fr>
+---
+--- a/assets/www_content/index.html
++++ b/assets/www_content/index.html
+@@ -44,8 +44,8 @@
+ 		<div id="sidebar">
+ 			<div id="upload" class="card">
+ 				<h2 data-l10n-id="sidebarUpload">Upload</h2>
+-				<iframe width="100%" height="80" src='http://luffy.lan:8080' data-l10n-id="sidebarIframeNotSupported" scrolling="no">
+-					Your browser does not support iframes.. If you want to upload something, follow this <a href='http://luffy.lan:8080' data-l10n-id="link">Link</a>.
++				<iframe width="100%" height="80" src='/upload/' data-l10n-id="sidebarIframeNotSupported" scrolling="no">
++					Your browser does not support iframes.. If you want to upload something, follow this <a href='/upload/' data-l10n-id="link">Link</a>.
+ 				</iframe>
+ 				<h3><a href="/Shared" data-l10n-id="sidebarBrowseFiles">Browse Files -></a></h3>
+ 			<div id="station"></div>
+--- a/cmd/luffy/main.go
++++ b/cmd/luffy/main.go
+@@ -250,7 +250,9 @@
+ 			errc <- err
+ 		}
+ 	}()
+-	if cfg.DroopyEnabled {
++	// DROOPY_PORT="0" keeps uploads on the main listener only (/upload/),
++	// for setups where a single HTTP port is reachable.
++	if cfg.DroopyEnabled && strings.TrimSpace(cfg.DroopyPort) != "0" {
+ 		wg.Add(1)
+ 		go func() {
+ 			defer wg.Done()
+--- a/internal/config/config.go
++++ b/internal/config/config.go
+@@ -24,6 +24,7 @@
+ 	WwwContent      string
+ 	ShareFolder     string
+ 	UploadFolder    string
++	DirlistFolder   string // listed under /Shared, defaults to UploadFolder
+ 	Timesave        string
+ 	TimesaveFormat  string
+ 	NodeConfigPath  string
+@@ -241,6 +242,7 @@
+ 	cfg.WwwContent = values.Get("WWW_CONTENT")
+ 	cfg.ShareFolder = values.Get("SHARE_FOLDER")
+ 	cfg.UploadFolder = values.Get("UPLOADFOLDER")
++	cfg.DirlistFolder = values.GetDefault("DIRLIST_FOLDER", cfg.UploadFolder)
+ 	cfg.Timesave = values.Get("TIMESAVE")
+ 	cfg.TimesaveFormat = values.Get("TIMESAVE_FORMAT")
+ 	cfg.NodeConfigPath = values.Get("NODE_CONFIG")
+--- a/internal/upload/form.go
++++ b/internal/upload/form.go
+@@ -212,14 +212,14 @@
+ 	switch kind {
+ 	case pageSuccess:
+ 		title = t["successtitle"]
+-		body = `<div class="box">` + t["received"] + ` <a href="/">` + t["another"] + `</a></div>`
++		body = `<div class="box">` + t["received"] + ` <a href="./">` + t["another"] + `</a></div>`
+ 	case pageError:
+ 		title = t["errortitle"]
+ 		message := t["problem"]
+ 		if errorKey != "" && t[errorKey] != "" {
+ 			message = t[errorKey]
+ 		}
+-		body = `<div class="box">` + message + ` <a href="/">` + t["retry"] + `</a></div>`
++		body = `<div class="box">` + message + ` <a href="./">` + t["retry"] + `</a></div>`
+ 	default:
+ 		subdirFields := ""
+ 		if h.UserDirs {
+--- a/internal/upload/upload.go
++++ b/internal/upload/upload.go
+@@ -111,7 +111,10 @@
+ 	}
+ 
+ 	if blocked && saved == 0 {
+-		http.Redirect(w, r, "/", http.StatusSeeOther)
++		// A relative target keeps the redirect inside the mount point
++		// when the form is served under a path prefix such as /upload/.
++		w.Header().Set("Location", "./")
++		w.WriteHeader(http.StatusSeeOther)
+ 		return
+ 	}
+ 	h.servePage(w, r, http.StatusOK, pageSuccess, "")
+--- a/internal/web/server.go
++++ b/internal/web/server.go
+@@ -90,7 +90,15 @@
+ 
+ 	content := dirlist.New(s.opts.Cfg.WwwContent, "/content")
+ 	content.CSSPath = "/content/css/page_style.css"
+-	shared := dirlist.New(s.opts.Cfg.UploadFolder, "/Shared")
++	shared := dirlist.New(s.opts.Cfg.DirlistFolder, "/Shared")
++
++	// The droopy compatible upload form is also served on the main
++	// listener, so uploads work when only one HTTP port is reachable.
++	if s.opts.Cfg.DroopyEnabled {
++		upload := s.uploadHandler()
++		mux.Handle("/upload/", http.StripPrefix("/upload", upload))
++		mux.Handle("/upload", http.RedirectHandler("/upload/", http.StatusMovedPermanently))
++	}
+ 
+ 	mux.HandleFunc("/cgi-bin/psowrte.py", s.handleShoutboxWrite)
+ 	mux.HandleFunc("/cgi-bin/psoread.py", s.handleShoutboxRead)

@@ -1,0 +1,4 @@
+<div class="notice error" role="alert">
+<p>Impossibile installare l’aggiornamento:</p>
+<pre dir="ltr">@@ERROR@@</pre>
+</div>

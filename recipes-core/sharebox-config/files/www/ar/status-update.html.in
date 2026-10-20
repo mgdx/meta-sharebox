@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">تحديث البرنامج</h2>
+<p>تم العثور على تحديث في ذاكرة USB: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>تم التحقق من توقيعه. سيؤدي تثبيته إلى إعادة تشغيل الصندوق، ولن يكون متاحًا لبضع دقائق.</p>
+<p class="note">لا تثبّت إلا تحديثًا كنت تنتظره. يرفض الصندوق أي تحديث غير موقّع من ناشره.</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="ar">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">تثبيت</button>
+</form>
+</section>

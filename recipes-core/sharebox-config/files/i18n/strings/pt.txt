@@ -1,0 +1,81 @@
+# ShareBox page strings, Portuguese (pt). AI-generated, needs human review.
+#
+# Format: one "key=value" per line, UTF-8. Lines starting with "#" and blank
+# lines are ignored. Values are plain text: the generator HTML-escapes them.
+# Inline markers, replaced by the generator with LTR-safe code spans:
+#   {http}     -> http://
+#   {https}    -> https://
+#   {example}  -> http://sharebox.lan
+# "ShareBox" is a name and is never translated.
+
+# Wi-Fi network name: "ShareBox - <ssid_slogan>". Whole SSID at most 32 bytes
+# in UTF-8, so the slogan has at most 21 bytes.
+ssid_slogan=Compartilhe com todos
+
+# Shared page parts
+skip_link=Pular para o conteúdo
+nav_home=Início
+nav_how=Como funciona
+nav_status=Estado
+lang_selector=Idioma
+footer_offline=Esta caixa funciona sem Internet.
+
+# Home page
+home_title=Boas-vindas à ShareBox
+home_lead=Você está conectado a uma ShareBox: uma pequena caixa Wi-Fi para compartilhar arquivos e conversar com as pessoas por perto, sem Internet.
+home_offline=Nada do que está aqui sai da caixa. Ela não está conectada à Internet, então sites e apps que precisam dela não vão funcionar enquanto você estiver conectado.
+warn_title=Pública e sem criptografia
+warn_public=Esta rede Wi-Fi é aberta e não tem criptografia. Qualquer pessoa por perto pode ver o que você envia e recebe.
+warn_uploads=Tudo o que você compartilha aqui é público: qualquer pessoa conectada pode ver e baixar. Não compartilhe dados pessoais ou privados.
+services_title=O que você pode fazer aqui
+home_more=Como funciona?
+
+# Service cards (home page, depends on the image)
+svc_files=Arquivos
+svc_files_desc=Veja e baixe os arquivos compartilhados.
+svc_upload=Enviar
+svc_upload_desc=Compartilhe seus próprios arquivos com todos aqui.
+svc_chat=Chat
+svc_chat_desc=Converse com as pessoas conectadas a esta caixa.
+svc_forum=Fórum
+svc_forum_desc=Comece uma discussão ou participe de uma.
+svc_library=Biblioteca
+svc_library_desc=Leia enciclopédias, livros e outros conteúdos offline.
+svc_box=Abrir a ShareBox
+svc_box_desc_classic=Arquivos, envios, chat e fórum em um só lugar.
+svc_box_desc_shareboxx=Arquivos, envios grandes e chat ao vivo em um só lugar.
+svc_english_note=Esta interface está em inglês.
+svc_js_note=Esta interface precisa que o JavaScript esteja ativado no seu navegador.
+svc_none=Nenhum serviço de compartilhamento está instalado nesta caixa. Ela oferece apenas a rede e esta página.
+
+# How it works page
+how_title=Como funciona
+how_connect_title=Conectar
+how_connect=Conecte-se à rede Wi-Fi da caixa. Não é preciso senha. Na maioria dos celulares, uma janela se abre sozinha com a página inicial.
+how_open=Se nada abrir, abra o navegador e digite qualquer endereço que comece com {http}, por exemplo {example}. Endereços seguros que começam com {https} não funcionam aqui.
+how_share_title=Compartilhar
+how_share=Baixe o que os outros compartilharam, adicione seus próprios arquivos, converse. Não há contas nem senhas: todos são anônimos.
+how_offline_title=Offline
+how_offline=A caixa nunca se conecta à Internet. Seu celular pode avisar que esta rede não tem acesso à Internet: isso é normal. Continue conectado para seguir usando a caixa.
+how_privacy_title=Privacidade
+how_privacy=A rede é aberta e sem criptografia, e tudo o que é compartilhado é público. Outros dispositivos não conseguem acessar o seu diretamente, mas qualquer pessoa por perto pode captar o tráfego de rádio. Compartilhe apenas o que você colocaria num mural público.
+how_limits_title=Limites
+how_limits=A caixa é pequena: só alguns dispositivos, cerca de oito, podem usá-la ao mesmo tempo, e o espaço de armazenamento é limitado.
+how_about_title=Sobre
+how_about=ShareBox é software livre, no espírito do PirateBox e do LibraryBox. Quem administra esta caixa é responsável pelo que ela oferece.
+how_back=Voltar à página inicial
+
+# Status page
+status_title=Estado da caixa
+status_clients=Dispositivos conectados
+status_disk=Espaço de armazenamento livre
+status_version=Versão do software
+status_warnings=Avisos
+status_no_warnings=Nenhum aviso.
+update_title=Atualização de software
+update_found=Uma atualização foi encontrada no pen drive:
+update_signed=A assinatura foi verificada. A instalação reinicia a caixa, que ficará indisponível por alguns minutos.
+update_warning=Só instale uma atualização que você estava esperando. A caixa recusa qualquer atualização que não seja assinada pelo seu editor.
+update_install=Instalar
+update_ok=A atualização está sendo instalada. A caixa vai reiniciar em breve.
+update_error=Não foi possível instalar a atualização:

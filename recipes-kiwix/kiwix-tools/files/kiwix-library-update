@@ -1,0 +1,65 @@
+#!/bin/sh
+# kiwix-library-update: rebuild the Kiwix library served by kiwix-serve.
+#
+# Scans /data/zim/*.zim and /media/usb-*/zim/*.zim, adds every valid ZIM file
+# with kiwix-manage into a fresh library and atomically replaces
+# /data/zim/library.xml. kiwix-serve (--monitorLibrary) reloads it by itself.
+# Invalid or unreadable ZIM files are skipped, never fatal.
+#
+# Environment (for tests): KIWIX_LIBRARY, KIWIX_ZIM_DIRS (space separated
+# glob patterns).
+
+set -u
+
+LIBRARY=${KIWIX_LIBRARY:-/data/zim/library.xml}
+ZIM_GLOBS=${KIWIX_ZIM_DIRS:-"/data/zim/*.zim /media/usb-*/zim/*.zim"}
+LIBDIR=$(dirname "$LIBRARY")
+# Must live next to library.xml: kiwix-manage stores paths relative to the
+# library file location.
+NEW="$LIBDIR/.library.xml.new"
+
+log() {
+    echo "kiwix-library-update: $*" >&2
+}
+
+if [ ! -d "$LIBDIR" ] || [ ! -w "$LIBDIR" ]; then
+    log "library directory $LIBDIR is missing or not writable"
+    exit 1
+fi
+
+rm -f "$NEW"
+trap 'rm -f "$NEW"' EXIT HUP INT TERM
+
+count=0
+skipped=0
+# Word splitting and globbing of ZIM_GLOBS are intended here.
+# shellcheck disable=SC2086
+for zim in $ZIM_GLOBS; do
+    # An unmatched glob stays literal: skip it.
+    [ -f "$zim" ] || continue
+    # One file per call: kiwix-manage aborts the whole run (and writes
+    # nothing) as soon as one file of the list is invalid.
+    if kiwix-manage "$NEW" add "$zim" >/dev/null 2>&1; then
+        count=$((count + 1))
+    else
+        skipped=$((skipped + 1))
+        log "skipping invalid or unreadable ZIM file: $zim"
+    fi
+done
+
+if [ ! -s "$NEW" ]; then
+    # No ZIM file at all: kiwix-serve still needs a valid (empty) library.
+    printf '%s\n' '<?xml version="1.0" encoding="UTF-8" ?>' \
+        '<library version="20110515">' '</library>' > "$NEW" || exit 1
+fi
+chmod 0640 "$NEW"
+
+# Do not touch library.xml (and trigger a reload) when nothing changed.
+if [ -f "$LIBRARY" ] && command -v cmp >/dev/null 2>&1 && cmp -s "$NEW" "$LIBRARY"; then
+    log "library unchanged ($count ZIM files, $skipped skipped)"
+    exit 0
+fi
+
+mv -f "$NEW" "$LIBRARY" || exit 1
+log "library rebuilt: $count ZIM files, $skipped skipped"
+exit 0

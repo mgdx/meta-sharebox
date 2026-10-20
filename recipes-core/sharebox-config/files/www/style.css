@@ -1,0 +1,461 @@
+/* ShareBox home pages. One small stylesheet, no framework, no web fonts,
+ * no JavaScript. Mobile first; logical properties only, so the same rules
+ * work for left-to-right and right-to-left languages. */
+
+:root {
+	color-scheme: light dark;
+	--bg: #f6f4ef;
+	--surface: #ffffff;
+	--text: #1d2329;
+	--muted: #56606a;
+	--line: #dcd7cc;
+	--accent: #0b6e69;
+	--accent-text: #ffffff;
+	--accent-soft: #dff1ef;
+	--warn-bg: #fff4d6;
+	--warn-line: #c98a00;
+	--error-bg: #fde4e1;
+	--error-line: #b3261e;
+	--ok-bg: #e2f4e4;
+	--ok-line: #2e7d32;
+	--radius: 0.75rem;
+	--gap: 1rem;
+	--measure: 42rem;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg: #12171b;
+		--surface: #1b2227;
+		--text: #e7ecef;
+		--muted: #a3adb5;
+		--line: #2e383f;
+		--accent: #4cc2b8;
+		--accent-text: #08201e;
+		--accent-soft: #173431;
+		--warn-bg: #33290f;
+		--warn-line: #e0a82e;
+		--error-bg: #3a1c1a;
+		--error-line: #f2847b;
+		--ok-bg: #18301b;
+		--ok-line: #7bc67f;
+	}
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+}
+
+body {
+	margin: 0;
+	background: var(--bg);
+	color: var(--text);
+	font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif;
+	font-size: 1.0625rem;
+	line-height: 1.6;
+	overflow-wrap: break-word;
+}
+
+/* Header and footer span the page; content is centred at a reading width. */
+.site-header,
+main,
+.site-footer {
+	inline-size: 100%;
+	max-inline-size: var(--measure);
+	margin-inline: auto;
+	padding-inline: var(--gap);
+}
+
+a {
+	color: var(--accent);
+	text-underline-offset: 0.15em;
+}
+
+a:focus-visible,
+button:focus-visible {
+	outline: 3px solid var(--accent);
+	outline-offset: 2px;
+}
+
+h1,
+h2 {
+	line-height: 1.25;
+	margin-block: 0 0.5em;
+}
+
+h1 {
+	font-size: 1.75rem;
+}
+
+h2 {
+	font-size: 1.2rem;
+}
+
+p {
+	margin-block: 0 0.75em;
+}
+
+code {
+	font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+	font-size: 0.92em;
+	background: var(--accent-soft);
+	border-radius: 0.3em;
+	padding-inline: 0.3em;
+	unicode-bidi: isolate;
+}
+
+/* Skip link, visible on keyboard focus only. */
+.skip {
+	position: absolute;
+	inset-inline-start: var(--gap);
+	inset-block-start: -3rem;
+	background: var(--accent);
+	color: var(--accent-text);
+	padding: 0.5rem 1rem;
+	border-radius: var(--radius);
+	z-index: 1;
+}
+
+.skip:focus {
+	inset-block-start: 0.5rem;
+}
+
+/* Header */
+.site-header {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.5rem var(--gap);
+	padding-block: 1rem;
+}
+
+.brand {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.6rem;
+	color: var(--text);
+	font-weight: 700;
+	font-size: 1.25rem;
+	text-decoration: none;
+	letter-spacing: 0.01em;
+}
+
+/* The box logo: a lidded box drawn in CSS. */
+.logo {
+	position: relative;
+	inline-size: 1.75rem;
+	block-size: 1.5rem;
+	margin-block-start: 0.25rem;
+	background: var(--accent);
+	border-radius: 0.3rem;
+}
+
+.logo::before {
+	content: "";
+	position: absolute;
+	inset-inline: -0.15rem;
+	inset-block-start: -0.35rem;
+	block-size: 0.45rem;
+	background: var(--accent);
+	border: 2px solid var(--bg);
+	border-radius: 0.3rem;
+}
+
+.logo::after {
+	content: "";
+	position: absolute;
+	inset-inline-start: 50%;
+	inset-block: 0.35rem 0.45rem;
+	inline-size: 0.6rem;
+	margin-inline-start: -0.3rem;
+	background: var(--accent-text);
+	border-radius: 0.15rem;
+	opacity: 0.85;
+}
+
+.site-nav ul,
+.langs ul,
+.services {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.site-nav ul {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.25rem 1rem;
+}
+
+.site-nav a {
+	display: inline-block;
+	padding-block: 0.25rem;
+	color: var(--muted);
+	text-decoration: none;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current="page"] {
+	color: var(--text);
+	text-decoration: underline;
+	text-decoration-thickness: 2px;
+}
+
+main {
+	padding-block: 0.5rem 2rem;
+}
+
+main > * + * {
+	margin-block-start: 1.5rem;
+}
+
+.lead {
+	font-size: 1.15rem;
+}
+
+/* Service cards */
+.services {
+	display: grid;
+	gap: 0.75rem;
+}
+
+@media (min-width: 34rem) {
+	.services {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+.card a {
+	display: flex;
+	flex-direction: column;
+	gap: 0.15rem;
+	block-size: 100%;
+	padding: 1rem 1.1rem;
+	background: var(--surface);
+	color: var(--text);
+	text-decoration: none;
+	border: 1px solid var(--line);
+	border-inline-start: 0.35rem solid var(--accent);
+	border-radius: var(--radius);
+}
+
+.card a:hover {
+	background: var(--accent-soft);
+}
+
+.card-title {
+	font-weight: 700;
+	font-size: 1.15rem;
+	color: var(--accent);
+}
+
+.card-desc {
+	color: var(--text);
+}
+
+.card-note,
+.no-service,
+.note {
+	color: var(--muted);
+	font-size: 0.95rem;
+}
+
+/* Warnings and notices */
+.warning,
+.notice {
+	background: var(--warn-bg);
+	border-inline-start: 0.35rem solid var(--warn-line);
+	border-radius: var(--radius);
+	padding: 1rem 1.1rem;
+}
+
+.warning > :last-child,
+.notice > :last-child {
+	margin-block-end: 0;
+}
+
+.notice.ok {
+	background: var(--ok-bg);
+	border-color: var(--ok-line);
+}
+
+.notice.error {
+	background: var(--error-bg);
+	border-color: var(--error-line);
+}
+
+.notice pre {
+	white-space: pre-wrap;
+	margin: 0;
+	font-size: 0.9rem;
+}
+
+.more a {
+	font-weight: 600;
+}
+
+/* How it works: numbered steps */
+.steps {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	counter-reset: step;
+	display: grid;
+	gap: 1rem;
+}
+
+.steps > li {
+	counter-increment: step;
+	position: relative;
+	padding-inline-start: 2.75rem;
+}
+
+.steps > li::before {
+	content: counter(step);
+	position: absolute;
+	inset-inline-start: 0;
+	inset-block-start: 0;
+	inline-size: 2rem;
+	block-size: 2rem;
+	border-radius: 50%;
+	background: var(--accent);
+	color: var(--accent-text);
+	font-weight: 700;
+	text-align: center;
+	line-height: 2rem;
+}
+
+/* Status page */
+.stats {
+	display: grid;
+	gap: 0.75rem;
+	margin: 0;
+}
+
+@media (min-width: 34rem) {
+	.stats {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+.stats > div {
+	background: var(--surface);
+	border: 1px solid var(--line);
+	border-radius: var(--radius);
+	padding: 0.75rem 1rem;
+}
+
+.stats dt {
+	color: var(--muted);
+	font-size: 0.9rem;
+}
+
+.stats dd {
+	margin: 0;
+	font-size: 1.4rem;
+	font-weight: 700;
+}
+
+.warnings {
+	margin: 0;
+	padding-inline-start: 1.25rem;
+	text-align: start;
+}
+
+.warnings li {
+	color: var(--error-line);
+}
+
+/* Without JavaScript: show "no warnings" only when the list is empty. */
+.warnings:empty {
+	display: none;
+}
+
+.warnings:not(:empty) + .no-warnings {
+	display: none;
+}
+
+.update {
+	background: var(--surface);
+	border: 1px solid var(--line);
+	border-radius: var(--radius);
+	padding: 1rem 1.1rem;
+}
+
+button {
+	font: inherit;
+	font-weight: 700;
+	min-block-size: 2.75rem;
+	padding: 0.5rem 1.5rem;
+	color: var(--accent-text);
+	background: var(--accent);
+	border: 0;
+	border-radius: var(--radius);
+	cursor: pointer;
+}
+
+button:hover {
+	filter: brightness(1.08);
+}
+
+/* Footer and language selector */
+.site-footer {
+	padding-block: 1.5rem 2.5rem;
+	border-block-start: 1px solid var(--line);
+	color: var(--muted);
+	font-size: 0.95rem;
+}
+
+.langs h2 {
+	font-size: 1rem;
+	color: var(--text);
+}
+
+.langs ul {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.35rem 0.5rem;
+}
+
+.langs a {
+	display: inline-block;
+	padding: 0.2rem 0.55rem;
+	border: 1px solid var(--line);
+	border-radius: 1rem;
+	color: var(--text);
+	text-decoration: none;
+	unicode-bidi: isolate;
+}
+
+.langs a:hover {
+	border-color: var(--accent);
+}
+
+.langs a[aria-current] {
+	background: var(--accent);
+	border-color: var(--accent);
+	color: var(--accent-text);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.card a,
+	.langs a {
+		transition: background-color 0.15s, border-color 0.15s;
+	}
+}
+
+@media print {
+	.site-nav,
+	.langs,
+	.skip {
+		display: none;
+	}
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="kn" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ShareBox</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<a class="skip" href="#main">ನೇರವಾಗಿ ವಿಷಯಕ್ಕೆ ಹೋಗಿ</a>
+<header class="site-header">
+<a class="brand" href="/kn/"><span class="logo" aria-hidden="true"></span>ShareBox</a>
+<nav class="site-nav">
+<ul>
+<li><a href="/kn/" aria-current="page">ಮುಖಪುಟ</a></li>
+<li><a href="/kn/how-it-works.html">ಇದು ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ</a></li>
+<li><a href="/status?lang=kn">ಸ್ಥಿತಿ</a></li>
+</ul>
+</nav>
+</header>
+<main id="main">
+<section class="hero">
+<h1>ShareBox ಗೆ ಸುಸ್ವಾಗತ</h1>
+<p class="lead">ನೀವು ಒಂದು ShareBox ಗೆ ಸಂಪರ್ಕಗೊಂಡಿದ್ದೀರಿ: ಇದು ಇಂಟರ್ನೆಟ್ ಇಲ್ಲದೆಯೇ ಹತ್ತಿರದ ಜನರೊಂದಿಗೆ ಫೈಲ್‌ಗಳನ್ನು ಹಂಚಿಕೊಳ್ಳಲು ಮತ್ತು ಮಾತನಾಡಲು ಇರುವ ಒಂದು ಚಿಕ್ಕ ವೈ-ಫೈ ಬಾಕ್ಸ್.</p>
+<p>ಇಲ್ಲಿನ ಯಾವುದೂ ಬಾಕ್ಸ್‌ನಿಂದ ಹೊರಗೆ ಹೋಗುವುದಿಲ್ಲ. ಇದು ಇಂಟರ್ನೆಟ್‌ಗೆ ಸಂಪರ್ಕಗೊಂಡಿಲ್ಲ, ಹಾಗಾಗಿ ನೀವು ಇದಕ್ಕೆ ಸಂಪರ್ಕಗೊಂಡಿರುವವರೆಗೆ ಇಂಟರ್ನೆಟ್ ಅಗತ್ಯವಿರುವ ವೆಬ್‌ಸೈಟ್‌ಗಳು ಮತ್ತು ಆ್ಯಪ್‌ಗಳು ಕೆಲಸ ಮಾಡುವುದಿಲ್ಲ.</p>
+</section>
+<section class="services-box" aria-labelledby="svc-h">
+<h2 id="svc-h">ಇಲ್ಲಿ ನೀವು ಏನು ಮಾಡಬಹುದು</h2>
+@@ENGINE_LINKS@@
+</section>
+<aside class="warning" aria-labelledby="warn-h">
+<h2 id="warn-h">ಸಾರ್ವಜನಿಕ ಮತ್ತು ಎನ್‌ಕ್ರಿಪ್ಟ್ ಆಗಿಲ್ಲ</h2>
+<p>ಈ ವೈ-ಫೈ ನೆಟ್‌ವರ್ಕ್ ತೆರೆದಿದೆ ಮತ್ತು ಎನ್‌ಕ್ರಿಪ್ಟ್ ಆಗಿಲ್ಲ. ನೀವು ಏನು ಕಳುಹಿಸುತ್ತೀರಿ ಮತ್ತು ಏನು ಸ್ವೀಕರಿಸುತ್ತೀರಿ ಎಂಬುದನ್ನು ಹತ್ತಿರದಲ್ಲಿರುವ ಯಾರು ಬೇಕಾದರೂ ನೋಡಬಹುದು.</p>
+<p>ನೀವು ಇಲ್ಲಿ ಹಂಚಿಕೊಳ್ಳುವ ಎಲ್ಲವೂ ಸಾರ್ವಜನಿಕ: ಸಂಪರ್ಕಗೊಂಡಿರುವ ಯಾರು ಬೇಕಾದರೂ ಅದನ್ನು ನೋಡಬಹುದು ಮತ್ತು ಡೌನ್‌ಲೋಡ್ ಮಾಡಬಹುದು. ವೈಯಕ್ತಿಕ ಅಥವಾ ಖಾಸಗಿ ಡೇಟಾವನ್ನು ಹಂಚಿಕೊಳ್ಳಬೇಡಿ.</p>
+</aside>
+<p class="more"><a href="/kn/how-it-works.html">ಇದು ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ?</a></p>
+</main>
+<footer class="site-footer">
+<p>ಈ ಬಾಕ್ಸ್ ಇಂಟರ್ನೆಟ್ ಇಲ್ಲದೆಯೇ ಕೆಲಸ ಮಾಡುತ್ತದೆ.</p>
+<nav class="langs" aria-labelledby="langs-h">
+<h2 id="langs-h">ಭಾಷೆ</h2>
+<ul>
+<li><a href="/en/" hreflang="en" lang="en">English</a></li>
+<li><a href="/zh-Hans/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a></li>
+<li><a href="/zh-Hant/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a></li>
+<li><a href="/hi/" hreflang="hi" lang="hi">हिन्दी</a></li>
+<li><a href="/es/" hreflang="es" lang="es">Español</a></li>
+<li><a href="/fr/" hreflang="fr" lang="fr">Français</a></li>
+<li><a href="/ar/" hreflang="ar" lang="ar" dir="rtl">العربية</a></li>
+<li><a href="/bn/" hreflang="bn" lang="bn">বাংলা</a></li>
+<li><a href="/pt/" hreflang="pt" lang="pt">Português</a></li>
+<li><a href="/ru/" hreflang="ru" lang="ru">Русский</a></li>
+<li><a href="/ur/" hreflang="ur" lang="ur" dir="rtl">اردو</a></li>
+<li><a href="/id/" hreflang="id" lang="id">Bahasa Indonesia</a></li>
+<li><a href="/de/" hreflang="de" lang="de">Deutsch</a></li>
+<li><a href="/ja/" hreflang="ja" lang="ja">日本語</a></li>
+<li><a href="/mr/" hreflang="mr" lang="mr">मराठी</a></li>
+<li><a href="/te/" hreflang="te" lang="te">తెలుగు</a></li>
+<li><a href="/tr/" hreflang="tr" lang="tr">Türkçe</a></li>
+<li><a href="/ta/" hreflang="ta" lang="ta">தமிழ்</a></li>
+<li><a href="/vi/" hreflang="vi" lang="vi">Tiếng Việt</a></li>
+<li><a href="/fil/" hreflang="fil" lang="fil">Filipino</a></li>
+<li><a href="/ko/" hreflang="ko" lang="ko">한국어</a></li>
+<li><a href="/fa/" hreflang="fa" lang="fa" dir="rtl">فارسی</a></li>
+<li><a href="/ha/" hreflang="ha" lang="ha">Hausa</a></li>
+<li><a href="/sw/" hreflang="sw" lang="sw">Kiswahili</a></li>
+<li><a href="/jv/" hreflang="jv" lang="jv">Basa Jawa</a></li>
+<li><a href="/it/" hreflang="it" lang="it">Italiano</a></li>
+<li><a href="/pa/" hreflang="pa" lang="pa">ਪੰਜਾਬੀ</a></li>
+<li><a href="/gu/" hreflang="gu" lang="gu">ગુજરાતી</a></li>
+<li><a href="/th/" hreflang="th" lang="th">ไทย</a></li>
+<li><a href="/kn/" hreflang="kn" lang="kn" aria-current="true">ಕನ್ನಡ</a></li>
+<li><a href="/am/" hreflang="am" lang="am">አማርኛ</a></li>
+<li><a href="/pl/" hreflang="pl" lang="pl">Polski</a></li>
+<li><a href="/yo/" hreflang="yo" lang="yo">Yorùbá</a></li>
+<li><a href="/ml/" hreflang="ml" lang="ml">മലയാളം</a></li>
+<li><a href="/my/" hreflang="my" lang="my">မြန်မာ</a></li>
+<li><a href="/uk/" hreflang="uk" lang="uk">Українська</a></li>
+<li><a href="/nl/" hreflang="nl" lang="nl">Nederlands</a></li>
+<li><a href="/ms/" hreflang="ms" lang="ms">Bahasa Melayu</a></li>
+<li><a href="/ro/" hreflang="ro" lang="ro">Română</a></li>
+<li><a href="/uz/" hreflang="uz" lang="uz">Oʻzbekcha</a></li>
+<li><a href="/ps/" hreflang="ps" lang="ps" dir="rtl">پښتو</a></li>
+</ul>
+</nav>
+</footer>
+</body>
+</html>

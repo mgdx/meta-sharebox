@@ -1,0 +1,4 @@
+<div class="notice error" role="alert">
+<p>업데이트를 설치할 수 없습니다:</p>
+<pre dir="ltr">@@ERROR@@</pre>
+</div>

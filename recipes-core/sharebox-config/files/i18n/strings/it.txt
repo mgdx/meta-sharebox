@@ -1,0 +1,81 @@
+# ShareBox page strings, Italian (it). AI-generated, needs human review.
+#
+# Format: one "key=value" per line, UTF-8. Lines starting with "#" and blank
+# lines are ignored. Values are plain text: the generator HTML-escapes them.
+# Inline markers, replaced by the generator with LTR-safe code spans:
+#   {http}     -> http://
+#   {https}    -> https://
+#   {example}  -> http://sharebox.lan
+# "ShareBox" is a name and is never translated.
+
+# Wi-Fi network name: "ShareBox - <ssid_slogan>". Whole SSID at most 32 bytes
+# in UTF-8, so the slogan has at most 21 bytes.
+ssid_slogan=Condividi liberamente
+
+# Shared page parts
+skip_link=Vai al contenuto
+nav_home=Home
+nav_how=Come funziona
+nav_status=Stato
+lang_selector=Lingua
+footer_offline=Questa box funziona senza Internet.
+
+# Home page
+home_title=Benvenuto nella ShareBox
+home_lead=Sei connesso a una ShareBox: una piccola box Wi-Fi per condividere file e parlare con le persone vicine, senza Internet.
+home_offline=Niente di ciò che c’è qui esce dalla box. Non è connessa a Internet, quindi i siti web e le app che ne hanno bisogno non funzioneranno finché sei connesso.
+warn_title=Pubblica e non crittografata
+warn_public=Questa rete Wi-Fi è aperta e non crittografata. Chiunque sia nelle vicinanze può vedere ciò che invii e ricevi.
+warn_uploads=Tutto ciò che condividi qui è pubblico: chiunque sia connesso può vederlo e scaricarlo. Non condividere dati personali o privati.
+services_title=Cosa puoi fare qui
+home_more=Come funziona?
+
+# Service cards (home page, depends on the image)
+svc_files=File
+svc_files_desc=Sfoglia e scarica i file condivisi.
+svc_upload=Carica
+svc_upload_desc=Condividi i tuoi file con tutti i presenti.
+svc_chat=Chat
+svc_chat_desc=Parla con le persone connesse a questa box.
+svc_forum=Forum
+svc_forum_desc=Avvia una discussione o partecipa a una.
+svc_library=Biblioteca
+svc_library_desc=Leggi enciclopedie, libri e altri contenuti offline.
+svc_box=Apri la ShareBox
+svc_box_desc_classic=File, caricamenti, chat e forum in un unico posto.
+svc_box_desc_shareboxx=File, caricamenti di grandi dimensioni e chat dal vivo in un unico posto.
+svc_english_note=Questa interfaccia è in inglese.
+svc_js_note=Questa interfaccia richiede che JavaScript sia attivato nel browser.
+svc_none=Su questa box non è installato alcun servizio di condivisione. Offre solo la rete e questa pagina.
+
+# How it works page
+how_title=Come funziona
+how_connect_title=Connettiti
+how_connect=Connettiti alla rete Wi-Fi della box. Non serve alcuna password. Sulla maggior parte dei telefoni si apre da sola una finestra con la pagina iniziale.
+how_open=Se non si apre nulla, avvia il browser e digita un indirizzo qualsiasi che inizi con {http}, per esempio {example}. Gli indirizzi sicuri che iniziano con {https} qui non funzionano.
+how_share_title=Condividi
+how_share=Scarica ciò che altri hanno condiviso, aggiungi i tuoi file, chatta. Non ci sono account né password: tutti sono anonimi.
+how_offline_title=Offline
+how_offline=La box non si connette mai a Internet. Il telefono potrebbe avvisarti che questa rete non ha accesso a Internet: è normale. Resta connesso per continuare a usare la box.
+how_privacy_title=Privacy
+how_privacy=La rete è aperta e non crittografata, e tutto ciò che viene condiviso è pubblico. Gli altri dispositivi non possono raggiungere direttamente il tuo, ma chiunque sia nelle vicinanze può intercettare il traffico radio. Condividi solo ciò che appenderesti a una bacheca pubblica.
+how_limits_title=Limiti
+how_limits=La box è piccola: solo pochi dispositivi, circa otto, possono usarla contemporaneamente, e lo spazio di archiviazione è limitato.
+how_about_title=Informazioni
+how_about=ShareBox è software libero, nello spirito di PirateBox e LibraryBox. Chi gestisce questa box è responsabile di ciò che offre.
+how_back=Torna alla pagina iniziale
+
+# Status page
+status_title=Stato della box
+status_clients=Dispositivi connessi
+status_disk=Spazio di archiviazione libero
+status_version=Versione del software
+status_warnings=Avvisi
+status_no_warnings=Nessun avviso.
+update_title=Aggiornamento software
+update_found=È stato trovato un aggiornamento sulla chiavetta USB:
+update_signed=La sua firma è stata verificata. L’installazione riavvia la box, che non sarà disponibile per qualche minuto.
+update_warning=Installa solo un aggiornamento che ti aspettavi. La box rifiuta qualsiasi aggiornamento non firmato dal suo editore.
+update_install=Installa
+update_ok=L’aggiornamento è in corso di installazione. La box si riavvierà a breve.
+update_error=Impossibile installare l’aggiornamento:

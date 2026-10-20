@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">Actualización de software</h2>
+<p>Se ha encontrado una actualización en la memoria USB: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>Su firma se ha verificado. Al instalarla, la caja se reinicia y no estará disponible durante unos minutos.</p>
+<p class="note">Instala solo una actualización que estuvieras esperando. La caja rechaza cualquier actualización que no esté firmada por su editor.</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="es">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">Instalar</button>
+</form>
+</section>

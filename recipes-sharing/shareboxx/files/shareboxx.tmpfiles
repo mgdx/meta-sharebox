@@ -1,0 +1,5 @@
+# shareboxx state on the persistent data partition. shareboxx works with
+# paths relative to its working directory: ./files is the shared tree, which
+# is the anonymous upload folder of the ShareBox data layout.
+d /data/shareboxx 0750 sharebox sharebox -
+L /data/shareboxx/files - - - - /data/share/upload

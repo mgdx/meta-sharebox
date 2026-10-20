@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">सॉफ़्टवेयर अपडेट</h2>
+<p>पेन ड्राइव पर एक अपडेट मिला है: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>इसके हस्ताक्षर की जाँच हो चुकी है। इसे इंस्टॉल करने पर बॉक्स रीस्टार्ट होगा और कुछ मिनट तक उपलब्ध नहीं रहेगा।</p>
+<p class="note">वही अपडेट इंस्टॉल करें जिसकी आप उम्मीद कर रहे थे। बॉक्स ऐसा कोई भी अपडेट स्वीकार नहीं करता जिस पर उसके प्रकाशक के हस्ताक्षर न हों।</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="hi">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">इंस्टॉल करें</button>
+</form>
+</section>

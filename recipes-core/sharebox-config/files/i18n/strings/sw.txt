@@ -1,0 +1,81 @@
+# ShareBox page strings, Swahili (sw). AI-generated, needs human review.
+#
+# Format: one "key=value" per line, UTF-8. Lines starting with "#" and blank
+# lines are ignored. Values are plain text: the generator HTML-escapes them.
+# Inline markers, replaced by the generator with LTR-safe code spans:
+#   {http}     -> http://
+#   {https}    -> https://
+#   {example}  -> http://sharebox.lan
+# "ShareBox" is a name and is never translated.
+
+# Wi-Fi network name: "ShareBox - <ssid_slogan>". Whole SSID at most 32 bytes
+# in UTF-8, so the slogan has at most 21 bytes.
+ssid_slogan=Shiriki kwa uhuru
+
+# Shared page parts
+skip_link=Ruka hadi maudhui
+nav_home=Mwanzo
+nav_how=Jinsi inavyofanya kazi
+nav_status=Hali
+lang_selector=Lugha
+footer_offline=Kisanduku hiki kinafanya kazi bila intaneti.
+
+# Home page
+home_title=Karibu kwenye ShareBox
+home_lead=Umeunganishwa kwenye ShareBox: kisanduku kidogo cha Wi-Fi cha kushiriki faili na kuzungumza na watu walio karibu, bila intaneti.
+home_offline=Hakuna kinachotoka nje ya kisanduku hiki. Hakijaunganishwa kwenye intaneti, kwa hivyo tovuti na programu zinazohitaji intaneti hazitafanya kazi ukiwa umeunganishwa.
+warn_title=Ni wa umma na haujasimbwa
+warn_public=Mtandao huu wa Wi-Fi uko wazi na haujasimbwa kwa njia fiche. Mtu yeyote aliye karibu anaweza kuona unachotuma na unachopokea.
+warn_uploads=Kila unachoshiriki hapa ni cha umma: mtu yeyote aliyeunganishwa anaweza kukiona na kukipakua. Usishiriki data ya kibinafsi au ya siri.
+services_title=Unachoweza kufanya hapa
+home_more=Inafanyaje kazi?
+
+# Service cards (home page, depends on the image)
+svc_files=Faili
+svc_files_desc=Vinjari na upakue faili zilizoshirikiwa.
+svc_upload=Pakia
+svc_upload_desc=Shiriki faili zako na kila mtu aliye hapa.
+svc_chat=Gumzo
+svc_chat_desc=Zungumza na watu waliounganishwa kwenye kisanduku hiki.
+svc_forum=Jukwaa
+svc_forum_desc=Anzisha mjadala au ujiunge na mjadala uliopo.
+svc_library=Maktaba
+svc_library_desc=Soma kamusi elezo, vitabu na maudhui mengine yanayopatikana bila intaneti.
+svc_box=Fungua ShareBox
+svc_box_desc_classic=Faili, upakiaji, gumzo na jukwaa mahali pamoja.
+svc_box_desc_shareboxx=Faili, upakiaji wa faili kubwa na gumzo la moja kwa moja mahali pamoja.
+svc_english_note=Kiolesura hiki kiko kwa Kiingereza.
+svc_js_note=Kiolesura hiki kinahitaji JavaScript iwashwe kwenye kivinjari chako.
+svc_none=Hakuna huduma ya kushiriki iliyosakinishwa kwenye kisanduku hiki. Kinatoa mtandao na ukurasa huu tu.
+
+# How it works page
+how_title=Jinsi inavyofanya kazi
+how_connect_title=Unganisha
+how_connect=Jiunge na mtandao wa Wi-Fi wa kisanduku. Hakuna nenosiri linalohitajika. Kwenye simu nyingi, dirisha lenye ukurasa wa mwanzo hufunguka lenyewe.
+how_open=Ikiwa hakuna kinachofunguka, fungua kivinjari chako na uandike anwani yoyote inayoanza na {http}, kwa mfano {example}. Anwani salama zinazoanza na {https} hazifanyi kazi hapa.
+how_share_title=Shiriki
+how_share=Pakua walichoshiriki wengine, ongeza faili zako, piga gumzo. Hakuna akaunti wala manenosiri: kila mtu hajulikani jina.
+how_offline_title=Bila intaneti
+how_offline=Kisanduku hakiunganishwi kwenye intaneti kamwe. Simu yako inaweza kukuonya kuwa mtandao huu hauna intaneti: hilo ni jambo la kawaida. Endelea kuunganishwa ili uendelee kutumia kisanduku.
+how_privacy_title=Faragha
+how_privacy=Mtandao uko wazi na haujasimbwa, na kila kinachoshirikiwa ni cha umma. Vifaa vingine haviwezi kufikia kifaa chako moja kwa moja, lakini mtu yeyote aliye karibu anaweza kusikiliza mawimbi ya redio. Shiriki tu kile ambacho ungebandika kwenye ubao wa matangazo wa umma.
+how_limits_title=Vikomo
+how_limits=Kisanduku ni kidogo: ni vifaa vichache tu, takriban vinane, vinavyoweza kukitumia kwa wakati mmoja, na nafasi yake ya hifadhi ni ndogo.
+how_about_title=Kuhusu
+how_about=ShareBox ni programu huria, kwa mtindo wa PirateBox na LibraryBox. Anayeendesha kisanduku hiki ndiye anayewajibika kwa kile kinachotolewa humo.
+how_back=Rudi kwenye ukurasa wa mwanzo
+
+# Status page
+status_title=Hali ya kisanduku
+status_clients=Vifaa vilivyounganishwa
+status_disk=Nafasi ya hifadhi iliyobaki
+status_version=Toleo la programu
+status_warnings=Maonyo
+status_no_warnings=Hakuna maonyo.
+update_title=Sasisho la programu
+update_found=Sasisho limepatikana kwenye diski ya USB:
+update_signed=Sahihi yake imethibitishwa. Kulisakinisha kutazima na kuwasha upya kisanduku, na hakitapatikana kwa dakika chache.
+update_warning=Sakinisha tu sasisho ulilokuwa ukilitarajia. Kisanduku kinakataa sasisho lolote ambalo halijatiwa sahihi na mchapishaji wake.
+update_install=Sakinisha
+update_ok=Sasisho linasakinishwa. Kisanduku kitajiwasha upya hivi karibuni.
+update_error=Imeshindwa kusakinisha sasisho:

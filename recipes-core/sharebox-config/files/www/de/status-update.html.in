@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">Softwareupdate</h2>
+<p>Auf dem USB-Stick wurde ein Update gefunden: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>Seine Signatur wurde geprüft. Bei der Installation startet die Box neu und ist einige Minuten lang nicht erreichbar.</p>
+<p class="note">Installieren Sie nur ein Update, das Sie erwartet haben. Die Box lehnt jedes Update ab, das nicht von ihrem Herausgeber signiert ist.</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="de">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">Installieren</button>
+</form>
+</section>

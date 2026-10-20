@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">ಸಾಫ್ಟ್‌ವೇರ್ ಅಪ್‌ಡೇಟ್</h2>
+<p>ಪೆನ್ ಡ್ರೈವ್‌ನಲ್ಲಿ ಒಂದು ಅಪ್‌ಡೇಟ್ ಕಂಡುಬಂದಿದೆ: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>ಇದರ ಸಹಿಯನ್ನು ಪರಿಶೀಲಿಸಲಾಗಿದೆ. ಇದನ್ನು ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿದರೆ ಬಾಕ್ಸ್ ಮರುಪ್ರಾರಂಭವಾಗುತ್ತದೆ ಮತ್ತು ಕೆಲವು ನಿಮಿಷಗಳವರೆಗೆ ಲಭ್ಯವಿರುವುದಿಲ್ಲ.</p>
+<p class="note">ನೀವು ನಿರೀಕ್ಷಿಸುತ್ತಿದ್ದ ಅಪ್‌ಡೇಟ್ ಅನ್ನು ಮಾತ್ರ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ. ಪ್ರಕಾಶಕರ ಸಹಿ ಇಲ್ಲದ ಯಾವುದೇ ಅಪ್‌ಡೇಟ್ ಅನ್ನು ಬಾಕ್ಸ್ ಸ್ವೀಕರಿಸುವುದಿಲ್ಲ.</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="kn">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ</button>
+</form>
+</section>

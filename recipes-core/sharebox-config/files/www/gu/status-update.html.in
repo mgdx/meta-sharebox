@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">સૉફ્ટવેર અપડેટ</h2>
+<p>પેન ડ્રાઇવ પર એક અપડેટ મળ્યું: <code dir="ltr">@@BUNDLE@@</code></p>
+<p>તેની સહી ચકાસવામાં આવી છે. તેને ઇન્સ્ટૉલ કરવાથી બૉક્સ ફરી શરૂ થશે અને થોડી મિનિટો માટે ઉપલબ્ધ નહીં રહે.</p>
+<p class="note">તમે જેની રાહ જોતા હતા તે જ અપડેટ ઇન્સ્ટૉલ કરો. પ્રકાશકની સહી વગરનું કોઈ પણ અપડેટ બૉક્સ સ્વીકારતું નથી.</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="gu">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">ઇન્સ્ટૉલ કરો</button>
+</form>
+</section>

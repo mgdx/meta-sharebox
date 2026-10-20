@@ -1,0 +1,13 @@
+<h1>{{status_title}}</h1>
+@@UPDATE_RESULT@@
+<dl class="stats">
+<div><dt>{{status_clients}}</dt><dd>@@CLIENTS@@</dd></div>
+<div><dt>{{status_disk}}</dt><dd><bdi>@@DISK_FREE@@</bdi></dd></div>
+<div><dt>{{status_version}}</dt><dd><bdi dir="ltr">@@VERSION@@</bdi></dd></div>
+</dl>
+<section class="warnings-box" aria-labelledby="warnings-h">
+<h2 id="warnings-h">{{status_warnings}}</h2>
+<ul class="warnings" dir="ltr">@@WARNINGS@@</ul>
+<p class="no-warnings">{{status_no_warnings}}</p>
+</section>
+@@UPDATE_SECTION@@

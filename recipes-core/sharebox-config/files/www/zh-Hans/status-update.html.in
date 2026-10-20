@@ -1,0 +1,11 @@
+<section class="update" aria-labelledby="update-h">
+<h2 id="update-h">软件更新</h2>
+<p>在 U 盘上发现了一个更新： <code dir="ltr">@@BUNDLE@@</code></p>
+<p>其签名已通过验证。安装后盒子将重新启动，几分钟内无法使用。</p>
+<p class="note">请只安装您预期中的更新。盒子会拒绝任何未经发布者签名的更新。</p>
+<form method="post" action="/status">
+<input type="hidden" name="lang" value="zh-Hans">
+<input type="hidden" name="bundle" value="@@BUNDLE@@">
+<button type="submit" name="action" value="install">安装</button>
+</form>
+</section>

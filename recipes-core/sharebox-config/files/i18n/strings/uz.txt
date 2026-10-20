@@ -1,0 +1,81 @@
+# ShareBox page strings, Uzbek (uz). AI-generated, needs human review.
+#
+# Format: one "key=value" per line, UTF-8. Lines starting with "#" and blank
+# lines are ignored. Values are plain text: the generator HTML-escapes them.
+# Inline markers, replaced by the generator with LTR-safe code spans:
+#   {http}     -> http://
+#   {https}    -> https://
+#   {example}  -> http://sharebox.lan
+# "ShareBox" is a name and is never translated.
+
+# Wi-Fi network name: "ShareBox - <ssid_slogan>". Whole SSID at most 32 bytes
+# in UTF-8, so the slogan has at most 21 bytes.
+ssid_slogan=Erkin ulashing
+
+# Shared page parts
+skip_link=Asosiy qismga oʻtish
+nav_home=Bosh sahifa
+nav_how=Qanday ishlaydi
+nav_status=Holat
+lang_selector=Til
+footer_offline=Bu quti internetsiz ishlaydi.
+
+# Home page
+home_title=ShareBoxga xush kelibsiz
+home_lead=Siz ShareBoxga ulangansiz: bu internetsiz fayl ulashish va yaqin atrofdagi odamlar bilan suhbatlashish uchun kichik Wi-Fi qutisi.
+home_offline=Bu yerdagi hech narsa qutidan tashqariga chiqmaydi. Quti internetga ulanmagan, shuning uchun unga ulanganingizda internet talab qiladigan saytlar va ilovalar ishlamaydi.
+warn_title=Ochiq va shifrlanmagan
+warn_public=Bu Wi-Fi tarmogʻi ochiq va shifrlanmagan. Yaqin atrofdagi har kim siz yuborayotgan va qabul qilayotgan narsalarni koʻra oladi.
+warn_uploads=Bu yerda ulashgan hamma narsangiz ommaviy: ulangan har kim uni koʻrishi va yuklab olishi mumkin. Shaxsiy yoki maxfiy maʼlumotlarni ulashmang.
+services_title=Bu yerda nima qilish mumkin
+home_more=Qanday ishlaydi?
+
+# Service cards (home page, depends on the image)
+svc_files=Fayllar
+svc_files_desc=Ulashilgan fayllarni koʻring va yuklab oling.
+svc_upload=Yuklash
+svc_upload_desc=Oʻz fayllaringizni bu yerdagi hamma bilan ulashing.
+svc_chat=Chat
+svc_chat_desc=Bu qutiga ulangan odamlar bilan suhbatlashing.
+svc_forum=Forum
+svc_forum_desc=Muhokama boshlang yoki unga qoʻshiling.
+svc_library=Kutubxona
+svc_library_desc=Ensiklopediyalar, kitoblar va boshqa oflayn materiallarni oʻqing.
+svc_box=ShareBoxni ochish
+svc_box_desc_classic=Fayllar, yuklash, chat va forum bir joyda.
+svc_box_desc_shareboxx=Fayllar, katta fayllarni yuklash va jonli chat bir joyda.
+svc_english_note=Bu interfeys ingliz tilida.
+svc_js_note=Bu interfeys ishlashi uchun brauzeringizda JavaScript yoqilgan boʻlishi kerak.
+svc_none=Bu qutiga hech qanday ulashish xizmati oʻrnatilmagan. U faqat tarmoq va shu sahifani taqdim etadi.
+
+# How it works page
+how_title=Qanday ishlaydi
+how_connect_title=Ulanish
+how_connect=Qutining Wi-Fi tarmogʻiga ulaning. Parol kerak emas. Aksariyat telefonlarda bosh sahifa oynasi oʻzi ochiladi.
+how_open=Hech narsa ochilmasa, brauzeringizni ochib, {http} bilan boshlanadigan istalgan manzilni kiriting, masalan, {example}. {https} bilan boshlanadigan xavfsiz manzillar bu yerda ishlamaydi.
+how_share_title=Ulashish
+how_share=Boshqalar ulashgan narsalarni yuklab oling, oʻz fayllaringizni qoʻshing, suhbatlashing. Hisob ham, parol ham yoʻq: hamma anonim.
+how_offline_title=Oflayn
+how_offline=Quti hech qachon internetga ulanmaydi. Telefoningiz bu tarmoqda internet yoʻqligi haqida ogohlantirishi mumkin: bu odatiy hol. Qutidan foydalanishda davom etish uchun ulangan holda qoling.
+how_privacy_title=Maxfiylik
+how_privacy=Tarmoq ochiq va shifrlanmagan, ulashilgan hamma narsa esa ommaviy. Boshqa qurilmalar sizning qurilmangizga bevosita ulana olmaydi, lekin yaqin atrofdagi har kim radio trafigini tinglay oladi. Faqat ommaviy eʼlonlar taxtasiga osib qoʻyishingiz mumkin boʻlgan narsalarni ulashing.
+how_limits_title=Cheklovlar
+how_limits=Quti kichik: bir vaqtning oʻzida undan faqat bir nechta, taxminan sakkizta qurilma foydalana oladi, xotira hajmi ham cheklangan.
+how_about_title=Haqida
+how_about=ShareBox – PirateBox va LibraryBox ruhidagi erkin dasturiy taʼminot. Bu qutini boshqaradigan shaxs undagi kontent uchun javobgar.
+how_back=Bosh sahifaga qaytish
+
+# Status page
+status_title=Quti holati
+status_clients=Ulangan qurilmalar
+status_disk=Boʻsh xotira
+status_version=Dastur versiyasi
+status_warnings=Ogohlantirishlar
+status_no_warnings=Ogohlantirishlar yoʻq.
+update_title=Dasturni yangilash
+update_found=USB fleshkada yangilanish topildi:
+update_signed=Uning imzosi tekshirildi. Oʻrnatilganda quti qayta ishga tushadi va bir necha daqiqa ishlamaydi.
+update_warning=Faqat siz kutgan yangilanishni oʻrnating. Quti ishlab chiquvchisi imzolamagan har qanday yangilanishni rad etadi.
+update_install=Oʻrnatish
+update_ok=Yangilanish oʻrnatilmoqda. Quti tez orada qayta ishga tushadi.
+update_error=Yangilanishni oʻrnatib boʻlmadi:

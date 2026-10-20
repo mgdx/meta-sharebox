@@ -1,0 +1,14 @@
+#!/bin/sh
+# USB hook run by sharebox-usb-scan.service with the mount point as $1.
+# Rebuilds the Kiwix library so that ZIM files found in <mount point>/zim/
+# become available in kiwix-serve. The rebuild runs in its own sandboxed
+# unit, as user kiwix, and always rescans every location (so a removed stick
+# also drops out of the library): $1 is only used for logging.
+
+mnt=${1:-none}
+
+if ! systemctl --no-block restart kiwix-library-update.service; then
+    echo "60-kiwix: cannot start kiwix-library-update.service (mount: $mnt)" >&2
+    exit 1
+fi
+exit 0

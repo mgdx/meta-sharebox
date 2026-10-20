@@ -1,0 +1,81 @@
+# ShareBox page strings, Simplified Chinese (zh-Hans). AI-generated, needs human review.
+#
+# Format: one "key=value" per line, UTF-8. Lines starting with "#" and blank
+# lines are ignored. Values are plain text: the generator HTML-escapes them.
+# Inline markers, replaced by the generator with LTR-safe code spans:
+#   {http}     -> http://
+#   {https}    -> https://
+#   {example}  -> http://sharebox.lan
+# "ShareBox" is a name and is never translated.
+
+# Wi-Fi network name: "ShareBox - <ssid_slogan>". Whole SSID at most 32 bytes
+# in UTF-8, so the slogan has at most 21 bytes.
+ssid_slogan=自由分享
+
+# Shared page parts
+skip_link=跳到正文
+nav_home=首页
+nav_how=使用说明
+nav_status=状态
+lang_selector=语言
+footer_offline=本盒子无需联网即可使用。
+
+# Home page
+home_title=欢迎使用 ShareBox
+home_lead=您已连接到 ShareBox：这是一个小型 WLAN 盒子，无需联网即可与附近的人分享文件、聊天。
+home_offline=这里的任何内容都不会离开盒子。盒子没有连接互联网，因此在连接期间，需要联网的网站和应用将无法使用。
+warn_title=公开且未加密
+warn_public=此 WLAN 网络是开放的，未经加密。附近的任何人都能看到您发送和接收的内容。
+warn_uploads=您在这里分享的所有内容都是公开的：任何已连接的人都能查看和下载。请勿分享个人或隐私数据。
+services_title=您可以在这里做什么
+home_more=它是如何运作的？
+
+# Service cards (home page, depends on the image)
+svc_files=文件
+svc_files_desc=浏览并下载共享的文件。
+svc_upload=上传
+svc_upload_desc=与这里的所有人分享您自己的文件。
+svc_chat=聊天
+svc_chat_desc=与连接到此盒子的人聊天。
+svc_forum=论坛
+svc_forum_desc=发起或参与讨论。
+svc_library=图书馆
+svc_library_desc=阅读百科全书、图书和其他离线内容。
+svc_box=打开 ShareBox
+svc_box_desc_classic=文件、上传、聊天和论坛，尽在一处。
+svc_box_desc_shareboxx=文件、大文件上传和实时聊天，尽在一处。
+svc_english_note=此界面为英文。
+svc_js_note=此界面需要在浏览器中启用 JavaScript。
+svc_none=此盒子未安装任何分享服务，仅提供网络和本页面。
+
+# How it works page
+how_title=使用说明
+how_connect_title=连接
+how_connect=连接盒子的 WLAN 网络，无需密码。在大多数手机上，会自动弹出一个显示首页的窗口。
+how_open=如果没有弹出任何页面，请打开浏览器，输入任意以 {http} 开头的地址，例如 {example}。以 {https} 开头的安全地址在这里无法使用。
+how_share_title=分享
+how_share=下载别人分享的内容、添加您自己的文件、聊天。这里没有账号，也没有密码：每个人都是匿名的。
+how_offline_title=离线
+how_offline=盒子从不连接互联网。您的手机可能会提示此网络无法访问互联网，这是正常的。请保持连接，以便继续使用盒子。
+how_privacy_title=隐私
+how_privacy=网络是开放、未加密的，分享的所有内容都是公开的。其他设备无法直接访问您的设备，但附近的任何人都能监听无线信号。请只分享您愿意贴在公共布告栏上的内容。
+how_limits_title=限制
+how_limits=盒子很小：同时只能供少数设备（约八台）使用，存储空间也有限。
+how_about_title=关于
+how_about=ShareBox 是自由软件，秉承 PirateBox 和 LibraryBox 的精神。运营此盒子的人对其提供的内容负责。
+how_back=返回首页
+
+# Status page
+status_title=盒子状态
+status_clients=已连接的设备
+status_disk=可用存储空间
+status_version=软件版本
+status_warnings=警告
+status_no_warnings=没有警告。
+update_title=软件更新
+update_found=在 U 盘上发现了一个更新：
+update_signed=其签名已通过验证。安装后盒子将重新启动，几分钟内无法使用。
+update_warning=请只安装您预期中的更新。盒子会拒绝任何未经发布者签名的更新。
+update_install=安装
+update_ok=正在安装更新，盒子即将重新启动。
+update_error=无法安装更新：

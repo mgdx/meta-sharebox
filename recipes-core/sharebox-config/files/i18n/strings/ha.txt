@@ -1,0 +1,81 @@
+# ShareBox page strings, Hausa (ha). AI-generated, needs human review.
+#
+# Format: one "key=value" per line, UTF-8. Lines starting with "#" and blank
+# lines are ignored. Values are plain text: the generator HTML-escapes them.
+# Inline markers, replaced by the generator with LTR-safe code spans:
+#   {http}     -> http://
+#   {https}    -> https://
+#   {example}  -> http://sharebox.lan
+# "ShareBox" is a name and is never translated.
+
+# Wi-Fi network name: "ShareBox - <ssid_slogan>". Whole SSID at most 32 bytes
+# in UTF-8, so the slogan has at most 21 bytes.
+ssid_slogan=Raba cikin 'yanci
+
+# Shared page parts
+skip_link=Tsallaka zuwa abin da ke ciki
+nav_home=Gida
+nav_how=Yadda yake aiki
+nav_status=Matsayi
+lang_selector=Harshe
+footer_offline=Wannan akwatin yana aiki ba tare da intanet ba.
+
+# Home page
+home_title=Barka da zuwa ShareBox
+home_lead=Kun haɗu da ShareBox: ƙaramin akwatin Wi-Fi don raba fayiloli da tattaunawa da mutanen da ke kusa, ba tare da intanet ba.
+home_offline=Babu abin da ke fita daga wannan akwatin. Ba a haɗa shi da intanet ba, don haka shafukan yanar gizo da manhajojin da ke buƙatar intanet ba za su yi aiki ba yayin da kuke haɗe da shi.
+warn_title=Na jama'a kuma ba a ɓoye ba
+warn_public=Wannan hanyar sadarwar Wi-Fi a buɗe take kuma ba a ɓoye ta ba. Duk wanda ke kusa zai iya ganin abin da kuke aikawa da abin da kuke karɓa.
+warn_uploads=Duk abin da kuka raba a nan na jama'a ne: duk wanda ya haɗu zai iya gani ya kuma sauke shi. Kada ku raba bayanan sirri ko na kanku.
+services_title=Abin da za ku iya yi a nan
+home_more=Yaya yake aiki?
+
+# Service cards (home page, depends on the image)
+svc_files=Fayiloli
+svc_files_desc=Duba ku kuma sauke fayilolin da aka raba.
+svc_upload=Loda
+svc_upload_desc=Raba fayilolinku da duk wanda ke nan.
+svc_chat=Hira
+svc_chat_desc=Yi magana da mutanen da suka haɗu da wannan akwatin.
+svc_forum=Dandali
+svc_forum_desc=Fara tattaunawa ko ku shiga ɗaya.
+svc_library=Laburare
+svc_library_desc=Karanta kundayen ilimi, littattafai da sauran abubuwan da ake samu ba tare da intanet ba.
+svc_box=Buɗe ShareBox
+svc_box_desc_classic=Fayiloli, lodawa, hira da dandali a wuri ɗaya.
+svc_box_desc_shareboxx=Fayiloli, lodawar manyan fayiloli da hira kai tsaye a wuri ɗaya.
+svc_english_note=Wannan sashe da Turanci yake.
+svc_js_note=Wannan sashe yana buƙatar a kunna JavaScript a burauzarku.
+svc_none=Ba a sanya wani sabis na rabawa a wannan akwatin ba. Yana samar da hanyar sadarwa da wannan shafin kawai.
+
+# How it works page
+how_title=Yadda yake aiki
+how_connect_title=Haɗa
+how_connect=Shiga hanyar sadarwar Wi-Fi ta akwatin. Ba a buƙatar kalmar sirri. A yawancin wayoyi, taga mai ɗauke da shafin farko na buɗewa da kanta.
+how_open=Idan babu abin da ya buɗe, buɗe burauzarku ku rubuta kowane adireshi da ya fara da {http}, misali {example}. Adiresoshi masu tsaro da suka fara da {https} ba sa aiki a nan.
+how_share_title=Raba
+how_share=Sauke abin da wasu suka raba, ƙara fayilolinku, ku yi hira. Babu asusu, babu kalmar sirri: ba a san ko wane ne kowa ba.
+how_offline_title=Ba tare da intanet ba
+how_offline=Akwatin ba ya taɓa haɗuwa da intanet. Wayarku na iya yi muku gargaɗin cewa wannan hanyar sadarwa ba ta da intanet: wannan ba matsala ba ne. Ku kasance a haɗe don ci gaba da amfani da akwatin.
+how_privacy_title=Sirri
+how_privacy=Hanyar sadarwar a buɗe take kuma ba a ɓoye ta ba, kuma duk abin da aka raba na jama'a ne. Sauran na'urori ba za su iya kai wa na'urarku kai tsaye ba, amma duk wanda ke kusa zai iya sauraron siginar rediyo. Ku raba abin da za ku iya liƙawa a allon sanarwa na jama'a kawai.
+how_limits_title=Iyaka
+how_limits=Akwatin ƙarami ne: na'urori kaɗan ne kawai, kusan takwas, za su iya amfani da shi a lokaci ɗaya, kuma wurin ajiyarsa yana da iyaka.
+how_about_title=Game da shi
+how_about=ShareBox manhaja ce ta 'yanci, a kan tafarkin PirateBox da LibraryBox. Duk wanda ke gudanar da wannan akwatin shi ke da alhakin abin da yake bayarwa.
+how_back=Koma shafin farko
+
+# Status page
+status_title=Matsayin akwatin
+status_clients=Na'urorin da aka haɗa
+status_disk=Wurin ajiya da ya rage
+status_version=Sigar manhaja
+status_warnings=Gargaɗi
+status_no_warnings=Babu gargaɗi.
+update_title=Sabunta manhaja
+update_found=An sami sabuntawa a kan filasha USB:
+update_signed=An tabbatar da sa hannunsa. Sanya shi zai sake kunna akwatin, kuma ba za a iya amfani da shi ba na 'yan mintuna.
+update_warning=Sanya sabuntawar da kuke tsammani kawai. Akwatin yana ƙin duk wani sabuntawa da mai wallafa shi bai sa hannu a kai ba.
+update_install=Sanya
+update_ok=Ana sanya sabuntawar. Akwatin zai sake kunnawa nan ba da jimawa ba.
+update_error=Ba a iya sanya sabuntawar ba:
