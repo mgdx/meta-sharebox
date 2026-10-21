@@ -6,7 +6,7 @@
 # Required with `require conf/distro/include/sharebox-storage.inc` by those
 # files; it only uses weak assignments and can be included several times.
 #
-# Partition layout (msdos label, see wic/sharebox-{dual,single}.wks.in):
+# Partition layout (msdos label, see files/wic/sharebox-{dual,single}.wks.in):
 #
 #   SHAREBOX_UPDATES = "1"            SHAREBOX_UPDATES = "0"
 #   p1 boot     vfat   128M           p1 boot    vfat   128M

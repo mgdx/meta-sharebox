@@ -168,7 +168,7 @@ run-time equivalent). Then:
 - `rauc`, `sharebox-update` and `sharebox-healthcheck` are not installed
   (`packagegroup-sharebox-base`), `rauc` is removed from `DISTRO_FEATURES`
   and the `sharebox-bundle-*` recipes are skipped;
-- the wic image has a single rootfs partition (`wic/sharebox-single.wks.in`),
+- the wic image has a single rootfs partition (`files/wic/sharebox-single.wks.in`),
   the data partition is p3;
 - the kernel stays on the boot partition and the stock meta-raspberrypi
   `boot.scr` is used (no A/B logic, no U-Boot erofs);

@@ -35,7 +35,7 @@ dropped) by this layer. See `docs/deviations.md`.
 | `recipes-kernel/linux/` | `linux-raspberrypi` bbappend and config fragments |
 | `conf/distro/include/sharebox-storage.inc` | partition numbers and devices, data mount options (required by the storage recipes) |
 | `files/storage/`, `files/rauc-keys/` | preinit template, RAUC keys (development keys and README) |
-| `wic/` | partition layouts |
+| `files/wic/` | partition layouts |
 | `kas/` | reproducible build configurations |
 
 ## Engines and images

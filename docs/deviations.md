@@ -417,7 +417,7 @@ reimplemented in the layer, with attribution in the files (MIT):
 
 | meta-rauc-raspberrypi | meta-sharebox |
 | --- | --- |
-| `files/wic/sdimage-dual-raspberrypi.wks.in` | `wic/sharebox-dual.wks.in` |
+| `files/wic/sdimage-dual-raspberrypi.wks.in` | `files/wic/sharebox-dual.wks.in` |
 | `recipes-bsp/rpi-u-boot-scr/files/boot.cmd.in` | `recipes-bsp/rpi-u-boot-scr/files/boot.cmd.in` |
 | `recipes-core/rauc/files/system.conf` | `recipes-support/rauc/files/system.conf` |
 | `recipes-core/bundles/update-bundle.bb` | `recipes-core/bundles/sharebox-bundle.inc` |
