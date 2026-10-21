@@ -237,10 +237,13 @@ section below.
   `share/` directory if present), imports `sharebox/sharebox.conf` into
   `/data/config` and restarts `sharebox-setup.service` when it changed, then
   runs every executable `/usr/lib/sharebox/usb-hooks.d/*` with the active
-  mount points as arguments (none when the last stick is removed). The
-  hooks run in the scan service sandbox (no network, no capability,
-  `/media` read-only; `/data/share`, `/data/config`, `/run/sharebox`
-  writable); a hook needing more ships a drop-in for the service.
+  mount points as arguments, newest first (none when the last stick is
+  removed). The hooks run in the scan service sandbox: uid 0 without any
+  capability (root-owned files only), no network but `AF_UNIX` (systemd and
+  D-Bus sockets: `systemctl --no-block restart <unit>` works), no device
+  nodes, `/media` read-only; `/data/share`, `/data/config`, `/run/sharebox`
+  writable. A hook needing more ships a drop-in for the service, or better
+  restarts a dedicated unit (as `60-kiwix` does).
 
 ## Users and data
 
@@ -251,7 +254,8 @@ section below.
   (created by the lighttpd bbappend), `dnsmasq` (dnsmasq bbappend).
 - `/data` is the persistent ext4 partition. Its tree is created by
   `systemd-tmpfiles` (`sharebox-config` ships `/usr/lib/tmpfiles.d/sharebox.conf`):
-  `/data/share` (public files), `/data/share/upload` (anonymous uploads,
+  `/data/share` (public files, owner `root`: the capability-less USB scan
+  creates the `usb` link there), `/data/share/upload` (anonymous uploads,
   owner `sharebox`), `/data/config`. Directories owned by an engine user are
   created by that engine recipe's own tmpfiles file (the user may not exist
   in other images): `/data/chat` (owner `ergo`), `/data/zim` (owner `kiwix`).
