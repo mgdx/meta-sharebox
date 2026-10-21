@@ -29,8 +29,10 @@ GO_INSTALL = "${GO_IMPORT}/cmd/luffy"
 
 inherit go-mod go-mod-update-modules systemd useradd
 
-# Pure Go, static binary, reproducible paths.
-CGO_ENABLED = "0"
+# Pure Go, static binary, reproducible paths. CGO must be exported to reach
+# the go tool, and -linkshared (default on arm64) needs cgo, so it is dropped.
+export CGO_ENABLED = "0"
+GO_LINKSHARED = ""
 GOBUILDFLAGS:append = " -trimpath"
 GO_EXTRA_LDFLAGS = "-X main.version=${PV}"
 
