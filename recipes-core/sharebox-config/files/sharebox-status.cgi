@@ -7,15 +7,22 @@
 #   @@VERSION@@        DISTRO_VERSION
 #   @@WARNINGS@@       <li> items from /run/sharebox/warnings
 #   @@UPDATE_SECTION@@ status-update.html.in (@@BUNDLE@@) when an update
-#                      bundle verified by the storage lot is waiting
+#                      bundle verified by the USB hook is waiting
 #   @@UPDATE_RESULT@@  status-result-ok.html / status-result-error.html.in
 #
-# Update interface (implemented by the storage/RAUC lot):
-#   /run/sharebox/update-bundle     absolute path of the bundle it verified
-#   /run/sharebox/requests/install  written here with that path when a user
-#                                   confirms; the storage lot watches it
-#   /run/sharebox/update-result     "ok" or "error: <message>"
-# Only the bundle listed in update-bundle can ever be requested.
+# Update interface (sharebox-update package, docs/ARCHITECTURE.md "Updates"):
+#   /run/sharebox/update-candidate  key=value, written by the USB hook 50-rauc
+#                                   (state=ready|invalid, file, name, error)
+#   /run/sharebox/update-status     key=value, written by the root install
+#                                   service and sharebox-healthcheck (state,
+#                                   message, version)
+#   /usr/lib/sharebox/sharebox-install-update "<bundle name>"
+#                                   run on a confirmed POST; as an
+#                                   unprivileged user it only queues the
+#                                   request in /run/sharebox/requests/install
+#                                   for sharebox-update-install.service. The
+#                                   name is only compared with the candidate,
+#                                   never used as a path.
 #
 # SHAREBOX_ROOT prefixes every path (tests).
 
@@ -122,34 +129,68 @@ result_error() {
     [ -n "$P_UPDATE_RESULT" ] || P_UPDATE_RESULT="<p class=\"notice error\">$(esc "$1")</p>"
 }
 
-BUNDLE_PATH=""
-if [ "$SHAREBOX_UPDATES" = 1 ] && [ -r "$RUN/update-bundle" ]; then
-    IFS= read -r BUNDLE_PATH < "$RUN/update-bundle" || true
+result_ok() {
+    P_UPDATE_RESULT=$(fragment status-result-ok.html) || \
+        P_UPDATE_RESULT='<p class="notice ok">OK</p>'
+}
+kv() { # kv FILE KEY: value of KEY in a key=value file
+    sed -n "s/^$2=//p" "$1" 2>/dev/null | head -n 1
+}
+
+INSTALL_CMD=$ROOT/usr/lib/sharebox/sharebox-install-update
+UPDATES=0
+[ "$SHAREBOX_UPDATES" = 1 ] && [ -x "$INSTALL_CMD" ] && UPDATES=1
+
+ST_STATE="" ST_MSG="" CAND_STATE="" CAND_FILE="" CAND_NAME="" CAND_ERR=""
+if [ "$UPDATES" = 1 ]; then
+    if [ -r "$RUN/update-status" ]; then
+        ST_STATE=$(kv "$RUN/update-status" state)
+        ST_MSG=$(kv "$RUN/update-status" message)
+    fi
+    if [ -r "$RUN/update-candidate" ]; then
+        CAND_STATE=$(kv "$RUN/update-candidate" state)
+        CAND_FILE=$(kv "$RUN/update-candidate" file)
+        CAND_NAME=$(kv "$RUN/update-candidate" name)
+        CAND_ERR=$(kv "$RUN/update-candidate" error)
+    fi
 fi
-BUNDLE_NAME=${BUNDLE_PATH##*/}
+# No new request while an installation or a rollback is in progress
+BUSY=0
+case $ST_STATE in installing|rebooting|rolling-back) BUSY=1 ;; esac
 
 if [ "$METHOD" = POST ]; then
     action=$(field action "$BODY")
     bundle=$(field bundle "$BODY")
-    if [ "$action" = install ] && [ -n "$BUNDLE_PATH" ] && [ "$bundle" = "$BUNDLE_NAME" ] \
-       && [ -d "$RUN/requests" ]; then
-        if printf '%s\n' "$BUNDLE_PATH" > "$RUN/requests/install.tmp" 2>/dev/null && \
-           mv -f "$RUN/requests/install.tmp" "$RUN/requests/install"; then
-            P_UPDATE_RESULT=$(fragment status-result-ok.html) || \
-                P_UPDATE_RESULT='<p class="notice ok">OK</p>'
-            BUNDLE_PATH=""
+    if [ "$UPDATES" = 1 ] && [ "$action" = install ] && [ "$BUSY" = 0 ]; then
+        # Only queues the request; refused unless "bundle" is the name of
+        # the candidate verified by the USB hook.
+        rc=0
+        msg=$("$INSTALL_CMD" "$bundle" 2>/dev/null) || rc=$?
+        msg=$(printf '%s\n' "$msg" | head -n 1)
+        if [ "$rc" = 0 ]; then
+            result_ok
+            BUSY=1
         else
-            result_error "internal error"
+            result_error "${msg:-internal error}"
         fi
     else
         result_error "invalid request"
     fi
-elif [ -r "$RUN/update-result" ]; then
-    IFS= read -r res < "$RUN/update-result" || true
-    case ${res:-} in
-        ok) P_UPDATE_RESULT=$(fragment status-result-ok.html) || P_UPDATE_RESULT="" ;;
-        error*) msg=${res#error}; msg=${msg#:}; result_error "${msg# }" ;;
+else
+    case $ST_STATE in
+        installing|rebooting) result_ok ;;
+        failed|rolling-back|rolled-back) result_error "$ST_MSG" ;;
     esac
+    if [ -z "$P_UPDATE_RESULT" ] && [ "$CAND_STATE" = invalid ]; then
+        result_error "${CAND_NAME:+$CAND_NAME: }$CAND_ERR"
+    fi
+fi
+
+# The install form only for a verified bundle whose stick is still there
+BUNDLE_NAME=""
+if [ "$UPDATES" = 1 ] && [ "$BUSY" = 0 ] && [ "$CAND_STATE" = ready ] && \
+   [ -n "$CAND_NAME" ] && [ -f "$ROOT$CAND_FILE" ]; then
+    BUNDLE_NAME=$CAND_NAME
 fi
 
 # --- values ----------------------------------------------------------------------
@@ -189,17 +230,19 @@ if [ -s "$RUN/warnings" ]; then
 fi
 
 P_UPDATE_SECTION=""
-if [ -n "$BUNDLE_PATH" ]; then
+if [ -n "$BUNDLE_NAME" ]; then
     P_BUNDLE=$(esc "$BUNDLE_NAME")
     P_UPDATE_SECTION=$(fragment status-update.html.in | \
         while IFS= read -r l || [ -n "$l" ]; do
+            # The value is never rescanned (it may contain "@@")
+            o=""
             while :; do
                 case $l in
-                    *@@BUNDLE@@*) l="${l%%@@BUNDLE@@*}$P_BUNDLE${l#*@@BUNDLE@@}" ;;
+                    *@@BUNDLE@@*) o="$o${l%%@@BUNDLE@@*}$P_BUNDLE"; l=${l#*@@BUNDLE@@} ;;
                     *) break ;;
                 esac
             done
-            printf '%s\n' "$l"
+            printf '%s%s\n' "$o" "$l"
         done)
 fi
 

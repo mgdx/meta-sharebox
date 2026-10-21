@@ -219,16 +219,13 @@ Under `recipes-core/sharebox-config/files/`, installed as whole directories:
   `status-update.html.in` (`@@BUNDLE@@`), `status-result-ok.html`,
   `status-result-error.html.in` (`@@ERROR@@`).
 
-## Updates from /status (storage lot interface)
+## Updates from /status
 
-- The storage lot writes the absolute path of a bundle it verified
-  (`rauc info`) to `/run/sharebox/update-bundle`; `/status` then shows the
-  install form (only when `SHAREBOX_UPDATES = "1"`).
-- A confirmed POST writes that same path (never a client supplied one) to
-  `/run/sharebox/requests/install` (directory `root:www 0730`); the storage
-  lot watches it (path unit) and installs.
-- The result is reported in `/run/sharebox/update-result`: `ok` or
-  `error: <message>`.
+The `/status` CGI (user `www`) never installs anything itself: it reads the
+files written by the update packages and queues requests with
+`sharebox-install-update`. The contract (files, request drop box, exit
+codes, how each state maps to the page fragments) is in the "Updates"
+section below.
 
 ## USB sticks
 
@@ -305,11 +302,14 @@ Only when `SHAREBOX_UPDATES = "1"` (`rauc` in `DISTRO_FEATURES`). Packages:
 
 ### USB hook
 
-`/usr/lib/sharebox/usb-hooks.d/50-rauc <mount point>` (run as root by
-`sharebox-usb-scan.service`, which needs `/run/sharebox` writable and
-`AF_UNIX` allowed) looks for `<mount point>/sharebox/*.raucb` (last one in
-name order), runs `rauc info` (signature against the keyring) and checks the
-compatible string. It writes `/run/sharebox/update-candidate`.
+`/usr/lib/sharebox/usb-hooks.d/50-rauc <mount point>...` (run by
+`sharebox-usb-scan.service` as root without any capability, mount points
+newest first) looks for `<mount point>/sharebox/*.raucb` on the newest stick
+that has one (last one in name order), runs `rauc info` (local, no D-Bus:
+CMS signature against the keyring; the verity bundle is not mounted, so
+`PrivateDevices=yes` is fine) and checks the compatible string. It writes
+`/run/sharebox/update-candidate`, or removes it when no stick holds a
+bundle.
 
 ### Files read by the `/status` CGI
 
@@ -352,17 +352,33 @@ On `POST /status` with `action=install`, the CGI runs
 /usr/lib/sharebox/sharebox-install-update "<bundle field>"
 ```
 
-as its own unprivileged user. The argument is only compared with the
-candidate's `name`, never used as a path. The command prints one English
-line and exits with 0 (request queued: show `status-result-ok`), 1 (no
-verified update, or the candidate changed: show `status-result-error` with
-the printed line) or 2 (internal error, same). Queuing writes
-`/run/sharebox-update/request` (directory mode 1733, created by
-tmpfiles), so the front end unit needs
-`ReadWritePaths=/run/sharebox-update`. `sharebox-update-install.path` then
-starts `sharebox-update-install.service` (root), which installs with
-`rauc install`, writes `update-status` and reboots. Subsequent page loads
-show `update-status`.
+as its own unprivileged user (`www`). The argument is only compared with
+the candidate's `name`, never used as a path: only the bundle verified by
+the hook can be installed. The command prints one English line and exits
+with 0 (request queued: show `status-result-ok`), 1 (no verified update, or
+the candidate changed: show `status-result-error` with the printed line) or
+2 (internal error, same). Queuing writes the candidate name (mode 0644) to
+`/run/sharebox/requests/install`; the directory is `root:www 0730`, created
+by the tmpfiles snippet of `sharebox-config-status` (where the `www` user
+exists), and the front end unit has
+`ReadWritePaths=-/run/sharebox/requests`. `sharebox-update-install.path`
+(`PathExists=`) then starts `sharebox-update-install.service` (root, no
+capability), which removes the request, checks the candidate again, installs
+with `rauc install` (through `rauc.service`), writes `update-status` and
+reboots.
+
+Page rendering by the CGI (only when `SHAREBOX_UPDATES = "1"` and
+`sharebox-install-update` is installed):
+
+| Situation | `@@UPDATE_RESULT@@` | `@@UPDATE_SECTION@@` |
+| --- | --- | --- |
+| POST queued (exit 0) | `status-result-ok.html` | empty |
+| POST refused (exit 1/2, or not `action=install`) | `status-result-error.html.in`, printed line | as below |
+| `update-status` `installing`, `rebooting` | `status-result-ok.html` | empty, POSTs refused |
+| `update-status` `rolling-back` | error fragment, `message` | empty, POSTs refused |
+| `update-status` `failed`, `rolled-back` | error fragment, `message` | as below |
+| `update-candidate` `invalid` (and nothing above) | error fragment, `name: error` | empty |
+| `update-candidate` `ready` and `file` exists | - | `status-update.html.in`, `@@BUNDLE@@` = `name` |
 
 ### Health check
 

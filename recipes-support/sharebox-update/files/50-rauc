@@ -1,26 +1,35 @@
 #!/bin/sh
-# usb-automount hook (run by sharebox-usb-scan.service, as root, with the
-# mount point of the USB stick as $1).
+# usb-automount hook (run by sharebox-usb-scan.service, as root without any
+# capability, with the mount points of the USB sticks as arguments, newest
+# first, none when every stick is gone).
 #
-# If the stick holds a RAUC bundle in sharebox/*.raucb, check its signature
+# If a stick holds a RAUC bundle in sharebox/*.raucb, check its signature
 # against the keyring of this box and its compatible string, and record it in
 # /run/sharebox/update-candidate for the /status page. Nothing is installed
 # here: installation needs a confirmation on /status (sharebox-install-update).
-# When several bundles are present, the last one in name order is used.
+# The newest stick holding a bundle wins; when it holds several bundles, the
+# last one in name order is used. Without any bundle the candidate is removed.
+#
+# "rauc info" runs locally (no D-Bus): it reads the keyring and system.conf,
+# verifies the CMS signature of the verity bundle and does not mount it.
 
 set -u
 
 . /usr/lib/sharebox/sharebox-update-lib.sh
 
-mnt=${1:?usage: $0 <mount point>}
-
 command -v rauc > /dev/null 2>&1 || exit 0
 
 bundle=""
-for f in "$mnt"/sharebox/*.raucb; do
-    [ -f "$f" ] && bundle=$f
+for mnt in "$@"; do
+    for f in "$mnt"/sharebox/*.raucb; do
+        [ -f "$f" ] && bundle=$f
+    done
+    [ -n "$bundle" ] && break
 done
-[ -n "$bundle" ] || exit 0
+if [ -z "$bundle" ]; then
+    rm -f "$SHAREBOX_UPDATE_CANDIDATE"
+    exit 0
+fi
 
 name=${bundle##*/}
 current=$(sb_running_version)

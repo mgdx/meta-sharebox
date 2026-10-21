@@ -126,7 +126,8 @@ After an update, the result (`installed`, `rolled-back`) is written to
    installed without that confirmation.
 4. The button posts the form; the CGI (unprivileged) runs
    `/usr/lib/sharebox/sharebox-install-update <bundle name>`, which only
-   queues the request. `sharebox-update-install.path` starts
+   queues the request in `/run/sharebox/requests/install` (refused unless
+   the name is the verified candidate's). `sharebox-update-install.path` starts
    `sharebox-update-install.service` (root), which runs `rauc install`
    (signature, compatible and dm-verity checked again), records the trial in
    `/data/rauc/sharebox-pending-update` and reboots.
