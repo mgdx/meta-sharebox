@@ -20,6 +20,14 @@ Internet.
 > portal behaviour on real phones, power-cut resilience and updates still
 > have to go through the acceptance tests (`scripts/test-target.sh`).
 
+Last verified build (2026-10-21, `raspberrypi4-64`, pinned kas revisions):
+all six images and the `sharebox-bundle-modular` RAUC bundle build without
+QA errors. Read-only erofs rootfs sizes: base 71.7 MiB, classic 75.3 MiB,
+modular 81.8 MiB, shareboxx 79.0 MiB, library 102.5 MiB, full 110.8 MiB,
+all under the specification thresholds. No python3, perl, php or nodejs
+package in any image. `sbom-cve-check` only reports upstream oe-core and
+kernel CVEs.
+
 ## Images
 
 Every image shares the same base system (access point, DHCP/DNS, captive
