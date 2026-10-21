@@ -88,7 +88,6 @@ IMAGE_INSTALL += "packagegroup-sharebox-frontend packagegroup-sharebox-engine-mo
 | ergo websocket | 8097 | `/socket` |
 | ergo plain IRC (local tools only) | 6667 | - |
 | gamja (static) | - | `/chat/` |
-| forum (reserved, not packaged, see `docs/deviations.md`) | 8080 | `/forum/` |
 | kiwix-serve | 8081 | `/wiki/` |
 
 ## lighttpd
@@ -211,9 +210,8 @@ Under `recipes-core/sharebox-config/files/`, installed as whole directories:
 - `i18n/lang-aliases.txt`: `alias<TAB>code` for browser tags.
 - `www/style.css`, `www/<code>/how-it-works.html` (final),
   `www/<code>/index.html.in` (`@@ENGINE_LINKS@@` alone on a line, replaced
-  by `www/<code>/engine-<engine>.html`; cards with `optional-forum` or
-  `optional-upload` dropped: always for the forum (no forum engine), when
-  `SHAREBOX_UPLOAD_MAX = "0"` for uploads).
+  by `www/<code>/engine-<engine>.html`; cards with `optional-upload` are
+  dropped when `SHAREBOX_UPLOAD_MAX = "0"`).
 - `/status` templates: `status.html.in` (`@@CLIENTS@@`, `@@DISK_FREE@@`,
   `@@VERSION@@`, `@@WARNINGS@@`, `@@UPDATE_RESULT@@`, `@@UPDATE_SECTION@@`),
   `status-update.html.in` (`@@BUNDLE@@`), `status-result-ok.html`,
