@@ -27,7 +27,7 @@ dropped) by this layer. See `docs/deviations.md`.
 | `recipes-core/sharebox-config/` | runtime configuration generator, home pages, i18n data |
 | `recipes-connectivity/{hostapd,dnsmasq,nftables,captive-portal}` | access point, DHCP/DNS, firewall, captive probes |
 | `recipes-webserver/{lighttpd,gamja}` | HTTP front end and static IRC client |
-| `recipes-sharing/{dufs,ergo,luffy,shareboxx,sriracha}` | sharing engines |
+| `recipes-sharing/{dufs,ergo,luffy,shareboxx}` | sharing engines |
 | `recipes-kiwix/{xapian-core,libzim,libkiwix,kainjow-mustache,kiwix-tools}` | offline library |
 | `recipes-support/{usb-automount,rauc,sharebox-healthcheck,sharebox-update,sharebox-storage}` | USB sticks, updates, data partition growth |
 | `recipes-core/bundles/` | `sharebox-bundle-<engine>.bb`, one RAUC bundle per image |
