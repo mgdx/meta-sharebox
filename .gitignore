@@ -7,3 +7,4 @@ __pycache__/
 /Spécification meta-sharebox.md
 .claude/
 /kas/local.yml
+/kas/.ci-*.yml

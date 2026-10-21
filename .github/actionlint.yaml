@@ -1,0 +1,4 @@
+# actionlint configuration: labels of the self-hosted runners
+self-hosted-runner:
+  labels:
+    - yocto

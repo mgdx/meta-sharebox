@@ -1,0 +1,188 @@
+# Checks that fit on GitHub-hosted runners. Full image builds need more disk
+# and time than they offer: see build.yml (self-hosted runner).
+name: ci
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  shell:
+    name: Shell syntax and host tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install test tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends busybox dash curl shellcheck
+
+      - name: Syntax check (sh -n, bash -n)
+        run: |
+          set -eu
+          status=0
+          # every shell script of the layer: scripts/ and the files shipped by
+          # recipes (detected by their shebang)
+          files=$( { ls scripts/*.sh; grep -rlE '^#!/bin/(ba)?sh' --include='*' recipes-*/*/files files 2>/dev/null; } | sort -u)
+          for f in $files; do
+            case $(head -n 1 "$f") in
+              *bash*) shell=bash ;;
+              *) shell=dash ;;
+            esac
+            if "$shell" -n "$f"; then
+              echo "ok   $shell -n $f"
+            else
+              echo "FAIL $shell -n $f"; status=1
+            fi
+            # the target runs busybox sh for most of them
+            if [ "$shell" = dash ] && ! busybox sh -n "$f"; then
+              echo "FAIL busybox sh -n $f"; status=1
+            fi
+          done
+          exit $status
+
+      - name: shellcheck (advisory)
+        continue-on-error: true
+        run: shellcheck -S warning scripts/*.sh
+
+      - name: test-sharebox-setup.sh (dash)
+        run: scripts/test-sharebox-setup.sh dash
+
+      - name: test-sharebox-setup.sh (busybox sh)
+        run: scripts/test-sharebox-setup.sh "busybox sh"
+
+      - name: test-sharebox-status.sh
+        run: scripts/test-sharebox-status.sh
+
+      - name: test-usb-scan.sh
+        run: scripts/test-usb-scan.sh
+
+      - name: Script usage messages
+        run: |
+          set -eu
+          for s in build-all flash check-image-size check-forbidden-packages test-target; do
+            sh "scripts/$s.sh" -h > /dev/null
+          done
+
+  lighttpd:
+    name: lighttpd configuration test
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    # Ubuntu ships lighttpd 1.4.74; the image uses 1.4.82. Advisory until the
+    # test is run against a matching host build.
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install lighttpd
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends lighttpd lighttpd-mod-webdav curl
+          sudo systemctl stop lighttpd || true
+      - name: test-lighttpd-config.sh
+        # /usr/sbin/lighttpd and /usr/lib/lighttpd/mod_*.so
+        run: scripts/test-lighttpd-config.sh /usr
+
+  i18n:
+    name: Translations
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install xmllint
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libxml2-utils
+      - name: check-i18n.sh
+        run: scripts/check-i18n.sh
+      - name: Generated pages are up to date
+        run: |
+          scripts/gen-i18n-pages.sh
+          git diff --exit-code -- recipes-core/sharebox-config/files
+
+  parse:
+    name: Parse with kas and yocto-check-layer
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      # Dependency layers and the build directory go outside the checkout,
+      # so that yocto-check-layer does not find them inside the layer.
+      - name: kas work directory
+        run: echo "KAS_WORK_DIR=$RUNNER_TEMP/kas-work" >> "$GITHUB_ENV"
+
+      - name: Install Yocto host dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            build-essential chrpath cpio debianutils diffstat file gawk gcc git \
+            iputils-ping libacl1 lz4 locales python3 python3-git python3-jinja2 \
+            python3-pexpect python3-pip python3-subunit socat texinfo unzip wget \
+            xz-utils zstd pipx
+          sudo locale-gen en_US.UTF-8
+          # Ubuntu 24.04 restricts unprivileged user namespaces, which
+          # bitbake needs (sanity check_userns)
+          sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+
+      - name: Install kas
+        run: |
+          pipx install kas==5.5
+          mkdir -p "$KAS_WORK_DIR"
+
+      - name: bitbake -p (raspberrypi4-64)
+        run: kas shell kas/rpi4-64.yml -c "bitbake -p"
+
+      - name: bitbake -p without updates
+        run: |
+          cat > kas/.ci-noupdates.yml <<'EOF'
+          header:
+            version: 14
+          local_conf_header:
+            ci: |
+              SHAREBOX_UPDATES = "0"
+          EOF
+          kas shell kas/rpi4-64.yml:kas/.ci-noupdates.yml -c "bitbake -p"
+          rm -f kas/.ci-noupdates.yml
+
+      - name: bitbake -p (dev distro, Pi Zero W)
+        run: kas shell kas/rpi0-w.yml:kas/dev.yml -c "bitbake -p"
+
+      - name: yocto-check-layer
+        # Advisory: the check runs the layer against oe-core alone first
+        # (DISTRO "sharebox" missing there) and its signature tests have not
+        # been validated for this distro layer yet.
+        continue-on-error: true
+        # Paths are expanded here: kas shell does not pass the runner
+        # environment through.
+        run: |
+          w=$KAS_WORK_DIR
+          kas shell kas/rpi4-64.yml -c "yocto-check-layer $GITHUB_WORKSPACE \
+            --machines raspberrypi4-64 \
+            --no-auto-dependency \
+            --dependency \
+              $w/meta-openembedded/meta-oe \
+              $w/meta-openembedded/meta-python \
+              $w/meta-openembedded/meta-networking \
+              $w/meta-openembedded/meta-filesystems \
+              $w/meta-raspberrypi \
+              $w/meta-rauc \
+            -o $w/yocto-check-layer.log"
+
+      - name: Upload yocto-check-layer log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: yocto-check-layer-log
+          path: ${{ runner.temp }}/kas-work/yocto-check-layer.log
+          if-no-files-found: ignore

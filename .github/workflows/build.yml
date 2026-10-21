@@ -1,0 +1,153 @@
+# Full image build on a self-hosted runner (label "yocto"): about 60 GB of
+# disk and several hours for a first build, far beyond GitHub-hosted
+# runners. The runner needs the Yocto host packages, the en_US.UTF-8 locale,
+# unprivileged user namespaces and kas (installed with pipx if missing).
+#
+# Downloads, shared state and the dependency layers are kept between runs
+# in $SHAREBOX_CI_DIR (repository variable, default: $HOME/sharebox-ci).
+name: build
+
+on:
+  workflow_dispatch:
+    inputs:
+      machine:
+        description: kas machine file (kas/<name>.yml)
+        type: choice
+        default: rpi4-64
+        options: [rpi0-w, rpi0-2w-64, rpi3-64, rpi4-64, rpi5]
+      image:
+        description: image engine (sharebox-image-<engine>)
+        type: choice
+        default: modular
+        options: [base, classic, modular, shareboxx, library, full]
+      dev:
+        description: development distro (sharebox-dev)
+        type: boolean
+        default: false
+      updates:
+        description: A/B updates (SHAREBOX_UPDATES); off builds a reflash-only image
+        type: boolean
+        default: true
+      bundle:
+        description: also build the signed RAUC bundle (needs updates)
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ inputs.machine }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: sharebox-image-${{ inputs.image }} for ${{ inputs.machine }}
+    runs-on: [self-hosted, yocto]
+    timeout-minutes: 720
+    env:
+      MACHINE_FILE: ${{ inputs.machine }}
+      ENGINE: ${{ inputs.image }}
+      DEV: ${{ inputs.dev }}
+      UPDATES: ${{ inputs.updates }}
+      BUNDLE: ${{ inputs.bundle }}
+      SHAREBOX_CI_DIR: ${{ vars.SHAREBOX_CI_DIR }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare
+        run: |
+          set -eu
+          ci=${SHAREBOX_CI_DIR:-$HOME/sharebox-ci}
+          mkdir -p "$ci"
+          echo "KAS_WORK_DIR=$ci" >> "$GITHUB_ENV"
+          command -v kas >/dev/null || pipx install kas==5.5
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+
+          machine=$(sed -n 's/^machine:[[:space:]]*//p' "kas/$MACHINE_FILE.yml")
+          echo "MACHINE=$machine" >> "$GITHUB_ENV"
+          echo "DEPLOY=$ci/build/tmp/deploy/images/$machine" >> "$GITHUB_ENV"
+
+          # Overlay generated for this run (kas wants every file of a
+          # configuration chain in the same repository)
+          {
+            echo "header:"
+            echo "  version: 14"
+            if [ "$DEV" = true ]; then echo "distro: sharebox-dev"; fi
+            echo "local_conf_header:"
+            echo "  ci: |"
+            if [ "$UPDATES" = true ]; then
+              echo '    SHAREBOX_UPDATES = "1"'
+            else
+              echo '    SHAREBOX_UPDATES = "0"'
+            fi
+            echo '    # keep the kernel .config for kernel-hardening-checker'
+            echo '    RM_WORK_EXCLUDE += "linux-raspberrypi"'
+          } > kas/.ci-build.yml
+          cat kas/.ci-build.yml
+
+      - name: Build
+        run: |
+          set -eu
+          set -- -m "$MACHINE_FILE" -i "$ENGINE" -o kas/.ci-build.yml
+          if [ "$BUNDLE" = true ] && [ "$UPDATES" = true ]; then set -- "$@" -b; fi
+          scripts/build-all.sh "$@"
+          img="$DEPLOY/sharebox-image-$ENGINE-$MACHINE.rootfs.wic.gz"
+          if [ ! -e "$img" ]; then
+            echo "::error::$img not produced (image not compatible with $MACHINE?)"
+            exit 1
+          fi
+
+      - name: No interpreters in the image
+        run: scripts/check-forbidden-packages.sh "$DEPLOY/sharebox-image-$ENGINE-$MACHINE.rootfs.manifest"
+
+      - name: Root filesystem size
+        # Above +20 % of the target the specification asks for a review,
+        # not a rejection: report without failing the build.
+        continue-on-error: true
+        run: scripts/check-image-size.sh "$DEPLOY"
+
+      - name: kernel-hardening-checker
+        continue-on-error: true
+        run: |
+          set -eu
+          command -v kernel-hardening-checker >/dev/null || \
+            pipx install git+https://github.com/a13xp0p0v/kernel-hardening-checker
+          # tmp/work/<machine with underscores>-<vendor>-linux*/linux-raspberrypi/<version>/<build dir>/.config
+          march=$(echo "$MACHINE" | tr - _)
+          config=$(find "$KAS_WORK_DIR"/build/tmp/work/"$march"-*/linux-raspberrypi -name .config 2>/dev/null | head -n 1 || true)
+          if [ -z "$config" ]; then
+            echo "::warning::kernel .config not found (kernel restored from sstate?)"
+            exit 0
+          fi
+          echo "checking $config"
+          mkdir -p artifacts
+          cp "$config" "artifacts/kernel-$MACHINE.config"
+          kernel-hardening-checker -c "$config" -m show_fail | tee "artifacts/kernel-hardening-checker-$MACHINE.txt"
+
+      - name: Collect artefacts
+        run: |
+          set -eu
+          mkdir -p artifacts
+          base="$DEPLOY/sharebox-image-$ENGINE-$MACHINE.rootfs"
+          for f in "$base.wic.gz" "$base.wic.bmap" "$base.manifest" "$base.spdx.json" \
+                   "$base.sbom-cve-check.spdx.json" "$base.sbom-cve-check.yocto.json" "$base.cve.txt" \
+                   "$DEPLOY/sharebox-bundle-$ENGINE-$MACHINE.raucb"; do
+            if [ -e "$f" ]; then
+              cp -L "$f" artifacts/
+            else
+              echo "not produced: $(basename "$f")"
+            fi
+          done
+          (cd artifacts && sha256sum -- * > SHA256SUMS)
+          cat artifacts/SHA256SUMS
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sharebox-image-${{ inputs.image }}-${{ inputs.machine }}${{ inputs.dev && '-dev' || '' }}${{ !inputs.updates && '-noupdates' || '' }}
+          path: artifacts/
+          retention-days: 30
+
+      - name: Clean up
+        if: always()
+        run: rm -rf artifacts kas/.ci-build.yml
