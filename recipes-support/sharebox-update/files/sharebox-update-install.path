@@ -1,0 +1,9 @@
+[Unit]
+Description=Watch for ShareBox update requests from the status page
+
+[Path]
+PathExists=/run/sharebox-update/request
+Unit=sharebox-update-install.service
+
+[Install]
+WantedBy=multi-user.target

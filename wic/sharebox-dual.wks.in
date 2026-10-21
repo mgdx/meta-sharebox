@@ -1,0 +1,16 @@
+# short-description: ShareBox SD card with two RAUC root filesystem slots
+# long-description: msdos label, four primary partitions:
+#   p1 boot (vfat): Raspberry Pi firmware, config.txt, cmdline.txt, device
+#      trees, U-Boot, boot.scr and the U-Boot environment (uboot.env)
+#   p2 rootfs slot A (erofs): copy of the image's .erofs file, kernel in /boot
+#   p3 rootfs slot B: left empty, written by the first RAUC update
+#   p4 data (ext4): /data, grown to the end of the card at first boot
+# Partition numbers are fixed: conf/distro/include/sharebox-storage.inc.
+# Layout derived from meta-rauc-raspberrypi sdimage-dual-raspberrypi.wks.in (MIT).
+
+part /boot --source bootimg_partition --ondisk ${SHAREBOX_DISK} --fstype=vfat --label boot --active --align 4096 --fixed-size ${SHAREBOX_BOOT_SIZE} --no-fstab-update
+part --source rawcopy --sourceparams="file=${IMGDEPLOYDIR}/${IMAGE_NAME}.erofs" --ondisk ${SHAREBOX_DISK} --fstype=erofs --align 4096 --fixed-size ${SHAREBOX_ROOTFS_SIZE}
+part --ondisk ${SHAREBOX_DISK} --fstype=none --align 4096 --fixed-size ${SHAREBOX_ROOTFS_SIZE}
+part /data --ondisk ${SHAREBOX_DISK} --fstype=${SHAREBOX_DATA_FS} --label data --align 4096 --fixed-size ${SHAREBOX_DATA_SIZE} --no-fstab-update
+
+bootloader --ptable msdos

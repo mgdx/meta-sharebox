@@ -1,0 +1,47 @@
+[Unit]
+Description=ShareBox boot health check (commits the booted RAUC slot)
+# Only meaningful on A/B systems booted by the ShareBox U-Boot script
+ConditionKernelCommandLine=rauc.slot
+ConditionPathExists=/usr/bin/rauc
+After=sharebox-setup.service hostapd.service dnsmasq.service
+After=lighttpd.service luffy.service shareboxx.service rauc.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/lib/sharebox/sharebox-healthcheck
+Environment=SHAREBOX_HEALTHCHECK_TIMEOUT=180
+Environment="SHAREBOX_HEALTHCHECK_UNITS=hostapd.service dnsmasq.service"
+Environment=SHAREBOX_HEALTHCHECK_PORT=80
+TimeoutStartSec=10min
+
+# rauc mark-good/mark-bad go through rauc.service (D-Bus), reboot through
+# systemd: no capability needed. Reads /proc/net/tcp of the host namespace.
+User=root
+CapabilityBoundingSet=
+NoNewPrivileges=yes
+ProtectSystem=strict
+ReadWritePaths=-/run/sharebox -/data/rauc
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+ProtectClock=yes
+ProtectHostname=yes
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+RestrictAddressFamilies=AF_UNIX
+IPAddressDeny=any
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+# The status file is made world-readable explicitly (chmod 0644)
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

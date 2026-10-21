@@ -1,0 +1,13 @@
+# short-description: ShareBox SD card without A/B updates (SHAREBOX_UPDATES = "0")
+# long-description: msdos label, three primary partitions:
+#   p1 boot (vfat): Raspberry Pi firmware, config.txt, cmdline.txt, device
+#      trees, U-Boot, boot.scr and the kernel
+#   p2 rootfs (erofs): copy of the image's .erofs file
+#   p3 data (ext4): /data, grown to the end of the card at first boot
+# Partition numbers are fixed: conf/distro/include/sharebox-storage.inc.
+
+part /boot --source bootimg_partition --ondisk ${SHAREBOX_DISK} --fstype=vfat --label boot --active --align 4096 --fixed-size ${SHAREBOX_BOOT_SIZE} --no-fstab-update
+part --source rawcopy --sourceparams="file=${IMGDEPLOYDIR}/${IMAGE_NAME}.erofs" --ondisk ${SHAREBOX_DISK} --fstype=erofs --align 4096 --fixed-size ${SHAREBOX_ROOTFS_SIZE}
+part /data --ondisk ${SHAREBOX_DISK} --fstype=${SHAREBOX_DATA_FS} --label data --align 4096 --fixed-size ${SHAREBOX_DATA_SIZE} --no-fstab-update
+
+bootloader --ptable msdos

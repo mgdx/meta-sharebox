@@ -1,0 +1,81 @@
+#!/bin/sh
+# Grow the ShareBox data partition (the last partition of the boot disk) and
+# its ext2/3/4 filesystem to the end of the disk, online.
+#
+# The partition table is rewritten with sfdisk without re-reading it (the
+# disk is in use), the kernel is told about the new size of that partition
+# only (partx, BLKPG), then resize2fs grows the mounted filesystem. This is
+# the same sequence as cloud-utils growpart.
+#
+# Usage: sharebox-grow-data [mount point]   (default /data)
+# Writes <mount point>/.sharebox-grown when done; remove it to grow again
+# (for example after copying the card to a bigger one).
+
+set -u
+
+MNT=${1:-/data}
+STAMP=$MNT/.sharebox-grown
+# Do not bother for less than 16 MiB (in 512-byte sectors)
+MIN_FREE=32768
+
+log() {
+    echo "sharebox-grow-data: $*"
+}
+
+dev=""
+fstype=""
+while read -r src mnt fs _rest; do
+    if [ "$mnt" = "$MNT" ]; then
+        dev=$src
+        fstype=$fs
+    fi
+done < /proc/self/mounts
+
+case "$fstype" in
+ext2|ext3|ext4) ;;
+"")
+    log "$MNT is not mounted, nothing to do"
+    exit 0
+    ;;
+*)
+    log "$MNT is $fstype (RAM fallback?), nothing to grow"
+    exit 0
+    ;;
+esac
+
+dev=$(readlink -f "$dev")
+part=${dev##*/}
+sys=/sys/class/block/$part
+if [ ! -r "$sys/partition" ]; then
+    log "$dev is not a partition, nothing to do"
+    exit 0
+fi
+
+num=$(cat "$sys/partition")
+start=$(cat "$sys/start")
+size=$(cat "$sys/size")
+disk=$(readlink -f "$sys/..")
+disk=${disk##*/}
+disksize=$(cat "/sys/class/block/$disk/size")
+free=$((disksize - start - size))
+
+if [ "$free" -gt "$MIN_FREE" ]; then
+    log "growing partition $num of /dev/$disk ($free free sectors after it)"
+    if ! echo ", +" | sfdisk --quiet --no-reread --no-tell-kernel -N "$num" "/dev/$disk"; then
+        log "sfdisk failed, partition left as is"
+        exit 1
+    fi
+    if ! partx --update --nr "$num" "/dev/$disk"; then
+        log "partx failed, the new size will be used after a reboot"
+        exit 1
+    fi
+fi
+
+log "growing the $fstype filesystem on $dev"
+if ! resize2fs "$dev"; then
+    log "resize2fs failed"
+    exit 1
+fi
+
+: > "$STAMP"
+exit 0

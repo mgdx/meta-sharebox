@@ -1,0 +1,5 @@
+# Drop box for update requests from the unprivileged /status CGI: anybody
+# may create a file, only root may list or remove it.
+d /run/sharebox-update 1733 root root -
+# RAUC data directory (system.conf data-directory) and pending-update marker
+d /data/rauc 0700 root root -

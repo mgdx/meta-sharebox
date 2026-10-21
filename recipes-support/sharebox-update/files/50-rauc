@@ -1,0 +1,58 @@
+#!/bin/sh
+# usb-automount hook (run by sharebox-usb-scan.service, as root, with the
+# mount point of the USB stick as $1).
+#
+# If the stick holds a RAUC bundle in sharebox/*.raucb, check its signature
+# against the keyring of this box and its compatible string, and record it in
+# /run/sharebox/update-candidate for the /status page. Nothing is installed
+# here: installation needs a confirmation on /status (sharebox-install-update).
+# When several bundles are present, the last one in name order is used.
+
+set -u
+
+. /usr/lib/sharebox/sharebox-update-lib.sh
+
+mnt=${1:?usage: $0 <mount point>}
+
+command -v rauc > /dev/null 2>&1 || exit 0
+
+bundle=""
+for f in "$mnt"/sharebox/*.raucb; do
+    [ -f "$f" ] && bundle=$f
+done
+[ -n "$bundle" ] || exit 0
+
+name=${bundle##*/}
+current=$(sb_running_version)
+
+invalid() {
+    echo "50-rauc: $bundle refused: $1" >&2
+    sb_write_kv "$SHAREBOX_UPDATE_CANDIDATE" state invalid file "$bundle" name "$name" \
+        current "$current" error "$1"
+    exit 0
+}
+
+if [ "$(sb_clean "$bundle")" != "$bundle" ]; then
+    invalid "unsupported characters in the file name"
+fi
+
+# rauc info verifies the bundle signature against the keyring
+if ! info=$(rauc info --output-format=shell "$bundle" 2>&1); then
+    err=$(printf '%s\n' "$info" | grep -v '^$' | tail -n 1)
+    invalid "signature or format check failed: ${err:-rauc info failed}"
+fi
+
+compatible=$(sb_shell_get "$info" RAUC_MF_COMPATIBLE)
+version=$(sb_shell_get "$info" RAUC_MF_VERSION)
+description=$(sb_shell_get "$info" RAUC_MF_DESCRIPTION)
+build=$(sb_shell_get "$info" RAUC_MF_BUILD)
+system=$(sb_system_compatible)
+
+if [ "$compatible" != "$system" ]; then
+    invalid "bundle for $compatible, this box is $system"
+fi
+
+echo "50-rauc: update candidate $bundle (version $version)"
+sb_write_kv "$SHAREBOX_UPDATE_CANDIDATE" state ready file "$bundle" name "$name" \
+    version "$version" description "$description" build "$build" \
+    compatible "$compatible" current "$current"
