@@ -8,8 +8,14 @@ Type=oneshot
 ExecStart=/usr/lib/sharebox/sharebox-usb-scan
 TimeoutStartSec=120
 
-# Hardening. Root is needed to restart sharebox-setup through systemd and
-# to write /data/config; no capability is kept.
+# Hardening. Root (uid 0, no capability kept) is needed to restart units
+# through systemd's private socket (sharebox-setup here, kiwix-library-update
+# in the 60-kiwix hook) and to write the root-owned /data/share (usb link),
+# /data/config and /run/sharebox (update-candidate of the 50-rauc hook).
+# Without CAP_DAC_OVERRIDE, those directories must stay owned by root.
+# "rauc info" (50-rauc) is local: it reads the keyring, system.conf and
+# /data/rauc (root, 0700) and only needs AF_UNIX; it does not mount the
+# verity bundle, so PrivateDevices= does not get in the way.
 CapabilityBoundingSet=
 NoNewPrivileges=yes
 ProtectSystem=strict

@@ -1,9 +1,10 @@
 #!/bin/sh
 # Install the update candidate recorded by the USB hook (50-rauc).
 #
-# Called by the /status CGI after a POST. The CGI runs unprivileged: in that
-# case the script only queues the request (/run/sharebox-update/request) and
-# returns; sharebox-update-install.path then starts
+# Called by the /status CGI after a POST. The CGI runs unprivileged (user
+# www): in that case the script only queues the request
+# (/run/sharebox/requests/install, directory root:www 0730) and returns;
+# sharebox-update-install.path then starts
 # sharebox-update-install.service, which runs this script as root to:
 #   - re-check the candidate (state=ready, file still present)
 #   - rauc install (signature, compatible and verity are checked again)
@@ -21,7 +22,8 @@
 
 set -u
 
-. /usr/lib/sharebox/sharebox-update-lib.sh
+# SHAREBOX_ROOT prefixes the paths (tests only, never set by the units)
+. "${SHAREBOX_ROOT:-}/usr/lib/sharebox/sharebox-update-lib.sh"
 
 if [ "$(id -u)" != 0 ]; then
     if [ "$(sb_kv_get "$SHAREBOX_UPDATE_CANDIDATE" state)" != ready ]; then
@@ -33,7 +35,12 @@ if [ "$(id -u)" != 0 ]; then
         echo "the update on the USB stick has changed, reload the page"
         exit 1
     fi
-    if ! printf '%s\n' "$name" > "$SHAREBOX_UPDATE_REQUEST" 2> /dev/null; then
+    # Readable by the root service, which runs without CAP_DAC_OVERRIDE;
+    # renamed into place so that the path unit never sees a partial file.
+    tmp=$SHAREBOX_UPDATE_REQUEST.$$
+    if ! (umask 022 && printf '%s\n' "$name" > "$tmp") 2> /dev/null || \
+       ! mv -f "$tmp" "$SHAREBOX_UPDATE_REQUEST" 2> /dev/null; then
+        rm -f "$tmp" 2> /dev/null
         echo "cannot queue the update request"
         exit 2
     fi

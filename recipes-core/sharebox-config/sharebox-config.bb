@@ -20,8 +20,8 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda
 #   www/<code>/index.html.in home page; "@@ENGINE_LINKS@@" alone on a line is
 #                            replaced with www/<code>/engine-<engine>.html
 #   www/<code>/engine-<engine>.html  engine cards, one <li> per line; cards
-#                            with class optional-forum are dropped (no forum
-#                            engine), optional-upload when uploads are off
+#                            with class optional-upload are dropped when
+#                            uploads are off
 #   www/<code>/how-it-works.html     final page
 #   www/<code>/status.html.in, status-update.html.in, status-result-ok.html,
 #   status-result-error.html.in      /status CGI templates (not served)
@@ -130,12 +130,11 @@ do_install() {
             frag=$dir/engine-$engine.html
             [ -f $frag ] || frag=${S}/www/en/engine-$engine.html
             [ -f $frag ] || frag=/dev/null
-            # No forum engine any more (Sriracha dropped)
-            sed_args="-e /optional-forum/d"
             if [ "${SHAREBOX_UPLOAD_MAX}" = 0 ]; then
-                sed_args="$sed_args -e /optional-upload/d"
+                sed -e /optional-upload/d $frag > ${B}/cards.html
+            else
+                cat $frag > ${B}/cards.html
             fi
-            sed $sed_args $frag > ${B}/cards.html
             sed -e "/^[[:space:]]*@@ENGINE_LINKS@@[[:space:]]*\$/{
 r ${B}/cards.html
 d

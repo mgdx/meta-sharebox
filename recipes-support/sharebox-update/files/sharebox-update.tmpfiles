@@ -1,5 +1,4 @@
-# Drop box for update requests from the unprivileged /status CGI: anybody
-# may create a file, only root may list or remove it.
-d /run/sharebox-update 1733 root root -
-# RAUC data directory (system.conf data-directory) and pending-update marker
+# RAUC data directory (system.conf data-directory) and pending-update marker.
+# The request drop box of the /status page, /run/sharebox/requests (root:www
+# 0730), is created by sharebox-config-status, where the www user exists.
 d /data/rauc 0700 root root -

@@ -5,6 +5,8 @@ TCLIBC = "glibc"
 
 DISTRO_FEATURES = "wifi systemd usrmerge ipv4 ipv6 seccomp acl xattr largefile pam"
 DISTRO_FEATURES:append = "${@' rauc' if d.getVar('SHAREBOX_UPDATES') == '1' else ''}"
+# meta-rauc stays in the layer list when updates are off: do not warn then
+SKIP_META_RAUC_FEATURE_CHECK = "${@'0' if d.getVar('SHAREBOX_UPDATES') == '1' else '1'}"
 DISTRO_FEATURES:remove = "x11 wayland opengl vulkan bluetooth alsa pulseaudio nfs zeroconf ptest 3g nfc"
 DISTRO_FEATURES_OPTED_OUT += "pulseaudio gobject-introspection-data"
 

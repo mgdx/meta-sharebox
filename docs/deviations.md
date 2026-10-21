@@ -21,9 +21,10 @@ imageboard and forum server, but it does not fit the box:
   on the open network.
 
 `packagegroup-sharebox-engine-modular` therefore installs no forum and there
-is no `SHAREBOX_FORUM` switch. The `full` image does not get a forum either.
-Port 8080 and `/forum/` stay reserved in `docs/ARCHITECTURE.md` for a later
-forum engine.
+is no `SHAREBOX_FORUM` switch. The `full` image does not get a forum either,
+the home pages have no forum card and lighttpd has no `/forum/` route. A
+later forum engine would add its own card (`engine-*.html`), lighttpd
+snippet and `/data/<engine>` directory.
 
 ### Ergo: vendored modules instead of generated go-mods.inc
 
@@ -183,10 +184,7 @@ ShareBox images).
 - Restricted to `raspberrypi4-64`, `raspberrypi5` and the generic
   `raspberrypi-armv8` (`COMPATIBLE_MACHINE`), as the "full" section of the
   specification reserves it to Pi 4 and 5.
-- `SHAREBOX_FORUM = "1"` is set in the image, and the forum packages
-  (`SHAREBOX_FORUM_PACKAGES`, default `sriracha sriracha-lighttpd`) are added
-  to `IMAGE_INSTALL` by the image itself, because a variable set in an image
-  recipe is not visible to the packagegroup recipes.
+- No forum (see "Sriracha (forum) is not packaged" above).
 - `SHAREBOX_DLNA ?= "0"` adds meta-multimedia `minidlna` when set to `1`
   (parse error if meta-multimedia is absent). Its configuration and the
   firewall ports (tcp/8200, udp/1900) are not handled yet.

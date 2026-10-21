@@ -41,7 +41,8 @@ SystemCallFilter=@system-service
 SystemCallFilter=~@privileged @resources
 UMask=0077
 ReadOnlyPaths=-/data/share
-# /status writes update requests here (directory owned by root:www, 0730)
+# /status queues update requests here (sharebox-install-update, directory
+# root:www 0730, watched by sharebox-update-install.path)
 ReadWritePaths=-/run/sharebox/requests
 
 [Install]

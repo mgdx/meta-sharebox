@@ -1,12 +1,15 @@
 # Helpers shared by the ShareBox update scripts (POSIX sh, sourced).
 # File formats are described in docs/ARCHITECTURE.md, section "Updates".
 
-SHAREBOX_RUNDIR=/run/sharebox
+SHAREBOX_RUNDIR=${SHAREBOX_ROOT:-}/run/sharebox
 SHAREBOX_UPDATE_CANDIDATE=$SHAREBOX_RUNDIR/update-candidate
 SHAREBOX_UPDATE_STATUS=$SHAREBOX_RUNDIR/update-status
-SHAREBOX_UPDATE_REQDIR=/run/sharebox-update
-SHAREBOX_UPDATE_REQUEST=$SHAREBOX_UPDATE_REQDIR/request
-SHAREBOX_UPDATE_PENDING=/data/rauc/sharebox-pending-update
+# Request drop box, created root:www 0730 by sharebox-config-status: only
+# the web front end (group www) can queue a request, nobody else can list it.
+# Watched by sharebox-update-install.path.
+SHAREBOX_UPDATE_REQDIR=$SHAREBOX_RUNDIR/requests
+SHAREBOX_UPDATE_REQUEST=$SHAREBOX_UPDATE_REQDIR/install
+SHAREBOX_UPDATE_PENDING=${SHAREBOX_ROOT:-}/data/rauc/sharebox-pending-update
 
 # Keep a value printable, on one line, without shell or HTML metacharacters,
 # at most 200 characters.

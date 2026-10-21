@@ -34,8 +34,8 @@ IMAGE_FSTYPES = "${SHAREBOX_IMAGE_FSTYPES}"
 # that the slot written at flash time is byte-identical to the bundle payload.
 IMAGE_TYPEDEP:wic:append = " erofs"
 
+# files/wic/ of this layer is in the default WKS_SEARCH_PATH
 WKS_FILE = "${@'sharebox-dual.wks.in' if d.getVar('SHAREBOX_UPDATES') == '1' else 'sharebox-single.wks.in'}"
-WKS_SEARCH_PATH:prepend = "${@''.join('%s/wic:' % p for p in d.getVar('BBPATH').split(':') if p)}"
 
 # Read-only root, /etc overlay set up by our own preinit template
 IMAGE_FEATURES:append = " read-only-rootfs overlayfs-etc"

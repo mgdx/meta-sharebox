@@ -27,7 +27,7 @@ dropped) by this layer. See `docs/deviations.md`.
 | `recipes-core/sharebox-config/` | runtime configuration generator, home pages, i18n data |
 | `recipes-connectivity/{hostapd,dnsmasq,nftables,captive-portal}` | access point, DHCP/DNS, firewall, captive probes |
 | `recipes-webserver/{lighttpd,gamja}` | HTTP front end and static IRC client |
-| `recipes-sharing/{dufs,ergo,luffy,shareboxx,sriracha}` | sharing engines |
+| `recipes-sharing/{dufs,ergo,luffy,shareboxx}` | sharing engines |
 | `recipes-kiwix/{xapian-core,libzim,libkiwix,kainjow-mustache,kiwix-tools}` | offline library |
 | `recipes-support/{usb-automount,rauc,sharebox-healthcheck,sharebox-update,sharebox-storage}` | USB sticks, updates, data partition growth |
 | `recipes-core/bundles/` | `sharebox-bundle-<engine>.bb`, one RAUC bundle per image |
@@ -88,7 +88,6 @@ IMAGE_INSTALL += "packagegroup-sharebox-frontend packagegroup-sharebox-engine-mo
 | ergo websocket | 8097 | `/socket` |
 | ergo plain IRC (local tools only) | 6667 | - |
 | gamja (static) | - | `/chat/` |
-| forum (reserved, not packaged, see `docs/deviations.md`) | 8080 | `/forum/` |
 | kiwix-serve | 8081 | `/wiki/` |
 
 ## lighttpd
@@ -211,24 +210,20 @@ Under `recipes-core/sharebox-config/files/`, installed as whole directories:
 - `i18n/lang-aliases.txt`: `alias<TAB>code` for browser tags.
 - `www/style.css`, `www/<code>/how-it-works.html` (final),
   `www/<code>/index.html.in` (`@@ENGINE_LINKS@@` alone on a line, replaced
-  by `www/<code>/engine-<engine>.html`; cards with `optional-forum` or
-  `optional-upload` dropped: always for the forum (no forum engine), when
-  `SHAREBOX_UPLOAD_MAX = "0"` for uploads).
+  by `www/<code>/engine-<engine>.html`; cards with `optional-upload` are
+  dropped when `SHAREBOX_UPLOAD_MAX = "0"`).
 - `/status` templates: `status.html.in` (`@@CLIENTS@@`, `@@DISK_FREE@@`,
   `@@VERSION@@`, `@@WARNINGS@@`, `@@UPDATE_RESULT@@`, `@@UPDATE_SECTION@@`),
   `status-update.html.in` (`@@BUNDLE@@`), `status-result-ok.html`,
   `status-result-error.html.in` (`@@ERROR@@`).
 
-## Updates from /status (storage lot interface)
+## Updates from /status
 
-- The storage lot writes the absolute path of a bundle it verified
-  (`rauc info`) to `/run/sharebox/update-bundle`; `/status` then shows the
-  install form (only when `SHAREBOX_UPDATES = "1"`).
-- A confirmed POST writes that same path (never a client supplied one) to
-  `/run/sharebox/requests/install` (directory `root:www 0730`); the storage
-  lot watches it (path unit) and installs.
-- The result is reported in `/run/sharebox/update-result`: `ok` or
-  `error: <message>`.
+The `/status` CGI (user `www`) never installs anything itself: it reads the
+files written by the update packages and queues requests with
+`sharebox-install-update`. The contract (files, request drop box, exit
+codes, how each state maps to the page fragments) is in the "Updates"
+section below.
 
 ## USB sticks
 
@@ -240,10 +235,13 @@ Under `recipes-core/sharebox-config/files/`, installed as whole directories:
   `share/` directory if present), imports `sharebox/sharebox.conf` into
   `/data/config` and restarts `sharebox-setup.service` when it changed, then
   runs every executable `/usr/lib/sharebox/usb-hooks.d/*` with the active
-  mount points as arguments (none when the last stick is removed). The
-  hooks run in the scan service sandbox (no network, no capability,
-  `/media` read-only; `/data/share`, `/data/config`, `/run/sharebox`
-  writable); a hook needing more ships a drop-in for the service.
+  mount points as arguments, newest first (none when the last stick is
+  removed). The hooks run in the scan service sandbox: uid 0 without any
+  capability (root-owned files only), no network but `AF_UNIX` (systemd and
+  D-Bus sockets: `systemctl --no-block restart <unit>` works), no device
+  nodes, `/media` read-only; `/data/share`, `/data/config`, `/run/sharebox`
+  writable. A hook needing more ships a drop-in for the service, or better
+  restarts a dedicated unit (as `60-kiwix` does).
 
 ## Users and data
 
@@ -254,7 +252,8 @@ Under `recipes-core/sharebox-config/files/`, installed as whole directories:
   (created by the lighttpd bbappend), `dnsmasq` (dnsmasq bbappend).
 - `/data` is the persistent ext4 partition. Its tree is created by
   `systemd-tmpfiles` (`sharebox-config` ships `/usr/lib/tmpfiles.d/sharebox.conf`):
-  `/data/share` (public files), `/data/share/upload` (anonymous uploads,
+  `/data/share` (public files, owner `root`: the capability-less USB scan
+  creates the `usb` link there), `/data/share/upload` (anonymous uploads,
   owner `sharebox`), `/data/config`. Directories owned by an engine user are
   created by that engine recipe's own tmpfiles file (the user may not exist
   in other images): `/data/chat` (owner `ergo`), `/data/zim` (owner `kiwix`).
@@ -305,11 +304,14 @@ Only when `SHAREBOX_UPDATES = "1"` (`rauc` in `DISTRO_FEATURES`). Packages:
 
 ### USB hook
 
-`/usr/lib/sharebox/usb-hooks.d/50-rauc <mount point>` (run as root by
-`sharebox-usb-scan.service`, which needs `/run/sharebox` writable and
-`AF_UNIX` allowed) looks for `<mount point>/sharebox/*.raucb` (last one in
-name order), runs `rauc info` (signature against the keyring) and checks the
-compatible string. It writes `/run/sharebox/update-candidate`.
+`/usr/lib/sharebox/usb-hooks.d/50-rauc <mount point>...` (run by
+`sharebox-usb-scan.service` as root without any capability, mount points
+newest first) looks for `<mount point>/sharebox/*.raucb` on the newest stick
+that has one (last one in name order), runs `rauc info` (local, no D-Bus:
+CMS signature against the keyring; the verity bundle is not mounted, so
+`PrivateDevices=yes` is fine) and checks the compatible string. It writes
+`/run/sharebox/update-candidate`, or removes it when no stick holds a
+bundle.
 
 ### Files read by the `/status` CGI
 
@@ -352,17 +354,33 @@ On `POST /status` with `action=install`, the CGI runs
 /usr/lib/sharebox/sharebox-install-update "<bundle field>"
 ```
 
-as its own unprivileged user. The argument is only compared with the
-candidate's `name`, never used as a path. The command prints one English
-line and exits with 0 (request queued: show `status-result-ok`), 1 (no
-verified update, or the candidate changed: show `status-result-error` with
-the printed line) or 2 (internal error, same). Queuing writes
-`/run/sharebox-update/request` (directory mode 1733, created by
-tmpfiles), so the front end unit needs
-`ReadWritePaths=/run/sharebox-update`. `sharebox-update-install.path` then
-starts `sharebox-update-install.service` (root), which installs with
-`rauc install`, writes `update-status` and reboots. Subsequent page loads
-show `update-status`.
+as its own unprivileged user (`www`). The argument is only compared with
+the candidate's `name`, never used as a path: only the bundle verified by
+the hook can be installed. The command prints one English line and exits
+with 0 (request queued: show `status-result-ok`), 1 (no verified update, or
+the candidate changed: show `status-result-error` with the printed line) or
+2 (internal error, same). Queuing writes the candidate name (mode 0644) to
+`/run/sharebox/requests/install`; the directory is `root:www 0730`, created
+by the tmpfiles snippet of `sharebox-config-status` (where the `www` user
+exists), and the front end unit has
+`ReadWritePaths=-/run/sharebox/requests`. `sharebox-update-install.path`
+(`PathExists=`) then starts `sharebox-update-install.service` (root, no
+capability), which removes the request, checks the candidate again, installs
+with `rauc install` (through `rauc.service`), writes `update-status` and
+reboots.
+
+Page rendering by the CGI (only when `SHAREBOX_UPDATES = "1"` and
+`sharebox-install-update` is installed):
+
+| Situation | `@@UPDATE_RESULT@@` | `@@UPDATE_SECTION@@` |
+| --- | --- | --- |
+| POST queued (exit 0) | `status-result-ok.html` | empty |
+| POST refused (exit 1/2, or not `action=install`) | `status-result-error.html.in`, printed line | as below |
+| `update-status` `installing`, `rebooting` | `status-result-ok.html` | empty, POSTs refused |
+| `update-status` `rolling-back` | error fragment, `message` | empty, POSTs refused |
+| `update-status` `failed`, `rolled-back` | error fragment, `message` | as below |
+| `update-candidate` `invalid` (and nothing above) | error fragment, `name: error` | empty |
+| `update-candidate` `ready` and `file` exists | - | `status-update.html.in`, `@@BUNDLE@@` = `name` |
 
 ### Health check
 
