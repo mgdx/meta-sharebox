@@ -7,8 +7,11 @@
 #   inherit sharebox-image
 #   IMAGE_INSTALL += "packagegroup-sharebox-frontend packagegroup-sharebox-engine-modular"
 #
-# The storage layout (erofs, overlayfs-etc, wks, IMAGE_FSTYPES, RAUC bundle
-# hooks) lives in sharebox-storage.bbclass.
+# The storage layout (read-only-rootfs and overlayfs-etc IMAGE_FEATURES,
+# erofs, IMAGE_FSTYPES, WKS_FILE, sharebox-storage and kernel-image
+# packages) belongs to sharebox-storage.bbclass, inherited below. This class
+# must not assign IMAGE_FSTYPES, WKS_FILE or IMAGE_FEATURES, and only uses
+# "=" on IMAGE_INSTALL before that inherit (the storage class appends).
 
 SHAREBOX_ENGINE ??= "base"
 SHAREBOX_ENGINES = "base classic modular shareboxx library full"
@@ -17,8 +20,7 @@ LICENSE ?= "MIT"
 
 inherit core-image
 
-# Read-only rootfs, no package manager, no locales
-IMAGE_FEATURES += "read-only-rootfs"
+# No package manager (no package-management feature), no locales
 IMAGE_LINGUAS = ""
 
 # The whole image content is explicit: no packagegroup-base-extended
