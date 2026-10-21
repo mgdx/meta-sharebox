@@ -1,0 +1,602 @@
+#!/bin/sh
+# sharebox-setup: build the ShareBox runtime configuration.
+#
+# Merges the build time defaults (/usr/lib/sharebox/defaults.conf) with the
+# run time overrides (/data/config/sharebox.conf), applies the Wi-Fi
+# regulatory rules, picks the language and the SSID, and writes into
+# /run/sharebox:
+#   env                    KEY="value" lines (systemd EnvironmentFile and sh)
+#   hostapd.conf           access point
+#   dnsmasq.conf           DHCP and wildcard DNS
+#   lighttpd-runtime.conf  variables, upload limit, language negotiation
+#   captive.conf           include of the captive portal mode (popup/silent)
+#   warnings               one line per warning, shown on /status
+# then runs the hooks in /usr/lib/sharebox/setup.d/ (engine specific files).
+#
+# Both configuration files use "key=value" lines; "#" starts a comment.
+# They are parsed, never sourced. Only POSIX sh and busybox tools are used.
+#
+# SHAREBOX_ROOT prefixes every path (tests). SHAREBOX_CONF overrides the run
+# time file path, SHAREBOX_MODEL the device tree model string.
+
+set -u
+umask 022
+
+ROOT=${SHAREBOX_ROOT:-}
+LIBDIR=$ROOT/usr/lib/sharebox
+DEFAULTS=$LIBDIR/defaults.conf
+USERCONF=${SHAREBOX_CONF:-$ROOT/data/config/sharebox.conf}
+I18N=$ROOT/usr/share/sharebox/i18n
+WWW=$ROOT/usr/share/sharebox/www
+OUT=$ROOT/run/sharebox
+# Paths written into generated files (as seen by the services, never prefixed)
+CAPTIVE_DIR=/usr/share/captive-portal
+
+FALLBACK_SSID="ShareBox - Share Freely"
+MAX_CONF_SIZE=65536
+
+log() { echo "sharebox-setup: $*" >&2; }
+
+mkdir -p "$OUT" || { log "cannot create $OUT"; exit 1; }
+chmod 0755 "$OUT"
+TMP=$(mktemp -d "$OUT/.setup.XXXXXX") || { log "cannot create a temporary directory in $OUT"; exit 1; }
+trap 'rm -rf "$TMP"' EXIT
+: > "$TMP/warnings"
+
+warn() {
+    printf '%s\n' "$*" >> "$TMP/warnings"
+    log "warning: $*"
+}
+
+# --- helpers -----------------------------------------------------------------
+
+trim() {
+    printf '%s' "$1" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//'
+}
+
+lower() { printf '%s' "$1" | tr 'A-Z' 'a-z'; }
+upper() { printf '%s' "$1" | tr 'a-z' 'A-Z'; }
+
+nbytes() { printf '%s' "$1" | wc -c | tr -d ' '; }
+
+is_uint() {
+    case $1 in ''|*[!0-9]*) return 1 ;; esac
+    return 0
+}
+
+has_cntrl() { printf '%s' "$1" | LC_ALL=C grep -q '[[:cntrl:]]'; }
+
+# Escape a value for KEY="value" lines (systemd EnvironmentFile and sh)
+dq() { printf '%s' "$1" | sed -e 's/[\\"$`]/\\&/g'; }
+
+# Escape a value for a lighttpd double-quoted string (only \" is special)
+lq() { printf '%s' "$1" | sed -e 's/"/\\"/g'; }
+
+# Escape a literal for a regular expression
+rq() { printf '%s' "$1" | sed -e 's/[][\\.^$*+?(){}|]/\\&/g'; }
+
+BOM=$(printf '\357\273\277')
+
+# read_conf FILE PREFIX ALLOWED_KEYS: sets ${PREFIX}_<key> for allowed keys
+read_conf() {
+    _file=$1 _pfx=$2 _allowed=$3
+    [ -f "$_file" ] || return 0
+    if [ ! -r "$_file" ]; then
+        warn "cannot read $_file"
+        return 0
+    fi
+    _size=$(wc -c < "$_file" | tr -d ' ')
+    if [ "$_size" -gt "$MAX_CONF_SIZE" ]; then
+        warn "$_file is larger than $MAX_CONF_SIZE bytes, ignored"
+        return 0
+    fi
+    _n=0
+    while IFS= read -r _line || [ -n "$_line" ]; do
+        _n=$((_n + 1))
+        _line=$(printf '%s' "$_line" | tr -d '\r')
+        [ "$_n" -eq 1 ] && _line=${_line#"$BOM"}
+        _line=$(trim "$_line")
+        case $_line in ''|'#'*|';'*) continue ;; esac
+        case $_line in
+            *=*) ;;
+            *) warn "$(basename "$_file") line $_n: no '=' found, ignored"; continue ;;
+        esac
+        _key=$(lower "$(trim "${_line%%=*}")")
+        _val=$(trim "${_line#*=}")
+        case $_val in
+            \"*\") _val=${_val#\"}; _val=${_val%\"} ;;
+            \'*\') _val=${_val#\'}; _val=${_val%\'} ;;
+        esac
+        _ok=0
+        for _k in $_allowed; do
+            [ "$_k" = "$_key" ] && _ok=1 && break
+        done
+        if [ "$_ok" -eq 0 ]; then
+            warn "$(basename "$_file") line $_n: unknown key '$_key', ignored"
+            continue
+        fi
+        # _key is one of the fixed allowed names, the value is not evaluated
+        eval "${_pfx}_${_key}=\$_val"
+        eval "${_pfx}_set_${_key}=1"
+    done < "$_file"
+}
+
+# get KEY: run time value if set, else build time value
+get() {
+    eval "_set=\${usr_set_$1:-0}"
+    if [ "$_set" = 1 ]; then
+        eval "printf '%s' \"\$usr_$1\""
+    else
+        eval "printf '%s' \"\${def_$1:-}\""
+    fi
+}
+is_user() { eval "[ \"\${usr_set_$1:-0}\" = 1 ]"; }
+
+# --- read configuration ------------------------------------------------------
+
+RUNTIME_KEYS="ssid lang country channel band upload_max captive_mode"
+BUILD_KEYS="$RUNTIME_KEYS hostname ipv4 engine updates version"
+
+if [ -f "$DEFAULTS" ]; then
+    read_conf "$DEFAULTS" def "$BUILD_KEYS"
+else
+    log "$DEFAULTS missing, using built-in defaults"
+fi
+read_conf "$USERCONF" usr "$RUNTIME_KEYS"
+
+# --- network identity (build time only) --------------------------------------
+
+HOSTNAME=$(lower "${def_hostname:-sharebox.lan}")
+case $HOSTNAME in
+    ''|*[!a-z0-9.-]*) log "invalid hostname '$HOSTNAME', using sharebox.lan"; HOSTNAME=sharebox.lan ;;
+esac
+
+IPV4=${def_ipv4:-192.168.77.1/24}
+parse_ipv4() {
+    _addr=${1%/*}
+    _pfx=${1#*/}
+    [ "$_pfx" = "$1" ] && _pfx=24
+    is_uint "$_pfx" || return 1
+    [ "$_pfx" -ge 8 ] && [ "$_pfx" -le 27 ] || return 1
+    _old_ifs=$IFS
+    IFS=.
+    # shellcheck disable=SC2086
+    set -- $_addr
+    IFS=$_old_ifs
+    [ $# -eq 4 ] || return 1
+    for _o in "$@"; do
+        is_uint "$_o" || return 1
+        [ "$_o" -le 255 ] || return 1
+    done
+    ADDR=$_addr
+    PREFIX=$_pfx
+    NETMASK="" NET="" BCAST=""
+    _i=0
+    for _o in "$@"; do
+        _bits=$((_pfx - 8 * _i))
+        [ "$_bits" -lt 0 ] && _bits=0
+        [ "$_bits" -gt 8 ] && _bits=8
+        _m=$((256 - (1 << (8 - _bits))))
+        [ "$_bits" -eq 0 ] && _m=0
+        NETMASK=$NETMASK${NETMASK:+.}$_m
+        NET=$NET${NET:+.}$((_o & _m))
+        BCAST=$BCAST${BCAST:+.}$((_o | (255 - _m)))
+        _i=$((_i + 1))
+    done
+    _n3=${NET%.*}; _n4=${NET##*.}
+    _b3=${BCAST%.*}; _b4=${BCAST##*.}
+    RANGE_START=$_n3.$((_n4 + 10))
+    RANGE_END=$_b3.$((_b4 - 5))
+    return 0
+}
+if ! parse_ipv4 "$IPV4"; then
+    log "invalid ipv4 '$IPV4', using 192.168.77.1/24"
+    parse_ipv4 192.168.77.1/24
+fi
+
+ENGINE=${def_engine:-base}
+UPDATES=${def_updates:-1}
+VERSION=${def_version:-}
+
+# --- regulatory domain -------------------------------------------------------
+
+check_country() {
+    _c=$(upper "$1")
+    case $_c in
+        ''|00) printf '' ; return 0 ;;
+        [A-Z][A-Z]) printf '%s' "$_c"; return 0 ;;
+    esac
+    return 1
+}
+
+COUNTRY=""
+if is_user country; then
+    if ! COUNTRY=$(check_country "$usr_country"); then
+        warn "country '$usr_country' is not an ISO 3166-1 alpha-2 code, ignored"
+        is_user country && usr_set_country=0
+    fi
+fi
+if ! is_user country; then
+    if ! COUNTRY=$(check_country "${def_country:-}"); then
+        log "invalid build time country '${def_country:-}', ignored"
+        COUNTRY=""
+    fi
+fi
+
+parse_band() {
+    case $(lower "$1") in
+        2|2.4|24|2.4ghz|2ghz|g|bg|'') printf '2.4' ;;
+        5|5ghz|5.0|a) printf '5' ;;
+        *) return 1 ;;
+    esac
+}
+BAND_RAW=$(get band)
+if ! BAND=$(parse_band "$BAND_RAW"); then
+    warn "band '$BAND_RAW' is not 2.4 or 5, using 2.4 GHz"
+    BAND=2.4
+fi
+
+MODEL=${SHAREBOX_MODEL:-}
+if [ -z "$MODEL" ] && [ -r "$ROOT/proc/device-tree/model" ]; then
+    MODEL=$(tr -d '\000' < "$ROOT/proc/device-tree/model")
+fi
+model_has_5ghz() {
+    case $1 in
+        *"Zero"*) return 1 ;;
+        *"Raspberry Pi 3 Model B Rev"*) return 1 ;;
+        *"Raspberry Pi Model"*|*"Raspberry Pi 2"*|*"Raspberry Pi Compute Module 3"*) return 1 ;;
+    esac
+    return 0
+}
+
+if [ "$BAND" = 5 ]; then
+    if [ -z "$COUNTRY" ]; then
+        warn "5 GHz requires a country (country=XX in sharebox.conf); staying on 2.4 GHz"
+        BAND=2.4
+    elif [ -n "$MODEL" ] && ! model_has_5ghz "$MODEL"; then
+        warn "this board ($MODEL) has no 5 GHz radio; staying on 2.4 GHz"
+        BAND=2.4
+    fi
+fi
+
+CHANNEL_RAW=$(get channel)
+CHANNEL=$CHANNEL_RAW
+if [ "$BAND" = 2.4 ]; then
+    if [ -n "$COUNTRY" ]; then max=13; else max=11; fi
+    if ! is_uint "$CHANNEL" || [ "$CHANNEL" -lt 1 ] || [ "$CHANNEL" -gt "$max" ]; then
+        if [ -n "$COUNTRY" ]; then
+            warn "channel '$CHANNEL_RAW' is not allowed on 2.4 GHz (1 to $max); using channel 6"
+        else
+            warn "channel '$CHANNEL_RAW' is not allowed without a country (world domain, 1 to 11); using channel 6"
+        fi
+        CHANNEL=6
+    fi
+    CHANNEL=$((CHANNEL + 0))
+else
+    case $CHANNEL in
+        36|40|44|48|149|153|157|161|165) ;;
+        *)
+            warn "channel '$CHANNEL_RAW' is not a usable 5 GHz channel (36, 40, 44, 48, 149 to 165); using channel 36"
+            CHANNEL=36
+            ;;
+    esac
+fi
+
+# --- language ----------------------------------------------------------------
+
+lang_known() {
+    [ -n "$1" ] || return 1
+    case $1 in */*|.*) return 1 ;; esac
+    [ -f "$I18N/ssid-$1.txt" ] || [ -d "$WWW/$1" ]
+}
+
+# Normalise a language tag to the name of a shipped language, or fail
+norm_lang() {
+    _t=$(trim "$1")
+    case $_t in ''|*[!A-Za-z0-9-]*) return 1 ;; esac
+    lang_known "$_t" && { printf '%s' "$_t"; return 0; }
+    _lt=$(lower "$_t")
+    if [ -r "$I18N/languages.txt" ]; then
+        while IFS='	' read -r _code _dir _name || [ -n "$_code" ]; do
+            case $_code in ''|'#'*) continue ;; esac
+            if [ "$(lower "$_code")" = "$_lt" ] && lang_known "$_code"; then
+                printf '%s' "$_code"; return 0
+            fi
+        done < "$I18N/languages.txt"
+    fi
+    if [ -r "$I18N/lang-aliases.txt" ]; then
+        while IFS='	' read -r _alias _code || [ -n "$_alias" ]; do
+            case $_alias in ''|'#'*) continue ;; esac
+            if [ "$(lower "$_alias")" = "$_lt" ] && lang_known "$_code"; then
+                printf '%s' "$_code"; return 0
+            fi
+        done < "$I18N/lang-aliases.txt"
+    fi
+    # Retry without the last subtag (pt-BR -> pt)
+    case $_t in
+        *-*) norm_lang "${_t%-*}"; return $? ;;
+    esac
+    return 1
+}
+
+country_lang() {
+    [ -n "$1" ] && [ -r "$I18N/country-lang.csv" ] || return 1
+    while IFS=, read -r _c _l _rest || [ -n "$_c" ]; do
+        _c=$(trim "$(printf '%s' "$_c" | tr -d '\r')")
+        _l=$(trim "$(printf '%s' "$_l" | tr -d '\r')")
+        if [ "$(upper "$_c")" = "$1" ]; then
+            [ -n "$_l" ] || return 1
+            printf '%s' "$_l"
+            return 0
+        fi
+    done < "$I18N/country-lang.csv"
+    return 1
+}
+
+LANG_SEL=""
+for src in usr def; do
+    eval "_set=\${${src}_set_lang:-0}; _v=\${${src}_lang:-}"
+    [ "$src" = def ] && _set=1
+    [ "$_set" = 1 ] && [ -n "$_v" ] || continue
+    if LANG_SEL=$(norm_lang "$_v"); then
+        break
+    fi
+    LANG_SEL=""
+    if [ "$src" = usr ]; then
+        warn "language '$_v' is not available, ignored"
+    else
+        log "build time language '$_v' is not available, ignored"
+    fi
+done
+if [ -z "$LANG_SEL" ] && [ -n "$COUNTRY" ]; then
+    if _cl=$(country_lang "$COUNTRY"); then
+        LANG_SEL=$(norm_lang "$_cl") || LANG_SEL=""
+    fi
+fi
+[ -n "$LANG_SEL" ] || LANG_SEL=en
+
+# --- SSID --------------------------------------------------------------------
+
+valid_ssid() {
+    _len=$(nbytes "$1")
+    [ "$_len" -ge 1 ] && [ "$_len" -le 32 ] && ! has_cntrl "$1"
+}
+
+ssid_from_file() {
+    _f=$I18N/ssid-$1.txt
+    [ -r "$_f" ] || return 1
+    while IFS= read -r _s || [ -n "$_s" ]; do
+        _s=$(printf '%s' "$_s" | tr -d '\r')
+        _s=${_s#"$BOM"}
+        _s=$(trim "$_s")
+        case $_s in ''|'#'*) continue ;; esac
+        valid_ssid "$_s" || return 1
+        printf '%s' "$_s"
+        return 0
+    done < "$_f"
+    return 1
+}
+
+SSID=""
+_explicit=$(get ssid)
+if [ -n "$_explicit" ]; then
+    if valid_ssid "$_explicit"; then
+        SSID=$_explicit
+    elif is_user ssid; then
+        warn "ssid must be 1 to 32 bytes without control characters; using the generated name"
+    else
+        log "invalid build time SSID, using the generated name"
+    fi
+fi
+if [ -z "$SSID" ]; then
+    SSID=$(ssid_from_file "$LANG_SEL") || SSID=$(ssid_from_file en) || SSID=$FALLBACK_SSID
+fi
+
+# --- upload limit ------------------------------------------------------------
+
+parse_size() {
+    _s=$(lower "$(trim "$1")")
+    _s=${_s%b}
+    _mult=1
+    case $_s in
+        *k) _mult=1024; _s=${_s%k} ;;
+        *m) _mult=1048576; _s=${_s%m} ;;
+        *g) _mult=1073741824; _s=${_s%g} ;;
+    esac
+    is_uint "$_s" || return 1
+    # Keep within 64-bit shell arithmetic (and below 1 PiB)
+    [ ${#_s} -le 6 ] || return 1
+    printf '%s' $((_s * _mult))
+}
+UP_RAW=$(get upload_max)
+[ -n "$UP_RAW" ] || UP_RAW=2G
+if ! UPLOAD_MAX=$(parse_size "$UP_RAW"); then
+    if is_user upload_max; then
+        warn "upload_max '$UP_RAW' is not a size (examples: 500M, 2G, 0); using the build default"
+        UPLOAD_MAX=$(parse_size "${def_upload_max:-2G}") || UPLOAD_MAX=2147483648
+    else
+        log "invalid build time upload_max '$UP_RAW', using 2G"
+        UPLOAD_MAX=2147483648
+    fi
+fi
+if [ "$UPLOAD_MAX" -eq 0 ]; then
+    # Uploads disabled: keep small form posts (status page) working
+    REQ_KB=64
+else
+    REQ_KB=$(((UPLOAD_MAX + 1023) / 1024))
+fi
+
+# --- captive portal mode -----------------------------------------------------
+
+CAPTIVE=$(lower "$(get captive_mode)")
+case $CAPTIVE in
+    popup|silent) ;;
+    '') CAPTIVE=popup ;;
+    *) warn "captive_mode '$CAPTIVE' is not popup or silent; using popup"; CAPTIVE=popup ;;
+esac
+
+# --- write files -------------------------------------------------------------
+
+{
+    echo "# Generated by sharebox-setup, do not edit"
+    printf 'SHAREBOX_SSID="%s"\n' "$(dq "$SSID")"
+    printf 'SHAREBOX_LANG="%s"\n' "$LANG_SEL"
+    printf 'SHAREBOX_COUNTRY="%s"\n' "$COUNTRY"
+    printf 'SHAREBOX_CHANNEL="%s"\n' "$CHANNEL"
+    printf 'SHAREBOX_BAND="%s"\n' "$BAND"
+    printf 'SHAREBOX_UPLOAD_MAX="%s"\n' "$UPLOAD_MAX"
+    printf 'SHAREBOX_HOSTNAME="%s"\n' "$HOSTNAME"
+    printf 'SHAREBOX_ADDR="%s"\n' "$ADDR"
+    printf 'SHAREBOX_PREFIX="%s"\n' "$PREFIX"
+    printf 'SHAREBOX_ENGINE="%s"\n' "$(dq "$ENGINE")"
+    printf 'SHAREBOX_UPDATES="%s"\n' "$(dq "$UPDATES")"
+    printf 'SHAREBOX_CAPTIVE_MODE="%s"\n' "$CAPTIVE"
+    printf 'SHAREBOX_VERSION="%s"\n' "$(dq "$VERSION")"
+} > "$TMP/env"
+
+ssid_hex=$(printf '%s' "$SSID" | od -An -v -tx1 | tr -d ' \n')
+{
+    echo "# Generated by sharebox-setup, do not edit"
+    echo "interface=wlan0"
+    echo "driver=nl80211"
+    echo "ctrl_interface=/run/hostapd"
+    echo "ctrl_interface_group=0"
+    echo "# SSID: $SSID"
+    echo "ssid2=$ssid_hex"
+    echo "utf8_ssid=1"
+    if [ -n "$COUNTRY" ]; then
+        echo "country_code=$COUNTRY"
+        echo "ieee80211d=1"
+    fi
+    if [ "$BAND" = 5 ]; then
+        echo "hw_mode=a"
+        echo "channel=$CHANNEL"
+        echo "ieee80211n=1"
+        case $CHANNEL in
+            36|44|149|157) echo "ht_capab=[HT40+][SHORT-GI-20][SHORT-GI-40]" ;;
+            40|48|153|161) echo "ht_capab=[HT40-][SHORT-GI-20][SHORT-GI-40]" ;;
+            *) echo "ht_capab=[SHORT-GI-20]" ;;
+        esac
+        # 20/40 MHz only: no VHT80 (not allowed everywhere, e.g. some EU rules)
+        echo "ieee80211ac=1"
+        echo "vht_oper_chwidth=0"
+    else
+        echo "hw_mode=g"
+        echo "channel=$CHANNEL"
+        echo "ieee80211n=1"
+    fi
+    echo "wmm_enabled=1"
+    echo "auth_algs=1"
+    echo "ignore_broadcast_ssid=0"
+    echo "ap_isolate=1"
+    echo "max_num_sta=32"
+    echo "beacon_int=100"
+    echo "dtim_period=2"
+} > "$TMP/hostapd.conf"
+
+{
+    echo "# Generated by sharebox-setup, do not edit"
+    echo "interface=wlan0"
+    echo "bind-dynamic"
+    echo "user=dnsmasq"
+    echo "group=dnsmasq"
+    echo "pid-file="
+    echo "dhcp-leasefile=/run/dnsmasq/dnsmasq.leases"
+    echo "dhcp-authoritative"
+    echo "dhcp-range=$RANGE_START,$RANGE_END,$NETMASK,12h"
+    echo "dhcp-option=option:router,$ADDR"
+    echo "dhcp-option=option:dns-server,$ADDR"
+    echo "domain=${HOSTNAME#*.}"
+    echo "address=/#/$ADDR"
+    echo "local-ttl=0"
+    echo "no-resolv"
+    echo "no-hosts"
+    echo "log-dhcp"
+} > "$TMP/dnsmasq.conf"
+
+# Language negotiation: first Accept-Language tag, most specific match first
+# (exact directory, alias table, then without the last subtag), else
+# SHAREBOX_LANG. Built from what is installed, so new languages need no code.
+lang_map() {
+    if [ -d "$WWW" ]; then
+        for _d in "$WWW"/*/; do
+            _c=$(basename "$_d")
+            [ -f "$_d/index.html" ] || continue
+            printf '%s\t%s\n' "$(lower "$_c")" "$_c"
+        done
+    fi
+    if [ -r "$I18N/lang-aliases.txt" ]; then
+        while IFS='	' read -r _alias _code || [ -n "$_alias" ]; do
+            case $_alias in ''|'#'*) continue ;; esac
+            [ -f "$WWW/$_code/index.html" ] || continue
+            printf '%s\t%s\n' "$(lower "$_alias")" "$_code"
+        done < "$I18N/lang-aliases.txt"
+    fi
+}
+DEFAULT_PAGE_LANG=en
+[ -f "$WWW/$LANG_SEL/index.html" ] && DEFAULT_PAGE_LANG=$LANG_SEL
+{
+    echo "# Generated by sharebox-setup, do not edit"
+    printf 'var.sharebox_hostname = "%s"\n' "$(lq "$HOSTNAME")"
+    printf 'var.sharebox_addr = "%s"\n' "$ADDR"
+    printf 'var.sharebox_host_regex = "%s"\n' "$(lq "^($(rq "$HOSTNAME")|$(rq "$ADDR"))(:[0-9]+)?\$")"
+    printf 'var.sharebox_lang = "%s"\n' "$DEFAULT_PAGE_LANG"
+    printf 'var.sharebox_upload_max = "%s"\n' "$UPLOAD_MAX"
+    printf 'server.max-request-size = %s\n' "$REQ_KB"
+    echo
+    echo '$HTTP["host"] =~ var.sharebox_host_regex {'
+    echo '  $HTTP["url"] =~ "^/(index\.html)?$" {'
+    echo '    url.redirect-code = 302'
+    echo '    setenv.set-response-header = ( "Vary" => "Accept-Language", "Cache-Control" => "no-store", "X-Content-Type-Options" => "nosniff" )'
+    _first=1
+    lang_map | while IFS='	' read -r _tag _code; do
+        printf '%s\t%s\t%s\n' "${#_tag}" "$_tag" "$_code"
+    done | sort -t '	' -k1,1nr -k2,2 | cut -f2- |
+    while IFS='	' read -r _tag _code; do
+        _cond="\$HTTP[\"language\"] =~ \"(?i)^\\s*$(rq "$_tag")([-;,\\s]|\$)\""
+        if [ "$_first" = 1 ]; then
+            printf '    %s {\n' "$_cond"
+            _first=0
+        else
+            printf '    else %s {\n' "$_cond"
+        fi
+        printf '      url.redirect = ( "^" => "/%s/" )\n    }\n' "$_code"
+    done
+    echo '    url.redirect = ( "^" => "/" + var.sharebox_lang + "/" )'
+    echo '  }'
+    echo '}'
+} > "$TMP/lighttpd-runtime.conf"
+
+{
+    echo "# Generated by sharebox-setup, do not edit"
+    if [ -f "$ROOT$CAPTIVE_DIR/$CAPTIVE.conf" ]; then
+        printf 'include "%s/%s.conf"\n' "$CAPTIVE_DIR" "$CAPTIVE"
+    else
+        echo "# captive portal mode '$CAPTIVE' not installed"
+    fi
+} > "$TMP/captive.conf"
+
+for f in env hostapd.conf dnsmasq.conf lighttpd-runtime.conf captive.conf warnings; do
+    chmod 0644 "$TMP/$f"
+    mv -f "$TMP/$f" "$OUT/$f" || { log "cannot write $OUT/$f"; exit 1; }
+done
+
+log "ssid='$SSID' lang=$LANG_SEL country=${COUNTRY:-none} band=$BAND channel=$CHANNEL upload_max=$UPLOAD_MAX captive=$CAPTIVE"
+
+# --- hooks -------------------------------------------------------------------
+
+if [ -d "$LIBDIR/setup.d" ]; then
+    set -a
+    # shellcheck disable=SC1091
+    . "$OUT/env"
+    set +a
+    for hook in "$LIBDIR"/setup.d/*; do
+        [ -f "$hook" ] && [ -x "$hook" ] || continue
+        if ! "$hook"; then
+            log "hook $hook failed"
+            printf 'internal error: %s failed\n' "$(basename "$hook")" >> "$OUT/warnings"
+        fi
+    done
+fi
+
+exit 0

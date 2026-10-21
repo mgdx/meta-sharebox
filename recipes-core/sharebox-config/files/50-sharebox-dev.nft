@@ -1,0 +1,10 @@
+# Development profile only (sharebox-config-devaccess): SSH, ping and IPv6
+# neighbour discovery on the wired / USB gadget interfaces. Never on wlan0.
+table inet sharebox {
+  chain input {
+    iifname != "wlan0" tcp dport 22 ct state new limit rate 10/second accept
+    iifname != "wlan0" icmp type echo-request limit rate 10/second accept
+    iifname != "wlan0" meta l4proto ipv6-icmp accept
+    iifname != "wlan0" udp dport { 68, 546 } accept
+  }
+}

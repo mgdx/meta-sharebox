@@ -1,0 +1,14 @@
+[Unit]
+Description=Mount points of USB sticks (tmpfs, the rootfs is read-only)
+DefaultDependencies=no
+Conflicts=umount.target
+Before=local-fs.target umount.target
+
+[Mount]
+What=tmpfs
+Where=/media
+Type=tmpfs
+Options=mode=0755,nosuid,nodev,noexec,size=1m
+
+[Install]
+WantedBy=local-fs.target

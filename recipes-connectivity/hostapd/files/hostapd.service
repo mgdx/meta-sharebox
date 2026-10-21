@@ -1,0 +1,45 @@
+[Unit]
+Description=ShareBox access point (hostapd)
+Requires=sharebox-setup.service
+After=sharebox-setup.service nftables.service sys-subsystem-net-devices-wlan0.device
+BindsTo=sys-subsystem-net-devices-wlan0.device
+
+[Service]
+Type=simple
+EnvironmentFile=/run/sharebox/env
+ExecStart=@SBINDIR@/hostapd /run/sharebox/hostapd.conf
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-failure
+RestartSec=3
+RuntimeDirectory=hostapd
+RuntimeDirectoryMode=0700
+
+# Hardening: nl80211 needs root with CAP_NET_ADMIN and CAP_NET_RAW
+User=root
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_RAW
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+ProtectClock=yes
+ProtectHostname=yes
+ProtectProc=invisible
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+RestrictAddressFamilies=AF_NETLINK AF_PACKET AF_UNIX AF_INET
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+SystemCallFilter=~@resources
+UMask=0077
+ReadWritePaths=/run/hostapd
+
+[Install]
+WantedBy=multi-user.target

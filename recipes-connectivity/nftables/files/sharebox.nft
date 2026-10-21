@@ -1,0 +1,31 @@
+#!/usr/sbin/nft -f
+# ShareBox firewall. Only udp 53/67 and tcp 53/80 are reachable from wlan0;
+# the box never forwards. Port 443 is reset so that browsers fail fast.
+
+flush ruleset
+
+table inet sharebox {
+  chain input {
+    type filter hook input priority 0; policy drop;
+    iif lo accept
+    ct state established,related accept
+    ct state invalid drop
+    iifname "wlan0" udp dport { 67, 53 } accept
+    iifname "wlan0" tcp dport { 53, 80 } ct state new limit rate 50/second accept
+    iifname "wlan0" tcp dport 443 reject with tcp reset
+    iifname "wlan0" icmp type echo-request limit rate 10/second accept
+  }
+  chain forward {
+    type filter hook forward priority 0; policy drop;
+  }
+  chain prerouting {
+    type nat hook prerouting priority -100;
+    iifname "wlan0" tcp dport 80 redirect to :80
+    iifname "wlan0" udp dport 53 redirect to :53
+    iifname "wlan0" tcp dport 53 redirect to :53
+  }
+}
+
+# Extra rules (development profile, engines): add rules to the chains above,
+# e.g. "table inet sharebox { chain input { ... } }"
+include "/etc/nftables.d/*.nft"

@@ -1,0 +1,49 @@
+[Unit]
+Description=ShareBox runtime configuration
+DefaultDependencies=no
+After=local-fs.target systemd-tmpfiles-setup.service
+Before=network-pre.target hostapd.service dnsmasq.service lighttpd.service
+Wants=network-pre.target
+Conflicts=shutdown.target
+Before=shutdown.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/sbin/sharebox-setup
+RuntimeDirectory=sharebox
+RuntimeDirectoryMode=0755
+RuntimeDirectoryPreserve=yes
+
+# Hardening (docs/ARCHITECTURE.md). Runs as root without any capability:
+# it only reads /usr and /data/config and writes root-owned /run/sharebox.
+User=root
+CapabilityBoundingSet=
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+PrivateNetwork=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+ProtectClock=yes
+ProtectHostname=yes
+ProtectProc=invisible
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+RestrictAddressFamilies=AF_UNIX
+IPAddressDeny=any
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+SystemCallFilter=~@privileged @resources
+UMask=0077
+ReadWritePaths=/run/sharebox
+
+[Install]
+WantedBy=multi-user.target
